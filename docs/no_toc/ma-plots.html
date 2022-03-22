@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | GDSCN: Statistics for Genomics - Differential Expression</title>
+  <title>Chapter 4 MA Plots | GDSCN: Statistics for Genomics - Differential Expression</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | GDSCN: Statistics for Genomics - Differential Expression" />
+  <meta property="og:title" content="Chapter 4 MA Plots | GDSCN: Statistics for Genomics - Differential Expression" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | GDSCN: Statistics for Genomics - Differential Expression" />
+  <meta name="twitter:title" content="Chapter 4 MA Plots | GDSCN: Statistics for Genomics - Differential Expression" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-
-
+<link rel="prev" href="getting-started.html"/>
+<link rel="next" href="help.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -133,12 +133,22 @@
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/dasl_thin_main_image.png">
 </div>
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="ma-plots" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> MA Plots</h1>
+<div id="MA-overview" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Overview</h2>
+<p>This chapter explains how to create your own MA plots.</p>
+<p>MA plots are a way to visualize genomic data. These plots are a specific type of scatterplot typically used for gene expression datasets. The <em><strong>M</strong></em> represents the difference between two conditions, while the <em><strong>A</strong></em> represents the average intensity of the expression. Both values take on a <span class="math inline">\(\log_{2}\)</span> transformation.</p>
+<p><em><strong>M</strong></em> is expressed as a log ratio in the following form. <em><strong>M</strong></em> is often called “log fold change” and is almost always placed on the y-axis.</p>
+<p><span class="math display">\[M = log_{2}(\frac{condition 1}{condition 2})\]</span></p>
+<p><em><strong>A</strong></em> is more simple, taking the form of a transformed average. <em><strong>A</strong></em> is often called “log mean expression” and is almost always placed on the x-axis.</p>
+<p><span class="math display">\[M = \frac{1}{2} (log_{2}(condition 1) + log_{2}(condition 2))\]</span></p>
+
 </div>
+</div>
+
+
+
 <hr>
 <center> 
   <div class="footer">
@@ -152,8 +162,8 @@ the table of contents to find the page you are looking for.</p>
           </div>
         </div>
       </div>
-
-
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="help.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -184,7 +194,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/%s",
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/04-MAplots.Rmd",
 "text": "Edit"
 },
 "history": {
