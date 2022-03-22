@@ -1,11 +1,13 @@
-book_filename: "Course_Name"
+book_filename: "GDSCN: Statistics for Genomics - RNA-seq"
 chapter_name: "Chapter "
-repo: https://github.com/jhudsl/AnVIL_Template/
+repo: https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_RNA-seq
 rmd_files: ["index.Rmd",
-            "01-intro.Rmd",
-            "02-chapter_of_course.Rmd",
-            "About.Rmd",
-            "References.Rmd"]
+            "01-overview.Rmd",
+            "02-lesson-plan.Rmd",
+            "03-setup.Rmd",
+            "B-help.Rmd",
+            "C-feedback.Rmd",
+            "About.Rmd"]
 new_session: yes
 bibliography: [book.bib]
 delete_merged_file: true
