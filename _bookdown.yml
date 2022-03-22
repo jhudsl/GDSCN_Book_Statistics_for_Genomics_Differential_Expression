@@ -5,6 +5,7 @@ rmd_files: ["index.Rmd",
             "01-overview.Rmd",
             "02-lesson-plan.Rmd",
             "03-setup.Rmd",
+            "04-MAplots.Rmd",
             "B-help.Rmd",
             "C-feedback.Rmd",
             "About.Rmd"]
