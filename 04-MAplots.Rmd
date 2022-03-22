@@ -4,5 +4,18 @@
 
 ## Overview
 
-This chapter explains how to 
+This chapter explains how to create your own MA plots.
 
+MA plots are a way to visualize genomic data. These plots are a specific type of scatterplot typically used for gene expression datasets. The 'M' represents the difference between two conditions, while the 'A' represents the average intensity of the expression. Both values take on a $log_{2} $ transformation.
+
+_M_ is expressed as a log ratio in the following form:
+
+$M = log_{2}(\frac{condition 1}{condition 2}) $
+
+_M_ is often called "log fold change" and is almost always placed on the y-axis.
+
+_A_ is more simple, taking the form of a transformed average:
+
+$M = \frac{1}{2} (log_{2}(condition 1) + log_{2}(condition 2)) $
+
+_A_ is often called "log mean expression" and is almost always placed on the x-axis.
