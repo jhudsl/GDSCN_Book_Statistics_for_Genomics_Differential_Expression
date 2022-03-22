@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This chapter explains how to get set up to do your analyses on [AnVIL](https://anvilproject.org/). All activities will be run using [RStudio](https://www.rstudio.com/), so if you choose, you can use a different RStudio interface (such as [RStudio Cloud](https://rstudio.cloud/) or locally installed RStudio).
+This chapter explains how to get set up to do your analyses on [AnVIL](https://anvilproject.org/ ). All activities will be run using [RStudio](https://www.rstudio.com/), so if you choose, you can use a different RStudio interface (such as [RStudio Cloud](https://rstudio.cloud/) or locally installed RStudio).
 
 The Analysis, Visualization, and Informatics Lab-space ([AnVIL](https://anvilproject.org/ )) is a scalable and interoperable computing resource for the genomics scientific community. AnVIL enables researchers to analyze high-value open and controlled access genomic datasets with popular analysis tools in a secure cloud computing environment. AnVIL also serves as a data commons. It runs on the Google Cloud Platform (GCP) and is sponsored by [NHGRI](https://www.genome.gov/Funded-Programs-Projects/Computational-Genomics-and-Data-Science-Program/Genomic-Analysis-Visualization-Informatics-Lab-space-AnVIL).
 
@@ -10,11 +10,9 @@ In addition to Docker-based analysis workflows, AnVIL supports popular interacti
 
 By operating in the cloud, AnVIL users can scale analyses from a single computer to thousands and securely share data, workflows, and reproducible results with collaborators and colleagues.
 
-## Setup
+## Step 1: Create a Google Account
 
 AnVIL uses [Terra](https://anvil.terra.bio/) to run analyses. Terra operates on Google Cloud Platform, so you’ll need a Google account to make sure your instructor can keep track of any computing costs you accrue. 
-
-## Step 1: Create a Google Account
 
 ```{r, child=c("_child_create_google_account.Rmd")}
 
