@@ -21,7 +21,7 @@ First, we will load the necessary packages.
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 # Needed for GHA
-install.packages("matrixStats")
+#install.packages("matrixStats")
 BiocManager::install(c("MatrixGenerics", "DelayedArray", "SummarizedExperiment"), update = FALSE, ask = FALSE)
 BiocManager::install(c("Glimma", "limma"), update = FALSE, ask = FALSE)
 ```
@@ -31,7 +31,7 @@ BiocManager::install(c("Glimma", "limma"), update = FALSE, ask = FALSE)
 # BiocManager::install(c("Glimma", "limma"))
 library(Glimma)
 library(limma)
-library(matrixStats)
+#library(matrixStats)
 ```
 
 Load the gene expression data. We will be using data from @Sheridan2015 that has already been vetted to demo plot creation. This experiment consists of three cell populations - basal, luminal progenitor (LP) and mature luminal (ML) - sorted from mice mammary glands. Each treatment consists of three replicates. The gene expression data is stored in a special list-based data class called a "DGEList" (this stands for Digital Gene Expression).
