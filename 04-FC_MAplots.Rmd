@@ -1,6 +1,6 @@
 # (PART\*) DIFFERENTIAL EXPRESSION {-}
 
-# Transformation & MA Plots 
+# $\log_{2}$ Transformation & MA Plots 
 
 ## Overview
 
