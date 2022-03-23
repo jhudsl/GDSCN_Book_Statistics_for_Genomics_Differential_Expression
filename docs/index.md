@@ -45,5 +45,13 @@ Please check out our full collection of AnVIL resources below!
    <td style="text-align:left;"> GDSCN: SARS Galaxy on AnVIL </td>
    <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_SARS_Galaxy_on_AnVIL </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> GDSCN: Statistics for Genomics Differential Expression </td>
+   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_Differential_Expression </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GDSCN: Statistics for Genomics RNA-seq </td>
+   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_RNA-seq </td>
+  </tr>
 </tbody>
 </table>

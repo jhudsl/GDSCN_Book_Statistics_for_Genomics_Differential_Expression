@@ -7,7 +7,7 @@ introduction
 step-1-create-a-google-account
 step-2-sign-in-to-terra
 step-3-share-your-id
-transformation-ma-plots
+log_2-transformation-ma-plots
 overview
 gene-expression-data
 plotting-raw-counts
