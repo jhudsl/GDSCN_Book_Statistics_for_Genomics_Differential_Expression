@@ -1,6 +1,6 @@
 ---
 title: "GDSCN: Statistics for Genomics - Differential Expression"
-date: "March 22, 2022"
+date: "March 23, 2022"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib
