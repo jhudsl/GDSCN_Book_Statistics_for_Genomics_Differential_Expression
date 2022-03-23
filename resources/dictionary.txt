@@ -4,12 +4,17 @@ Bloomberg
 Datatrail
 DataTrail
 dropdown
+frac
+GCP
 GDSCN
+Gmail
 impactful
+interoperable
 ITCR
 itcrtraining
 ITN
 fyi
+Jupyter
 Leanpub
 Markua
 mentorship
@@ -18,6 +23,8 @@ NHGRI
 OTTR
 ottrpal
 preprint
+RStudio
+scalable
 UE
 UE5
 reproducibility
