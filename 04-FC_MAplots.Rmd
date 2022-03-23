@@ -19,9 +19,15 @@ Much of the following has been adopted from the [`Glimma` vignette](https://bioc
 
 First, we will load the necessary packages.
 
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+# Needed for GHA
+BiocManager::install(c("MatrixGenerics", "DelayedArray", "SummarizedExperiment"), update = FALSE)
+BiocManager::install(c("Glimma", "limma"), update = FALSE)
+```
+
 ```{r, warning = FALSE, message = FALSE}
 # Install and load Glimma, limma, and matrixStats
-BiocManager::install(c("Glimma", "limma"))
+# BiocManager::install(c("Glimma", "limma"))
 library(Glimma)
 library(limma)
 library(matrixStats)
