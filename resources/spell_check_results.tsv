@@ -1,8 +1,3 @@
 word	file	lines
-frac	04-MAplots.Rmd	13,19
-GCP	03-setup.Rmd	7
-Gmail	_child_create_google_account.Rmd	1,3
-interoperable	03-setup.Rmd	7
-Jupyter	03-setup.Rmd	9
-RStudio	03-setup.Rmd	5,5,5,9
-scalable	03-setup.Rmd	7
+DGEList	04-FC_MAplots.Rmd	30
+luminal	04-FC_MAplots.Rmd	30
