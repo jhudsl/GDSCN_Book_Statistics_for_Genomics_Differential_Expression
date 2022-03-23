@@ -35,6 +35,13 @@ jobs:
           git checkout $branch_name
           git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
+        
+      - name: Checkout if main
+        if: ${{ inputs.render-type == 'main' }}
+        run: |
+          git fetch --all
+          git checkout main
+        shell: bash
 
       - name: Run AnVIL repo check
         id: anvil_repos
@@ -42,6 +49,8 @@ jobs:
           GH_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           sudo apt-get install libcurl4-openssl-dev
+          
+          rm resources/AnVIL_repos.tsv
 
           # Run repo check script
           Rscript --vanilla "scripts/anvil_repo_check.R" --git_pat "$GH_PAT"
@@ -52,13 +61,17 @@ jobs:
           name: anvil-repo-results
           path: resources/AnVIL_repos.tsv
 
+      # Commit the rendered bookdown files
       - name: Commit AnVIL Repos file to main
         if: ${{ inputs.render-type == 'main' }}
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git add --force resources/AnVIL_repos.tsv || echo "No changes to commit"
-          git commit -m 'Add AnVIL repos file' || echo "No changes to commit"
-          git fetch --all
-          git push --force origin main || echo "No changes to commit"
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git add --force resources/AnVIL_repos.tsv
+          git commit -m 'add AnVIL repos' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push origin main || echo "No changes to push"
 
       - name: Commit AnVIL Repos file to preview
         if: ${{ inputs.render-type == 'preview' }}
