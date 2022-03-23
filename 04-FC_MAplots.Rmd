@@ -21,7 +21,7 @@ First, we will load the necessary packages.
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 # Needed for GHA
-#install.packages("matrixStats")
+install.packages("https://cran.r-project.org/src/contrib/matrixStats_0.61.0.tar.gz", repo=NULL, type="source")
 BiocManager::install(c("MatrixGenerics", "DelayedArray", "SummarizedExperiment"), update = FALSE, ask = FALSE)
 BiocManager::install(c("Glimma", "limma"), update = FALSE, ask = FALSE)
 ```
