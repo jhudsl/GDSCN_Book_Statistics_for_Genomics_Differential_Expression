@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>About the Authors | AnVIL Book Name</title>
+  <title>About the Authors | GDSCN: Statistics for Genomics - Differential Expression</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="About the Authors | AnVIL Book Name" />
+  <meta property="og:title" content="About the Authors | GDSCN: Statistics for Genomics - Differential Expression" />
   <meta property="og:type" content="book" />
   
   
@@ -16,22 +16,22 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="About the Authors | AnVIL Book Name" />
+  <meta name="twitter:title" content="About the Authors | GDSCN: Statistics for Genomics - Differential Expression" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
 
 
 
-<meta name="date" content="2022-03-17" />
+<meta name="date" content="2022-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="topic-of-section.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="give-us-feedback.html"/>
+
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,6 +52,20 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/vega-1/vega_plots.css" rel="stylesheet" />
+<script src="libs/vega-1/vega.min.js"></script>
+<link href="libs/vega-tooltip-1/vega-tooltip.css" rel="stylesheet" />
+<script src="libs/vega-tooltip-1/vega-tooltip.js"></script>
+<link href="libs/datatables-1/datatables.css" rel="stylesheet" />
+<script src="libs/datatables-1/datatables.min.js"></script>
+<script src="libs/FileSaver-1/FileSaver.js"></script>
+<script src="libs/GlimmaV2-1/XYSpecs.js"></script>
+<script src="libs/GlimmaV2-1/MDSSpecs.js"></script>
+<script src="libs/GlimmaV2-1/expressionSpec.js"></script>
+<script src="libs/GlimmaV2-1/makeTooltip.js"></script>
+<script src="libs/GlimmaV2-1/saveTools.js"></script>
+<script src="libs/glimmaXY-binding-2.0.0/glimmaXY.js"></script>
 
 
 <style type="text/css">
@@ -141,7 +155,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="assets/AnVIL_style/style_anvil.css" type="text/css" />
+<link rel="stylesheet" href="assets/style_anvil.css" type="text/css" />
 </head>
 
 <body>
@@ -154,46 +168,54 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<a href="https://anvilproject.org/" target="_blank"><img src="assets/AnVIL_style/logo-anvil.png" style="width: 80%; padding-left: 15px; padding-top: 8px;"</a>
+<a href="https://anvilproject.org/" target="_blank"><img src="assets/logo-anvil.png" style="width: 80%; padding-left: 15px; padding-top: 8px;"</a>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Book</a>
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#anvil-collection"><i class="fa fa-check"></i>AnVIL Collection</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="overview-and-learning-objectives.html"><a href="overview-and-learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Overview and Learning Objectives</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#target-audience"><i class="fa fa-check"></i><b>1.2</b> Target Audience</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#curriculum"><i class="fa fa-check"></i><b>1.3</b> Curriculum</a></li>
+<li class="chapter" data-level="1.1" data-path="overview-and-learning-objectives.html"><a href="overview-and-learning-objectives.html#activity-context"><i class="fa fa-check"></i><b>1.1</b> Activity Context</a></li>
+<li class="chapter" data-level="1.2" data-path="overview-and-learning-objectives.html"><a href="overview-and-learning-objectives.html#learning-objectives"><i class="fa fa-check"></i><b>1.2</b> Learning Objectives</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="a-new-chapter.html"><a href="a-new-chapter.html"><i class="fa fa-check"></i><b>2</b> A new chapter</a>
+<li class="chapter" data-level="2" data-path="lesson-plan.html"><a href="lesson-plan.html"><i class="fa fa-check"></i><b>2</b> Lesson Plan</a></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="a-new-chapter.html"><a href="a-new-chapter.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="a-new-chapter.html"><a href="a-new-chapter.html#libraries"><i class="fa fa-check"></i><b>2.2</b> Libraries</a></li>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#step-1-create-a-google-account"><i class="fa fa-check"></i><b>3.2</b> Step 1: Create a Google Account</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#step-2-sign-in-to-terra"><i class="fa fa-check"></i><b>3.3</b> Step 2: Sign in to Terra</a></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#step-3-share-your-id"><i class="fa fa-check"></i><b>3.4</b> Step 3: Share your ID</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="topic-of-section.html"><a href="topic-of-section.html"><i class="fa fa-check"></i><b>3</b> Topic of Section</a>
+<li class="part"><span><b>DIFFERENTIAL EXPRESSION</b></span></li>
+<li class="chapter" data-level="4" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html"><i class="fa fa-check"></i><b>4</b> Transformation &amp; MA Plots</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="topic-of-section.html"><a href="topic-of-section.html#subtopic"><i class="fa fa-check"></i><b>3.1</b> Subtopic</a>
+<li class="chapter" data-level="4.1" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#gene-expression-data"><i class="fa fa-check"></i><b>4.2</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="4.3" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#plotting-raw-counts"><i class="fa fa-check"></i><b>4.3</b> Plotting Raw Counts</a></li>
+<li class="chapter" data-level="4.4" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#transforming-log_2"><i class="fa fa-check"></i><b>4.4</b> Transforming (<span class="math inline">\(\log_{2}\)</span>)</a></li>
+<li class="chapter" data-level="4.5" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#using-fold-change"><i class="fa fa-check"></i><b>4.5</b> Using Fold-Change</a></li>
+<li class="chapter" data-level="4.6" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#about-ma-plots"><i class="fa fa-check"></i><b>4.6</b> About MA Plots</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="topic-of-section.html"><a href="topic-of-section.html#code-examples"><i class="fa fa-check"></i><b>3.1.1</b> Code examples</a></li>
-<li class="chapter" data-level="3.1.2" data-path="topic-of-section.html"><a href="topic-of-section.html#image-example"><i class="fa fa-check"></i><b>3.1.2</b> Image example</a></li>
-<li class="chapter" data-level="3.1.3" data-path="topic-of-section.html"><a href="topic-of-section.html#video-examples"><i class="fa fa-check"></i><b>3.1.3</b> Video examples</a></li>
-<li class="chapter" data-level="3.1.4" data-path="topic-of-section.html"><a href="topic-of-section.html#links-to-files"><i class="fa fa-check"></i><b>3.1.4</b> Links to files</a></li>
-<li class="chapter" data-level="3.1.5" data-path="topic-of-section.html"><a href="topic-of-section.html#links-to-websites"><i class="fa fa-check"></i><b>3.1.5</b> Links to websites</a></li>
-<li class="chapter" data-level="3.1.6" data-path="topic-of-section.html"><a href="topic-of-section.html#citation-examples"><i class="fa fa-check"></i><b>3.1.6</b> Citation examples</a></li>
-<li class="chapter" data-level="3.1.7" data-path="topic-of-section.html"><a href="topic-of-section.html#fyi-boxes"><i class="fa fa-check"></i><b>3.1.7</b> FYI boxes</a></li>
-<li class="chapter" data-level="3.1.8" data-path="topic-of-section.html"><a href="topic-of-section.html#dropdown-summaries"><i class="fa fa-check"></i><b>3.1.8</b> Dropdown summaries</a></li>
+<li class="chapter" data-level="4.6.1" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#the-design-matrix"><i class="fa fa-check"></i><b>4.6.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="4.6.2" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#the-contrast-matrix"><i class="fa fa-check"></i><b>4.6.2</b> The Contrast Matrix</a></li>
+<li class="chapter" data-level="4.6.3" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#fitting-the-data"><i class="fa fa-check"></i><b>4.6.3</b> Fitting the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="topic-of-section.html"><a href="topic-of-section.html#print-out-session-info"><i class="fa fa-check"></i><b>3.2</b> Print out session info</a></li>
+<li class="chapter" data-level="4.7" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#creating-an-ma-plot"><i class="fa fa-check"></i><b>4.7</b> Creating an MA Plot</a></li>
+<li class="chapter" data-level="4.8" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#interactive-ma-plots"><i class="fa fa-check"></i><b>4.8</b> Interactive MA Plots</a></li>
+<li class="chapter" data-level="4.9" data-path="transformation-ma-plots.html"><a href="transformation-ma-plots.html#recap"><i class="fa fa-check"></i><b>4.9</b> Recap</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
+<li class="chapter" data-level="B" data-path="give-us-feedback.html"><a href="give-us-feedback.html"><i class="fa fa-check"></i><b>B</b> Give Us Feedback</a></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
-<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
 <li class="divider"></li>
 <p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown by: </a> </p>
 <p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
 <a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
 <p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+
 </ul>
 
       </nav>
@@ -203,7 +225,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnVIL Book Name</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GDSCN: Statistics for Genomics - Differential Expression</a>
           </h1>
         </div>
 
@@ -215,13 +237,13 @@ div.csl-indent {
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
   <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
   <!--<script src="assets/hideOutput.js"></script>-->
-  <link href="assets/AnvIL_style/style_anvil.css" rel="stylesheet">
+  <link href="assets/style_anvil.css" rel="stylesheet">
 </head>
         
 
 
 <div class="hero-image-container"> 
-  <img class= "hero-image" src="assets/AnVIL_style/dasl_thin_main_image.png">
+  <img class= "hero-image" src="assets/dasl_thin_main_image.png">
 </div>
 <div id="about-the-authors" class="section level1 unnumbered">
 <h1>About the Authors</h1>
@@ -229,10 +251,6 @@ div.csl-indent {
 <p> 
  </p>
 <table>
-<colgroup>
-<col width="58%" />
-<col width="41%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Credits</th>
@@ -245,115 +263,29 @@ div.csl-indent {
 <td></td>
 </tr>
 <tr class="even">
-<td>Lead Content Instructor(s)</td>
-<td><a href="link%20to%20personal%20website">FirstName LastName</a></td>
+<td>Lead Content Instructor</td>
+<td><a href="https://www.avahoffman.com/">Ava Hoffman</a></td>
 </tr>
 <tr class="odd">
-<td>Lecturer(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved</td>
-<td>Delivered the course in some way - video or audio</td>
-</tr>
-<tr class="even">
-<td>Content Author(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved</td>
-<td>If any other authors besides lead instructor</td>
-</tr>
-<tr class="odd">
-<td>Content Contributor(s) (include section name/link in parentheses) - make new line if more than one section involved</td>
-<td>Wrote less than a chapter</td>
-</tr>
-<tr class="even">
-<td>Content Editor(s)/Reviewer(s)</td>
-<td>Checked your content</td>
-</tr>
-<tr class="odd">
-<td>Content Director(s)</td>
-<td>Helped guide the content direction</td>
-</tr>
-<tr class="even">
-<td>Content Consultants (include chapter name/link in parentheses or word “General”) - make new line if more than one chapter involved</td>
-<td>Gave high level advice on content</td>
-</tr>
-<tr class="odd">
-<td>Acknowledgments</td>
-<td>Gave small assistance to content but not to the level of consulting</td>
-</tr>
-<tr class="even">
-<td><strong>Production</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Content Publisher(s)</td>
-<td>Helped with publishing platform</td>
-</tr>
-<tr class="even">
-<td>Content Publishing Reviewer(s)</td>
-<td>Reviewed overall content and aesthetics on publishing platform</td>
-</tr>
-<tr class="odd">
-<td><strong>Technical</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Course Publishing Engineer(s)</td>
-<td>Helped with the code for the technical aspects related to the specific course generation</td>
-</tr>
-<tr class="odd">
-<td>Template Publishing Engineers</td>
-<td><a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a></td>
-</tr>
-<tr class="even">
-<td>Publishing Maintenance Engineer</td>
-<td><a href="https://www.cansavvy.com/">Candace Savonen</a></td>
-</tr>
-<tr class="odd">
-<td>Technical Publishing Stylists</td>
-<td><a href="https://carriewright11.github.io/">Carrie Wright</a>, <a href="https://www.cansavvy.com/">Candace Savonen</a></td>
-</tr>
-<tr class="even">
-<td>Package Developers (<a href="https://github.com/jhudsl/ottrpal">ottrpal</a>)</td>
-<td><a href="https://johnmuschelli.com/">John Muschelli</a>, <a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a></td>
-</tr>
-<tr class="odd">
-<td><strong>Art and Design</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Illustrator(s)</td>
-<td>Created graphics for the course</td>
-</tr>
-<tr class="odd">
-<td>Figure Artist(s)</td>
-<td>Created figures/plots for course</td>
-</tr>
-<tr class="even">
-<td>Videographer(s)</td>
-<td>Filmed videos</td>
-</tr>
-<tr class="odd">
-<td>Videography Editor(s)</td>
-<td>Edited film</td>
-</tr>
-<tr class="even">
-<td>Audiographer(s)</td>
-<td>Recorded audio</td>
-</tr>
-<tr class="odd">
-<td>Audiography Editor(s)</td>
-<td>Edited audio recordings</td>
-</tr>
-<tr class="even">
-<td><strong>Funding</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Funder(s)</td>
-<td>Institution/individual who funded course including grant number</td>
-</tr>
-<tr class="even">
-<td>Funding Staff</td>
-<td>Staff members who help with funding</td>
+<td>Content Idea Contributor</td>
+<td>Kasper Hansen</td>
 </tr>
 </tbody>
 </table>
+<!-- |Content Contributor | [Jeff Leek], [Michael Schatz], [Frederick Tan]| -->
+<!-- |Content Editors| [Katherine Cox], Natalie Kucher, [Frederick Tan]| -->
+<!-- |Content Directors | Kasper Hansen, [Jeff Leek], [Frederick Tan]| -->
+<!-- |Content Consultants (General) | [Jeff Leek], [Frederick Tan], [Carrie Wright] | -->
+<p>|<strong>Production</strong>||
+|Content Publisher|<a href="https://publichealth.jhu.edu/faculty/4130/ira-gooding">Ira Gooding</a>|
+|<strong>Technical</strong>||
+|Template Publishing Engineers|<a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a>, <a href="https://www.avahoffman.com/">Ava Hoffman</a>|
+|Publishing Maintenance Engineer|<a href="https://www.cansavvy.com/">Candace Savonen</a>|
+|Technical Publishing Stylists|<a href="https://carriewright11.github.io/">Carrie Wright</a>, <a href="https://www.cansavvy.com/">Candace Savonen</a>|
+|Package Developers (<a href="https://github.com/jhudsl/ottrpal">ottrpal</a>)|<a href="https://johnmuschelli.com/">John Muschelli</a>, <a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a>|
+|<strong>Funding</strong>||
+|Funder| <a href="https://www.genome.gov/">National Human Genome Research Institute (NHGRI)</a> |
+|Funding Staff| Fallon Bachman, Jennifer Vessio, Emily Voeglein|</p>
 <p> </p>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
@@ -365,7 +297,7 @@ div.csl-indent {
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-03-17                  
+##  date     2022-03-23                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -412,7 +344,7 @@ div.csl-indent {
 ## [2] /usr/local/lib/R/library</code></pre>
 <!-- Author information -->
 <!-- Links -->
-<!-- Fill out this table using these instructions: https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits
+<!-- Fill out this table using these instructions: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-give-credits
 
 For JHU courses, You will need to add Ira as a credit:
 
@@ -421,6 +353,17 @@ For JHU courses, You will need to add Ira as a credit:
 [Ira Gooding]: https://publichealth.jhu.edu/faculty/4130/ira-gooding
 -->
 
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Ritchie, Matthew E., Belinda Phipson, Di Wu, Yifang Hu, Charity W. Law, Wei Shi, and Gordon K. Smyth. 2015. <span>“<span class="nocase">limma powers differential expression analyses for RNA-sequencing and microarray studies</span>.”</span> <em>Nucleic Acids Research</em> 43 (7): e47–47. <a href="https://doi.org/10.1093/nar/gkv007">https://doi.org/10.1093/nar/gkv007</a>.
+</div>
+<div class="csl-entry">
+Sheridan, Julie M., Matthew E. Ritchie, Sarah A. Best, Kun Jiang, Tamara J. Beck, François Vaillant, Kevin Liu, et al. 2015. <span>“A Pooled shRNA Screen for Regulators of Primary Mammary Stem and Progenitor Cells Identifies Roles for Asap1 and Prox1.”</span> <em>BMC Cancer</em> 15 (1): 221. <a href="https://doi.org/10.1186/s12885-015-1187-z">https://doi.org/10.1186/s12885-015-1187-z</a>.
+</div>
+<div class="csl-entry">
+Su, Shian, Charity W Law, Casey Ah-Cann, Marie-Liesse Asselin-Labat, Marnie E Blewitt, and Matthew E Ritchie. 2017. <span>“<span class="nocase">Glimma: interactive graphics for gene expression analysis</span>.”</span> <em>Bioinformatics</em> 33 (13): 2050–52. <a href="https://doi.org/10.1093/bioinformatics/btx094">https://doi.org/10.1093/bioinformatics/btx094</a>.
+</div>
+</div>
 </div>
 <hr>
 <center> 
@@ -435,8 +378,8 @@ For JHU courses, You will need to add Ira as a credit:
           </div>
         </div>
       </div>
-<a href="topic-of-section.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="give-us-feedback.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -467,8 +410,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/About.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
@@ -490,6 +433,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
