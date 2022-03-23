@@ -19,7 +19,7 @@ This work is also supported in part by the Genomic Data Science Community Networ
 
 ## AnVIL Collection {-}
 
-Please check out our full collection of AnVIL resources below!
+Please check out our full collection of AnVIL resources below.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 source("scripts/anvil_repo_table.R")
