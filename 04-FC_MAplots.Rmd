@@ -21,7 +21,7 @@ First, we will load the necessary packages.
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 # Needed for GHA
-BiocManager::install("matrixStats", update = TRUE, ask = FALSE)
+install.packages("matrixStats")
 BiocManager::install(c("MatrixGenerics", "DelayedArray", "SummarizedExperiment"), update = FALSE, ask = FALSE)
 BiocManager::install(c("Glimma", "limma"), update = FALSE, ask = FALSE)
 ```
