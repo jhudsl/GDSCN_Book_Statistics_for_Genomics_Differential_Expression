@@ -1,0 +1,9 @@
+# Creating a Workspace {#workspace}
+
+Now that you have an account that works with AnVIL, you are ready to get started! In this chapter, we will learn about **Workspaces**, the fundamental work units inside AnVIL. Once you have created a Workspace, you can launch many tools and explore datasets. We will use a Workspace to launch [RStudio](#rstudio) in the next chapter.
+
+Workspaces are..
+
+```{r, child=c("_child_workspace_create.Rmd")}
+
+```
