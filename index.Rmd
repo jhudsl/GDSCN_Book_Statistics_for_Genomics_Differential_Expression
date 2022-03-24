@@ -1,5 +1,5 @@
 ---
-title: "GDSCN: Statistics for Genomics - Differential Expression"
+title: "Statistics for Genomics: Differential Expression"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 site: bookdown::bookdown_site
 documentclass: book
