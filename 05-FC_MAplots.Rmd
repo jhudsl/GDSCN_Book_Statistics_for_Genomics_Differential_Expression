@@ -4,7 +4,7 @@
 
 ## Overview
 
-The following excerpt comes from @Ritchie2015 : 
+The following excerpt comes from @Ritchie2015 :
 
 > _Measuring expression in multiple RNA samples produces columns of correlated expression values, which are highly correlated because they are measured on the same set of genes or genomic features. It has long been established in the biomedical literature that the level of agreement between correlated variables can be usefully examined by plotting differences versus means._
 
@@ -13,7 +13,7 @@ In other words, gene expression data is full of correlations. We must think care
 - Examine how $\log_{2}$ transformations and fold-change improve data clarity
 - Learn how to make MA plots on gene expression data
 
-Much of the following has been adopted from the [`Glimma` vignette](https://bioconductor.org/packages/release/bioc/vignettes/Glimma/inst/doc/limma_edger.html) for `limma` and `edgeR` [@Su2017]. 
+Much of the following has been adopted from the [`Glimma` vignette](https://bioconductor.org/packages/release/bioc/vignettes/Glimma/inst/doc/limma_edger.html) for `limma` and `edgeR` [@Su2017].
 
 ## Gene Expression Data
 
@@ -83,7 +83,7 @@ plot(log2(basal_sample_means), log2(LP_sample_means))
 
 ## Using Fold-Change
 
-As stated at the very start of this chapter, plotting differences versus means can be very helpful when many genes are correlated. It also makes interpretation easier when combined with a $\log_{2}$ transformation. 
+As stated at the very start of this chapter, plotting differences versus means can be very helpful when many genes are correlated. It also makes interpretation easier when combined with a $\log_{2}$ transformation.
 
 When basal and LP expression are equal, fold-change is equal to zero.
 
