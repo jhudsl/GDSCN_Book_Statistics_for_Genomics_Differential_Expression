@@ -1,0 +1,65 @@
+# Creating MA Plots
+
+In the previous steps, you created a preliminary MA plot. MA plots are a widely used way to visualize genomic data. As you experienced above, these plots are a specific type of scatterplot typically used for gene expression datasets. The _**M**_ represents the difference between two conditions (fold-change), while the _**A**_ represents the average intensity of the expression. Both values take on a $\log_{2}$ transformation.
+
+_**M**_ is expressed as a log ratio or difference in the following form. _**M**_ is almost always placed on the y-axis.
+
+$$M = log_{2}(\frac{condition 1}{condition 2}) = log_{2}(condition 1) - log_{2}(condition2)$$
+
+_**A**_ is more simple, taking the form of a transformed average. _**A**_ is often called "log mean expression" and is almost always placed on the x-axis.
+
+$$A = \frac{1}{2} (log_{2}(condition 1) + log_{2}(condition 2))$$
+In the next steps, we will go over how to create an MA plot using `limma`. First, we will need to supply the design matrix and contrast matrix.
+
+## The Design Matrix
+
+Load the design matrix. This indicates which samples correspond to which cell populations. 
+
+```{r}
+# Load the experimental design matrix
+design <- readRDS(
+  system.file("RNAseq123/design.rds", package = "Glimma"))
+design
+```
+
+## The Contrast Matrix
+
+Load the contrast matrix. This indicates which cell populations we want to compare.
+
+```{r}
+contr.matrix <- readRDS(
+  system.file("RNAseq123/contr.matrix.rds", package = "Glimma"))
+```
+
+## Fitting the Data
+
+There are several more steps to normalize and fit the data before making an MA plot. Don't worry! We will cover these steps in more detail later in the course. Briefly, the `voom()` function $\log_{2}$ transforms and normalizes the data. `lmFit()` fits a linear model for each gene to examine differential expression between the cell populations we want to compare.
+
+```{r}
+v <- voom(dge, design)
+vfit <- lmFit(v, design)
+vfit <- contrasts.fit(vfit, contrasts = contr.matrix)
+```
+
+## Creating an MA Plot
+
+A simple MA plot can be produced with the `plotMA()` function. Other packages for exploring differential gene expression in R, such as `DESeq2`, also have functions to create MA plots.
+
+```{r}
+plotMA(vfit)
+```
+
+## Interactive MA Plots
+
+`glimmaMA()` from the `Glimma` package creates interactive MA plots. Again, don't worry about the preparation steps - these will be covered in more detail later. `eBayes()` computes statistics by empirical Bayes moderation of the standard errors towards a global value.
+
+```{r}
+efit <- eBayes(vfit)
+glimmaMA(efit, dge = dge)
+```
+
+## Recap
+
+```{r}
+sessionInfo()
+```
