@@ -193,9 +193,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#launch-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.1</b> Launch RStudio Cloud Environment</a></li>
 <li class="chapter" data-level="4.2" data-path="rstudio.html"><a href="rstudio.html#tour-rstudio"><i class="fa fa-check"></i><b>4.2</b> Tour RStudio</a></li>
-<li class="chapter" data-level="4.3" data-path="rstudio.html"><a href="rstudio.html#stopping"><i class="fa fa-check"></i><b>4.3</b> Pause RStudio</a></li>
-<li class="chapter" data-level="4.4" data-path="rstudio.html"><a href="rstudio.html#delete-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.4</b> Delete RStudio Cloud Environment</a></li>
-<li class="chapter" data-level="4.5" data-path="rstudio.html"><a href="rstudio.html#video-guide"><i class="fa fa-check"></i><b>4.5</b> Video Guide</a></li>
+<li class="chapter" data-level="4.3" data-path="rstudio.html"><a href="rstudio.html#more-practice-with-isee"><i class="fa fa-check"></i><b>4.3</b> More Practice with <code>iSEE</code></a></li>
+<li class="chapter" data-level="4.4" data-path="rstudio.html"><a href="rstudio.html#stopping"><i class="fa fa-check"></i><b>4.4</b> Pause RStudio</a></li>
+<li class="chapter" data-level="4.5" data-path="rstudio.html"><a href="rstudio.html#delete-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.5</b> Delete RStudio Cloud Environment</a></li>
+<li class="chapter" data-level="4.6" data-path="rstudio.html"><a href="rstudio.html#video-guide"><i class="fa fa-check"></i><b>4.6</b> Video Guide</a></li>
 </ul></li>
 <li class="part"><span><b>DIFFERENTIAL EXPRESSION</b></span></li>
 <li class="chapter" data-level="5" data-path="transforming-data.html"><a href="transforming-data.html"><i class="fa fa-check"></i><b>5</b> Transforming Data</a>
@@ -216,6 +217,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.4" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#creating-an-ma-plot"><i class="fa fa-check"></i><b>7.4</b> Creating an MA Plot</a></li>
 <li class="chapter" data-level="7.5" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#interactive-ma-plots"><i class="fa fa-check"></i><b>7.5</b> Interactive MA Plots</a></li>
 <li class="chapter" data-level="7.6" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#recap"><i class="fa fa-check"></i><b>7.6</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html"><i class="fa fa-check"></i><b>8</b> <code>SummarizedExperiment</code></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#recap-1"><i class="fa fa-check"></i><b>8.1</b> Recap</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
@@ -261,8 +266,8 @@ div.csl-indent {
 <div id="plotting-raw-counts" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Plotting Raw Counts</h2>
 <p>Let’s say we want to compare basal and LP samples. We will first look at the metadata.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="plotting-expression-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View metadata</span></span>
-<span id="cb11-2"><a href="plotting-expression-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>samples</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="plotting-expression-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View metadata</span></span>
+<span id="cb12-2"><a href="plotting-expression-data.html#cb12-2" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>samples</span></code></pre></div>
 <pre><code>##                              files group lib.size norm.factors lane
 ## 10_6_5_11 GSM1545535_10_6_5_11.txt    LP 32857304    0.8943956 L004
 ## 9_6_5_11   GSM1545536_9_6_5_11.txt    ML 35328624    1.0250186 L004
@@ -274,46 +279,46 @@ div.csl-indent {
 ## JMS9-P7c   GSM1545544_JMS9-P7c.txt    ML 21305254    1.0861026 L008
 ## JMS9-P8c   GSM1545545_JMS9-P8c.txt    LP 19955335    0.9839203 L008</code></pre>
 <p>We will manually take the mean across basal samples and LP samples.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="plotting-expression-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts</span></span>
-<span id="cb13-2"><a href="plotting-expression-data.html#cb13-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> dge<span class="sc">$</span>counts</span>
-<span id="cb13-3"><a href="plotting-expression-data.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Basal samples are columns 3, 4, and 7</span></span>
-<span id="cb13-4"><a href="plotting-expression-data.html#cb13-4" aria-hidden="true" tabindex="-1"></a>basal_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)])</span>
-<span id="cb13-5"><a href="plotting-expression-data.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># LP samples are columns 1, 6, and 9</span></span>
-<span id="cb13-6"><a href="plotting-expression-data.html#cb13-6" aria-hidden="true" tabindex="-1"></a>LP_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">9</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plotting-expression-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts</span></span>
+<span id="cb14-2"><a href="plotting-expression-data.html#cb14-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> dge<span class="sc">$</span>counts</span>
+<span id="cb14-3"><a href="plotting-expression-data.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Basal samples are columns 3, 4, and 7</span></span>
+<span id="cb14-4"><a href="plotting-expression-data.html#cb14-4" aria-hidden="true" tabindex="-1"></a>basal_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)])</span>
+<span id="cb14-5"><a href="plotting-expression-data.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># LP samples are columns 1, 6, and 9</span></span>
+<span id="cb14-6"><a href="plotting-expression-data.html#cb14-6" aria-hidden="true" tabindex="-1"></a>LP_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">9</span>)])</span></code></pre></div>
 <p>Then we will plot the two groups.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plotting-expression-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(basal_sample_means, LP_sample_means)</span></code></pre></div>
-<p><img src="05-FC_MAplots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plotting-expression-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(basal_sample_means, LP_sample_means)</span></code></pre></div>
+<p><img src="05-07-transform-MAplots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>This is hard to interpret. Most of the genes are clustered in the bottom left corner.</p>
 </div>
 <div id="transforming-log_2" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Transforming (<span class="math inline">\(\log_{2}\)</span>)</h2>
 <p>Using a <span class="math inline">\(\log_{2}\)</span> transformation makes it easier to examine all the genes together.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plotting-expression-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with log2 transformation</span></span>
-<span id="cb15-2"><a href="plotting-expression-data.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log2</span>(basal_sample_means), <span class="fu">log2</span>(LP_sample_means))</span></code></pre></div>
-<p><img src="05-FC_MAplots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plotting-expression-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with log2 transformation</span></span>
+<span id="cb16-2"><a href="plotting-expression-data.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log2</span>(basal_sample_means), <span class="fu">log2</span>(LP_sample_means))</span></code></pre></div>
+<p><img src="05-07-transform-MAplots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="using-fold-change" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Using Fold-Change</h2>
 <p>As stated at the very start of this chapter, plotting differences versus means can be very helpful when many genes are correlated. It also makes interpretation easier when combined with a <span class="math inline">\(\log_{2}\)</span> transformation.</p>
 <p>When basal and LP expression are equal, fold-change is equal to zero.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plotting-expression-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="plotting-expression-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>When basal expression is greater, fold-change is positive.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plotting-expression-data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">20</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="plotting-expression-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">20</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plotting-expression-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">100</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="plotting-expression-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">100</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 6.643856</code></pre>
 <p>However when LP expression is greater, fold-change is negative.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotting-expression-data.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="plotting-expression-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## [1] -1</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="plotting-expression-data.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="plotting-expression-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -6.643856</code></pre>
 <p>Calculate fold-change for the data.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plotting-expression-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a>log2_fold_change <span class="ot">&lt;-</span> <span class="fu">log2</span>(basal_sample_means) <span class="sc">-</span> <span class="fu">log2</span>(LP_sample_means)</span>
-<span id="cb26-2"><a href="plotting-expression-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a>mean_expression <span class="ot">&lt;-</span> (<span class="fu">log2</span>(basal_sample_means) <span class="sc">+</span> <span class="fu">log2</span>(LP_sample_means)) <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plotting-expression-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a>log2_fold_change <span class="ot">&lt;-</span> <span class="fu">log2</span>(basal_sample_means) <span class="sc">-</span> <span class="fu">log2</span>(LP_sample_means)</span>
+<span id="cb27-2"><a href="plotting-expression-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a>mean_expression <span class="ot">&lt;-</span> (<span class="fu">log2</span>(basal_sample_means) <span class="sc">+</span> <span class="fu">log2</span>(LP_sample_means)) <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
 <p>Plot the values above, with mean expression on the x-axis and fold-change on the y-axis.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plotting-expression-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change)</span></code></pre></div>
-<p><img src="05-FC_MAplots_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plotting-expression-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change)</span></code></pre></div>
+<p><img src="05-07-transform-MAplots_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>This gives us a very rough idea of how transformation and using fold-change can aid in interpretation of the data. In reality, we need to cover a few more steps before creating this kind of plot.</p>
 </div>
 </div>
@@ -362,7 +367,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/05-FC_MAplots.Rmd",
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/05-07-transform-MAplots.Rmd",
 "text": "Edit"
 },
 "history": {

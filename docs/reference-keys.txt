@@ -10,6 +10,7 @@ workspace
 rstudio
 launch-rstudio-cloud-environment
 tour-rstudio
+more-practice-with-isee
 stopping
 delete-rstudio-cloud-environment
 video-guide
@@ -26,5 +27,7 @@ fitting-the-data
 creating-an-ma-plot
 interactive-ma-plots
 recap
+summarizedexperiment
+recap-1
 help
 give-us-feedback

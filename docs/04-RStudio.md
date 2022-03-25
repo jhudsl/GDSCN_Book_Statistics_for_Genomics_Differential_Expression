@@ -111,6 +111,20 @@ Next, we will be using RStudio and the package `Glimma` to create interactive pl
 
     <img src="04-RStudio_files/figure-html//1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6db6a_0_8.png" title="Screenshot of the RStudio interface. The popup to download the selected file has been highlighted," alt="Screenshot of the RStudio interface. The popup to download the selected file has been highlighted," width="480" />
     
+## More Practice with `iSEE`
+
+`iSEE` is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects [@RueAlbrecht2018]. We will learn more about SummarizedExperiments in [following chapters](summarizedexperiment.html#summarizedexperiment). Below, we will visualize an example dataset from @Tasic2016. This experiment is a single-cell RNAseq experiment (scRNAseq) examining the primary visual cortex in mice, with the aim of better understanding cell diversity and taxonomy in the nervous system. Run the following.
+
+
+```r
+# Install and load necessary packages
+AnVIL::install(c("iSEE", "scRNAseq", "scater"))
+library(iSEE)
+
+# Launch interactive example
+example(iSEE, ask=FALSE)
+```
+
 ## Pause RStudio {#stopping}
 
 1. The upper right corner reminds you that you are accruing cloud computing costs.

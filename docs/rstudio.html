@@ -193,9 +193,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#launch-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.1</b> Launch RStudio Cloud Environment</a></li>
 <li class="chapter" data-level="4.2" data-path="rstudio.html"><a href="rstudio.html#tour-rstudio"><i class="fa fa-check"></i><b>4.2</b> Tour RStudio</a></li>
-<li class="chapter" data-level="4.3" data-path="rstudio.html"><a href="rstudio.html#stopping"><i class="fa fa-check"></i><b>4.3</b> Pause RStudio</a></li>
-<li class="chapter" data-level="4.4" data-path="rstudio.html"><a href="rstudio.html#delete-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.4</b> Delete RStudio Cloud Environment</a></li>
-<li class="chapter" data-level="4.5" data-path="rstudio.html"><a href="rstudio.html#video-guide"><i class="fa fa-check"></i><b>4.5</b> Video Guide</a></li>
+<li class="chapter" data-level="4.3" data-path="rstudio.html"><a href="rstudio.html#more-practice-with-isee"><i class="fa fa-check"></i><b>4.3</b> More Practice with <code>iSEE</code></a></li>
+<li class="chapter" data-level="4.4" data-path="rstudio.html"><a href="rstudio.html#stopping"><i class="fa fa-check"></i><b>4.4</b> Pause RStudio</a></li>
+<li class="chapter" data-level="4.5" data-path="rstudio.html"><a href="rstudio.html#delete-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.5</b> Delete RStudio Cloud Environment</a></li>
+<li class="chapter" data-level="4.6" data-path="rstudio.html"><a href="rstudio.html#video-guide"><i class="fa fa-check"></i><b>4.6</b> Video Guide</a></li>
 </ul></li>
 <li class="part"><span><b>DIFFERENTIAL EXPRESSION</b></span></li>
 <li class="chapter" data-level="5" data-path="transforming-data.html"><a href="transforming-data.html"><i class="fa fa-check"></i><b>5</b> Transforming Data</a>
@@ -216,6 +217,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.4" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#creating-an-ma-plot"><i class="fa fa-check"></i><b>7.4</b> Creating an MA Plot</a></li>
 <li class="chapter" data-level="7.5" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#interactive-ma-plots"><i class="fa fa-check"></i><b>7.5</b> Interactive MA Plots</a></li>
 <li class="chapter" data-level="7.6" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#recap"><i class="fa fa-check"></i><b>7.6</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html"><i class="fa fa-check"></i><b>8</b> <code>SummarizedExperiment</code></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#recap-1"><i class="fa fa-check"></i><b>8.1</b> Recap</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
@@ -314,8 +319,18 @@ div.csl-indent {
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6db6a_0_8.png" title="Screenshot of the RStudio interface. The popup to download the selected file has been highlighted," alt="Screenshot of the RStudio interface. The popup to download the selected file has been highlighted," width="480" /></p></li>
 </ol>
 </div>
-<div id="stopping" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Pause RStudio</h2>
+<div id="more-practice-with-isee" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> More Practice with <code>iSEE</code></h2>
+<p><code>iSEE</code> is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects <span class="citation">(<a href="#ref-RueAlbrecht2018" role="doc-biblioref">Rue-Albrecht et al. 2018</a>)</span>. We will learn more about SummarizedExperiments in <a href="summarizedexperiment.html#summarizedexperiment">following chapters</a>. Below, we will visualize an example dataset from <span class="citation">Tasic et al. (<a href="#ref-Tasic2016" role="doc-biblioref">2016</a>)</span>. This experiment is a single-cell RNAseq experiment (scRNAseq) examining the primary visual cortex in mice, with the aim of better understanding cell diversity and taxonomy in the nervous system. Run the following.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load necessary packages</span></span>
+<span id="cb6-2"><a href="rstudio.html#cb6-2" aria-hidden="true" tabindex="-1"></a>AnVIL<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;iSEE&quot;</span>, <span class="st">&quot;scRNAseq&quot;</span>, <span class="st">&quot;scater&quot;</span>))</span>
+<span id="cb6-3"><a href="rstudio.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iSEE)</span>
+<span id="cb6-4"><a href="rstudio.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="rstudio.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch interactive example</span></span>
+<span id="cb6-6"><a href="rstudio.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(iSEE, <span class="at">ask=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="stopping" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Pause RStudio</h2>
 <ol style="list-style-type: decimal">
 <li><p>The upper right corner reminds you that you are accruing cloud computing costs.</p>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_84.png" title="Screenshot of the RStudio interface. The icon on the top right showing that the cloud environment is running is highlighted." alt="Screenshot of the RStudio interface. The icon on the top right showing that the cloud environment is running is highlighted." width="480" /></p></li>
@@ -323,8 +338,8 @@ div.csl-indent {
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_91.png" title="Screenshot of the RStudio interface. The stop icon on the top right which stops the cloud environment is highlighted." alt="Screenshot of the RStudio interface. The stop icon on the top right which stops the cloud environment is highlighted." width="480" /></p></li>
 </ol>
 </div>
-<div id="delete-rstudio-cloud-environment" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Delete RStudio Cloud Environment</h2>
+<div id="delete-rstudio-cloud-environment" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Delete RStudio Cloud Environment</h2>
 <ol style="list-style-type: decimal">
 <li><p><a href="rstudio.html#stopping">Stopping</a> your cloud environment only pauses your work. When you are ready to delete the cloud environment, click on the gear icon in the upper right corner to “Update cloud environment”.</p>
 <p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge1182913a6_0_41.png" title="Screenshot of the Workspace page. The gear icon on the top right that updates the cloud environment is highlighted." alt="Screenshot of the Workspace page. The gear icon on the top right that updates the cloud environment is highlighted." width="480" /></p></li>
@@ -336,13 +351,13 @@ div.csl-indent {
 <p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge1182913a6_0_51.png" title="Screenshot of the cloud environment popout. &quot;Delete&quot; is highlighted." alt="Screenshot of the cloud environment popout. &quot;Delete&quot; is highlighted." width="480" /></p></li>
 </ol>
 </div>
-<div id="video-guide" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Video Guide</h2>
+<div id="video-guide" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Video Guide</h2>
 <p>In addition to the steps above, you can review this video guide on how to launch RStudio on AnVIL.</p>
 <iframe src="https://drive.google.com/file/d/1v72ZG8JIRDUaewFQgGfcCO_qoM4eYmYX/preview" width="640" height="360" allow="autoplay">
 </iframe>
 <p>The slides for this tutorial are are located <a href="https://docs.google.com/presentation/d/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw">here</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rstudio.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.3 LTS
@@ -376,6 +391,15 @@ div.csl-indent {
 
 
 
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-RueAlbrecht2018" class="csl-entry">
+Rue-Albrecht, K, F Marini, C Soneson, and ATL Lun. 2018. <span>“iSEE: Interactive SummarizedExperiment Explorer [Version 1; Peer Review: 3 Approved].”</span> <em>F1000Research</em> 7 (741). <a href="https://doi.org/10.12688/f1000research.14966.1">https://doi.org/10.12688/f1000research.14966.1</a>.
+</div>
+<div id="ref-Tasic2016" class="csl-entry">
+Tasic, Bosiljka, Vilas Menon, Thuc Nghi Nguyen, Tae Kyung Kim, Tim Jarsky, Zizhen Yao, Boaz Levi, et al. 2016. <span>“<span class="nocase">Adult mouse cortical cell taxonomy revealed by single cell transcriptomics</span>.”</span> <em>Nature Neuroscience</em> 19 (2): 335–46. <a href="https://doi.org/10.1038/nn.4216">https://doi.org/10.1038/nn.4216</a>.
+</div>
+</div>
 <hr>
 <center> 
   <div class="footer">
