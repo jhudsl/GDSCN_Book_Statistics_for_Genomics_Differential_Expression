@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression</title>
+  <title>Chapter 5 Transforming Data | Statistics for Genomics: Differential Expression</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression" />
+  <meta property="og:title" content="Chapter 5 Transforming Data | Statistics for Genomics: Differential Expression" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression" />
+  <meta name="twitter:title" content="Chapter 5 Transforming Data | Statistics for Genomics: Differential Expression" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="getting-set-up.html"/>
+<link rel="prev" href="rstudio.html"/>
+<link rel="next" href="plotting-expression-data.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -256,44 +256,56 @@ div.csl-indent {
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/dasl_thin_main_image.png">
 </div>
-<div id="overview-and-learning-objectives" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Overview and Learning Objectives</h1>
-<div id="activity-context" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Activity Context</h2>
-<p><strong>Course Audience</strong></p>
+<div id="transforming-data" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Transforming Data</h1>
+<p>The following excerpt comes from <span class="citation">Ritchie et al. (<a href="#ref-Ritchie2015" role="doc-biblioref">2015</a>)</span> :</p>
+<blockquote>
+<p><em>Measuring expression in multiple RNA samples produces columns of correlated expression values, which are highly correlated because they are measured on the same set of genes or genomic features. It has long been established in the biomedical literature that the level of agreement between correlated variables can be usefully examined by plotting differences versus means.</em></p>
+</blockquote>
+<p>In other words, gene expression data is full of correlations. We must think carefully about how we examine and plot gene expression data. In the next steps, we will:</p>
 <ul>
-<li>Graduate Students in Biological Sciences or related fields</li>
+<li>Examine how <span class="math inline">\(\log_{2}\)</span> transformations and fold-change improve data clarity</li>
+<li>Learn how to make MA plots on gene expression data</li>
 </ul>
-<p><strong>Course Prerequisites</strong></p>
-<ul>
-<li>Layman understanding of genetics (understanding of DNA, genes, trait inheritance)</li>
-<li>Some previous exposure to the central dogma of molecular biology</li>
-</ul>
-<p><strong>Class Type</strong></p>
-<ul>
-<li>Lab</li>
-<li>Computer-based</li>
-</ul>
-<p><strong>Class Size</strong></p>
-<ul>
-<li>1-50</li>
-</ul>
-<p><strong>Lesson Duration</strong></p>
-<p><strong>Assessment Type</strong></p>
+<p>Much of the following has been adopted from the <a href="https://bioconductor.org/packages/release/bioc/vignettes/Glimma/inst/doc/limma_edger.html"><code>Glimma</code> vignette</a> for <code>limma</code> and <code>edgeR</code> <span class="citation">(<a href="#ref-Su2017" role="doc-biblioref">Su et al. 2017</a>)</span>.</p>
+<div id="gene-expression-data" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Gene Expression Data</h2>
+<p>First, we will load the necessary packages.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="transforming-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load Glimma, limma, and matrixStats</span></span>
+<span id="cb8-2"><a href="transforming-data.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BiocManager::install(c(&quot;Glimma&quot;, &quot;limma&quot;))</span></span>
+<span id="cb8-3"><a href="transforming-data.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Glimma)</span>
+<span id="cb8-4"><a href="transforming-data.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb8-5"><a href="transforming-data.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span></code></pre></div>
+<p>Load the gene expression data. We will be using data from <span class="citation">Sheridan et al. (<a href="#ref-Sheridan2015" role="doc-biblioref">2015</a>)</span> that has already been vetted to demo plot creation. This experiment consists of three cell populations - basal, luminal progenitor (LP) and mature luminal (ML) - sorted from mice mammary glands. Each treatment consists of three replicates. The gene expression data is stored in a special list-based data class called a “DGEList” (this stands for Digital Gene Expression).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="transforming-data.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the gene expression data</span></span>
+<span id="cb9-2"><a href="transforming-data.html#cb9-2" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">&quot;RNAseq123/dge.rds&quot;</span>, <span class="at">package =</span> <span class="st">&quot;Glimma&quot;</span>))</span>
+<span id="cb9-3"><a href="transforming-data.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dge<span class="sc">$</span>counts,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##        10_6_5_11 9_6_5_11 purep53 JMS8-2 JMS8-3 JMS8-4 JMS8-5 JMS9-P7c JMS9-P8c
+## 497097         1        2     342    526      3      3    535        2        0
+## 20671          1        1      76     40     33     14     98       18        8
+## 27395        431      771    1368   1268   1564    769    818      468      342
+## 18777        768     1722    2517   1923   3865   1888   1830     1246      693
+## 21399        810      977    2472   1870   2251   1716   1932      756      619
+## 58175        452      358      17     14    622    571     12      203      224
+## 108664      1716     2678    2097   2071   5499   3630   1731     1715     1251
+## 12421       3451     2699    3399   2716   5233   6280   3647     1866     2122
+## 319263      2026     2033    3920   2715   3873   3688   3593     1609     1348
+## 59014        956      985    5497   4214   3462   2933   5336      649      731</code></pre>
+<p>In this data, each sample is in a column, while each gene is in a row. These raw counts range from very small to quite large numbers!</p>
 </div>
-<div id="learning-objectives" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Learning Objectives</h2>
-<p>Learning objectives for this activity come from the <a href="https://genetics-gsa.org/education/genetics-learning-framework/">Genetics Core Competencies</a>:</p>
-<!-- - Gather and evaluate experimental evidence, including qualitative and quantitative data -->
-<!-- - Generate and interpret graphs displaying experimental results -->
-<!-- - Critique large data sets and use bioinformatics to assess genetics data -->
-<!-- - Tap into the interdisciplinary nature of science -->
-
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Ritchie2015" class="csl-entry">
+Ritchie, Matthew E., Belinda Phipson, Di Wu, Yifang Hu, Charity W. Law, Wei Shi, and Gordon K. Smyth. 2015. <span>“<span class="nocase">limma powers differential expression analyses for RNA-sequencing and microarray studies</span>.”</span> <em>Nucleic Acids Research</em> 43 (7): e47–47. <a href="https://doi.org/10.1093/nar/gkv007">https://doi.org/10.1093/nar/gkv007</a>.
+</div>
+<div id="ref-Sheridan2015" class="csl-entry">
+Sheridan, Julie M., Matthew E. Ritchie, Sarah A. Best, Kun Jiang, Tamara J. Beck, François Vaillant, Kevin Liu, et al. 2015. <span>“A Pooled shRNA Screen for Regulators of Primary Mammary Stem and Progenitor Cells Identifies Roles for Asap1 and Prox1.”</span> <em>BMC Cancer</em> 15 (1): 221. <a href="https://doi.org/10.1186/s12885-015-1187-z">https://doi.org/10.1186/s12885-015-1187-z</a>.
+</div>
+<div id="ref-Su2017" class="csl-entry">
+Su, Shian, Charity W Law, Casey Ah-Cann, Marie-Liesse Asselin-Labat, Marnie E Blewitt, and Matthew E Ritchie. 2017. <span>“<span class="nocase">Glimma: interactive graphics for gene expression analysis</span>.”</span> <em>Bioinformatics</em> 33 (13): 2050–52. <a href="https://doi.org/10.1093/bioinformatics/btx094">https://doi.org/10.1093/bioinformatics/btx094</a>.
 </div>
 </div>
-
-
-
 <hr>
 <center> 
   <div class="footer">
@@ -307,8 +319,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="getting-set-up.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting-expression-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -339,7 +351,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/01-overview.Rmd",
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/05-FC_MAplots.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression</title>
+  <title>Chapter 2 Getting Set Up | Statistics for Genomics: Differential Expression</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression" />
+  <meta property="og:title" content="Chapter 2 Getting Set Up | Statistics for Genomics: Differential Expression" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression" />
+  <meta name="twitter:title" content="Chapter 2 Getting Set Up | Statistics for Genomics: Differential Expression" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="getting-set-up.html"/>
+<link rel="prev" href="overview-and-learning-objectives.html"/>
+<link rel="next" href="workspace.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -256,44 +256,33 @@ div.csl-indent {
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/dasl_thin_main_image.png">
 </div>
-<div id="overview-and-learning-objectives" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Overview and Learning Objectives</h1>
-<div id="activity-context" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Activity Context</h2>
-<p><strong>Course Audience</strong></p>
-<ul>
-<li>Graduate Students in Biological Sciences or related fields</li>
-</ul>
-<p><strong>Course Prerequisites</strong></p>
-<ul>
-<li>Layman understanding of genetics (understanding of DNA, genes, trait inheritance)</li>
-<li>Some previous exposure to the central dogma of molecular biology</li>
-</ul>
-<p><strong>Class Type</strong></p>
-<ul>
-<li>Lab</li>
-<li>Computer-based</li>
-</ul>
-<p><strong>Class Size</strong></p>
-<ul>
-<li>1-50</li>
-</ul>
-<p><strong>Lesson Duration</strong></p>
-<p><strong>Assessment Type</strong></p>
+<div id="getting-set-up" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Getting Set Up</h1>
+<div id="introduction" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>This chapter explains how to get set up to do your analyses on <a href="https://anvilproject.org/">AnVIL</a>. All activities will be run using <a href="https://www.rstudio.com/">RStudio</a>, so if you choose, you can use a different RStudio interface (such as <a href="https://rstudio.cloud/">RStudio Cloud</a> or locally installed RStudio).</p>
+<p>The Analysis, Visualization, and Informatics Lab-space (<a href="https://anvilproject.org/">AnVIL</a>) is a scalable and interoperable computing resource for the genomics scientific community. AnVIL enables researchers to analyze high-value open and controlled access genomic datasets with popular analysis tools in a secure cloud computing environment. AnVIL also serves as a data commons. It runs on the Google Cloud Platform (GCP) and is sponsored by <a href="https://www.genome.gov/Funded-Programs-Projects/Computational-Genomics-and-Data-Science-Program/Genomic-Analysis-Visualization-Informatics-Lab-space-AnVIL">NHGRI</a>.</p>
+<p>In addition to Docker-based analysis workflows, AnVIL supports popular interactive analysis tools such as Jupyter notebooks, Bioconductor, RStudio, and Galaxy.</p>
+<p>By operating in the cloud, AnVIL users can scale analyses from a single computer to thousands and securely share data, workflows, and reproducible results with collaborators and colleagues.</p>
 </div>
-<div id="learning-objectives" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Learning Objectives</h2>
-<p>Learning objectives for this activity come from the <a href="https://genetics-gsa.org/education/genetics-learning-framework/">Genetics Core Competencies</a>:</p>
-<!-- - Gather and evaluate experimental evidence, including qualitative and quantitative data -->
-<!-- - Generate and interpret graphs displaying experimental results -->
-<!-- - Critique large data sets and use bioinformatics to assess genetics data -->
-<!-- - Tap into the interdisciplinary nature of science -->
+<div id="create-a-google-account" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Create a Google Account</h2>
+<p>AnVIL uses <a href="https://anvil.terra.bio/">Terra</a> to run analyses. Terra operates on Google Cloud Platform, so you’ll need a Google account to make sure your instructor can keep track of any computing costs you accrue.</p>
+<p>If you do not already have a Google account that you would like to use for accessing Terra, <a href="https://accounts.google.com/SignUp">create one now</a>. Otherwise, please use a Gmail account you have already set up.</p>
+<p>If you would like to create a Google account that is associated with your non-Gmail, institutional email address, follow <a href="https://support.terra.bio/hc/en-us/articles/360029186611">these instructions</a>.</p>
+</div>
+<div id="sign-in-to-terra" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Sign in to Terra</h2>
+<p>You need to sign into Terra with your Google account to allow your instructor to add you to projects and/or Workspaces associated with your specific class. This is the only way you can launch applications and perform computations on AnVIL. <a href="https://anvil.terra.bio/">Launch Terra</a>, and you should be prompted to sign in with your Google account.</p>
+<p>You can always access Terra by going to <a href="https://anvil.terra.bio/"><code>anvil.terra.bio</code></a>, or by clicking the link on the AnVIL home page.</p>
+<p><img src="02-setup_files/figure-html/1tyt8ifxD3y7QW3nN27jh02aPrBvNEo1GN_u2Ne_UngM_gde7783227e_0_31.png" title="Screenshot of the AnVIL home page. The button to &quot;launch Terra&quot; is highlighted." alt="Screenshot of the AnVIL home page. The button to &quot;launch Terra&quot; is highlighted." width="480" /></p>
+</div>
+<div id="share-your-id" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Share your ID</h2>
+<p>It is <em>very important</em> that you share the Google account you used above with your instructor! Otherwise, they cannot add you to class projects or Workspaces.</p>
 
 </div>
 </div>
-
-
-
 <hr>
 <center> 
   <div class="footer">
@@ -307,8 +296,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="getting-set-up.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="overview-and-learning-objectives.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="workspace.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -339,7 +328,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/01-overview.Rmd",
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/02-setup.Rmd",
 "text": "Edit"
 },
 "history": {

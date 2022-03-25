@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Working in RStudio | Statistics for Genomics: Differential Expression</title>
+  <meta name="description" content="Description about Course/Book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Working in RStudio | Statistics for Genomics: Differential Expression" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Description about Course/Book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Working in RStudio | Statistics for Genomics: Differential Expression" />
+  
+  <meta name="twitter:description" content="Description about Course/Book." />
+  
+
+
+
+<meta name="date" content="2022-03-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
+<link rel="prev" href="workspace.html"/>
+<link rel="next" href="transforming-data.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/vega-1/vega_plots.css" rel="stylesheet" />
+<script src="libs/vega-1/vega.min.js"></script>
+<link href="libs/vega-tooltip-1/vega-tooltip.css" rel="stylesheet" />
+<script src="libs/vega-tooltip-1/vega-tooltip.js"></script>
+<link href="libs/datatables-1/datatables.css" rel="stylesheet" />
+<script src="libs/datatables-1/datatables.min.js"></script>
+<script src="libs/FileSaver-1/FileSaver.js"></script>
+<script src="libs/GlimmaV2-1/XYSpecs.js"></script>
+<script src="libs/GlimmaV2-1/MDSSpecs.js"></script>
+<script src="libs/GlimmaV2-1/expressionSpec.js"></script>
+<script src="libs/GlimmaV2-1/makeTooltip.js"></script>
+<script src="libs/GlimmaV2-1/saveTools.js"></script>
+<script src="libs/glimmaXY-binding-2.0.0/glimmaXY.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="assets/style_anvil.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://anvilproject.org/" target="_blank"><img src="assets/logo-anvil.png" style="width: 80%; padding-left: 15px; padding-top: 8px;"</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#anvil-collection"><i class="fa fa-check"></i>AnVIL Collection</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview-and-learning-objectives.html"><a href="overview-and-learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Overview and Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="overview-and-learning-objectives.html"><a href="overview-and-learning-objectives.html#activity-context"><i class="fa fa-check"></i><b>1.1</b> Activity Context</a></li>
+<li class="chapter" data-level="1.2" data-path="overview-and-learning-objectives.html"><a href="overview-and-learning-objectives.html#learning-objectives"><i class="fa fa-check"></i><b>1.2</b> Learning Objectives</a></li>
+</ul></li>
+<li class="part"><span><b>RStudio on AnVIL</b></span></li>
+<li class="chapter" data-level="2" data-path="getting-set-up.html"><a href="getting-set-up.html"><i class="fa fa-check"></i><b>2</b> Getting Set Up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-set-up.html"><a href="getting-set-up.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-set-up.html"><a href="getting-set-up.html#create-a-google-account"><i class="fa fa-check"></i><b>2.2</b> Create a Google Account</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-set-up.html"><a href="getting-set-up.html#sign-in-to-terra"><i class="fa fa-check"></i><b>2.3</b> Sign in to Terra</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-set-up.html"><a href="getting-set-up.html#share-your-id"><i class="fa fa-check"></i><b>2.4</b> Share your ID</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="workspace.html"><a href="workspace.html"><i class="fa fa-check"></i><b>3</b> Creating a Workspace</a></li>
+<li class="chapter" data-level="4" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>4</b> Working in RStudio</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#launch-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.1</b> Launch RStudio Cloud Environment</a></li>
+<li class="chapter" data-level="4.2" data-path="rstudio.html"><a href="rstudio.html#tour-rstudio"><i class="fa fa-check"></i><b>4.2</b> Tour RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="rstudio.html"><a href="rstudio.html#stopping"><i class="fa fa-check"></i><b>4.3</b> Pause RStudio</a></li>
+<li class="chapter" data-level="4.4" data-path="rstudio.html"><a href="rstudio.html#delete-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.4</b> Delete RStudio Cloud Environment</a></li>
+<li class="chapter" data-level="4.5" data-path="rstudio.html"><a href="rstudio.html#video-guide"><i class="fa fa-check"></i><b>4.5</b> Video Guide</a></li>
+</ul></li>
+<li class="part"><span><b>DIFFERENTIAL EXPRESSION</b></span></li>
+<li class="chapter" data-level="5" data-path="transforming-data.html"><a href="transforming-data.html"><i class="fa fa-check"></i><b>5</b> Transforming Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="transforming-data.html"><a href="transforming-data.html#gene-expression-data"><i class="fa fa-check"></i><b>5.1</b> Gene Expression Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html"><i class="fa fa-check"></i><b>6</b> Plotting Expression Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html#plotting-raw-counts"><i class="fa fa-check"></i><b>6.1</b> Plotting Raw Counts</a></li>
+<li class="chapter" data-level="6.2" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html#transforming-log_2"><i class="fa fa-check"></i><b>6.2</b> Transforming (<span class="math inline">\(\log_{2}\)</span>)</a></li>
+<li class="chapter" data-level="6.3" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html#using-fold-change"><i class="fa fa-check"></i><b>6.3</b> Using Fold-Change</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html"><i class="fa fa-check"></i><b>7</b> Creating MA Plots</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#the-design-matrix"><i class="fa fa-check"></i><b>7.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="7.2" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#the-contrast-matrix"><i class="fa fa-check"></i><b>7.2</b> The Contrast Matrix</a></li>
+<li class="chapter" data-level="7.3" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#fitting-the-data"><i class="fa fa-check"></i><b>7.3</b> Fitting the Data</a></li>
+<li class="chapter" data-level="7.4" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#creating-an-ma-plot"><i class="fa fa-check"></i><b>7.4</b> Creating an MA Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#interactive-ma-plots"><i class="fa fa-check"></i><b>7.5</b> Interactive MA Plots</a></li>
+<li class="chapter" data-level="7.6" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#recap"><i class="fa fa-check"></i><b>7.6</b> Recap</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
+<li class="chapter" data-level="B" data-path="give-us-feedback.html"><a href="give-us-feedback.html"><i class="fa fa-check"></i><b>B</b> Give Us Feedback</a></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
+<li class="divider"></li>
+<p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown by: </a> </p>
+<p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics for Genomics: Differential Expression</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
+  <!--<script src="assets/hideOutput.js"></script>-->
+  <link href="assets/style_anvil.css" rel="stylesheet">
+</head>
+        
+
+
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/dasl_thin_main_image.png">
+</div>
+<div id="rstudio" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Working in RStudio</h1>
+<p>Now that you have <a href="creating-a-workspace.html#workspace">created a Workspace</a>, you can create an RStudio cloud environment. This will allow you to interface with data and perform genomics-based analyses with add on packages from the Bioconductor community.</p>
+<div id="launch-rstudio-cloud-environment" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Launch RStudio Cloud Environment</h2>
+<ol style="list-style-type: decimal">
+<li><p>Click on the name of the Workspace you just created. You should be routed to a link that looks like: <code>https://anvil.terra.bio/#workspaces/&lt;billing-project&gt;/&lt;workspace-name&gt;</code>.</p></li>
+<li><p>On the top right, Click the gear icon to access your Cloud Environment options.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_gdde5ec9a4d_1_34.png" title="Screenshot of the newly created Workspace. The gear icon to create a new cloud environment is highlighted." alt="Screenshot of the newly created Workspace. The gear icon to create a new cloud environment is highlighted." width="480" /></p></li>
+<li><p>You will see a list of costs because it costs a small amount of money to use cloud computing. Click “CUSTOMIZE”.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_gdde5ec9a4d_1_50.png" title="Screenshot of the cloud environment popout menu. The &quot;Customize&quot; button is highlighted." alt="Screenshot of the cloud environment popout menu. The &quot;Customize&quot; button is highlighted." width="480" /></p></li>
+<li><p>Click on the first drop down menu to see what other software configurations are available.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_gdde5ec9a4d_1_11.png" title="Screenshot of the cloud environment popout menu. The first dropdown menu for options, the Application configuration menu, is highlighted." alt="Screenshot of the cloud environment popout menu. The first dropdown menu for options, the Application configuration menu, is highlighted." width="480" /></p></li>
+<li><p>Scroll down and select RStudio from the Community-Maintained RStudio Environments section.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_0.png" title="Screenshot of the Application configuration menu. The community maintained RStudio environment is highlighted." alt="Screenshot of the Application configuration menu. The community maintained RStudio environment is highlighted." width="480" /></p></li>
+<li><p>Leave everything else as-is. To create your RStudio Cloud Environment, click on the “CREATE” button.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_34.png" title="Screenshot of the Application configuration menu. The &quot;Create&quot; button is highlighted." alt="Screenshot of the Application configuration menu. The &quot;Create&quot; button is highlighted." width="480" /></p></li>
+<li><p>Your Cloud Environment will be available in a few minutes after the cloud resources are provisioned and your software starts up. The upper right corner displays the status and should say “Creating” while resources are being provisioned.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_6.png" title="Screenshot of the Workspace page. A cloud environment for RStudio is being created. The loading icon on the top right of the page is highlighted." alt="Screenshot of the Workspace page. A cloud environment for RStudio is being created. The loading icon on the top right of the page is highlighted." width="480" /></p></li>
+<li><p>After a few minutes, you will see the status change to “Running”.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_10.png" title="Screenshot of the Workspace page. A cloud environment for RStudio has been created. The icon on the top right showing that the cloud environment is running is highlighted." alt="Screenshot of the Workspace page. A cloud environment for RStudio has been created. The icon on the top right showing that the cloud environment is running is highlighted." width="480" /></p></li>
+<li><p>Click on the “R” icon to launch RStudio.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_43.png" title="Screenshot of the Workspace page. A cloud environment for RStudio has been created. The R button that launches the RStudio interface is highlighted." alt="Screenshot of the Workspace page. A cloud environment for RStudio has been created. The R button that launches the RStudio interface is highlighted." width="480" /></p></li>
+<li><p>You should now see the RStudio interface with information about the version printed to the console.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_14.png" title="Screenshot of the RStudio environment interface." alt="Screenshot of the RStudio environment interface." width="480" /></p></li>
+</ol>
+</div>
+<div id="tour-rstudio" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Tour RStudio</h2>
+<p>Next, we will be using RStudio and the package <code>Glimma</code> to create interactive plots. See <a href="https://bioconductor.org/packages/release/bioc/vignettes/Glimma/inst/doc/limma_edger.html">this vignette</a> for more information.</p>
+<ol style="list-style-type: decimal">
+<li><p>The Bioconductor team has created a very useful package to programmatically interact with Terra and Google Cloud. Install the <code>AnVIL</code> package. It will make some steps easier as we go along.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;AnVIL&quot;</span>)</span></code></pre></div>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_49.png" title="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." alt="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." width="480" /></p></li>
+<li><p>You can now quickly install precompiled binaries using the AnVIL package’s <code>install()</code> function. We will use it to install the <code>Glimma</code> package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio.html#cb2-1" aria-hidden="true" tabindex="-1"></a>AnVIL<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;Glimma&quot;</span>)</span></code></pre></div>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_56.png" title="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." alt="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." width="480" /></p></li>
+<li><p>Load some example data and save it as <code>dge</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">&quot;RNAseq123/dge.rds&quot;</span>, <span class="at">package =</span> <span class="st">&quot;Glimma&quot;</span>))</span></code></pre></div>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_56.png" title="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." alt="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." width="480" /></p></li>
+<li><p>The multidimensional scaling (MDS) plot is frequently used to explore differences in samples. When this data is MDS transformed, the first two dimensions explain the greatest variance between samples, and the amount of variance decreases monotonically with increasing dimension. The following code will launch a new window where you can interact with the MDS plot.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimmaMDS</span>(dge)</span></code></pre></div>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_70.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. All data points are blue." alt="Screenshot of the Glimma popout showing the data in an MDS plot. All data points are blue." width="480" /></p></li>
+<li><p>Change the <code>colour_by</code> setting to “group” so you can easily distinguish between groups. In this data, the “group” is cell type.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_77.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue, orange, and green by group. The colour by dropdown menu on the interactive plot is hightlighted." alt="Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue, orange, and green by group. The colour by dropdown menu on the interactive plot is hightlighted." width="480" /></p></li>
+<li><p>You can download the interactive html file by clicking on “Save As”.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6da7f_0_0.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. The Save As menu is highlighted." alt="Screenshot of the Glimma popout showing the data in an MDS plot. The Save As menu is highlighted." width="480" /></p></li>
+<li><p>You can also download plots and other files created directly in RStudio. To download the following plot, click on “Export” and save in your preferred format to the default directory. This saves the file in your cloud environment.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a>limma<span class="sc">::</span><span class="fu">plotMDS</span>(dge)</span></code></pre></div>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6da7f_0_12.png" title="Screenshot of the RStudio interface. A plot has been created. The Export menu has been highlighted." alt="Screenshot of the RStudio interface. A plot has been created. The Export menu has been highlighted." width="480" /></p></li>
+<li><p>You should see the plot in the “Files” pane.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6da7f_0_19.png" title="Screenshot of the RStudio interface. A plot has been created. The saved pdf file is now visible under the &quot;Files&quot; pane." alt="Screenshot of the RStudio interface. A plot has been created. The saved pdf file is now visible under the &quot;Files&quot; pane." width="480" /></p></li>
+<li><p>Select this file and click “More” &gt; “Export”</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6db6a_0_0.png" title="Screenshot of the RStudio interface. A plot has been created. The saved pdf file is now visible under the &quot;Files&quot; pane. The &quot;More&quot; and &quot;Export&quot; menus have been highlighted." alt="Screenshot of the RStudio interface. A plot has been created. The saved pdf file is now visible under the &quot;Files&quot; pane. The &quot;More&quot; and &quot;Export&quot; menus have been highlighted." width="480" /></p></li>
+<li><p>Select “Download” to save the file to your local machine.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6db6a_0_8.png" title="Screenshot of the RStudio interface. The popup to download the selected file has been highlighted," alt="Screenshot of the RStudio interface. The popup to download the selected file has been highlighted," width="480" /></p></li>
+</ol>
+</div>
+<div id="stopping" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Pause RStudio</h2>
+<ol style="list-style-type: decimal">
+<li><p>The upper right corner reminds you that you are accruing cloud computing costs.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_84.png" title="Screenshot of the RStudio interface. The icon on the top right showing that the cloud environment is running is highlighted." alt="Screenshot of the RStudio interface. The icon on the top right showing that the cloud environment is running is highlighted." width="480" /></p></li>
+<li><p>You should minimize charges when you are not performing an analysis. You can do this by clicking on “Stop cloud environment”. This will release the CPU and memory resources for other people to use. Note that your work will be saved in the environment and continue to accrue a very small cost. Your instructor can delete these environments to stop costs accruing, so it’s a good idea to save code or output somewhere else, such as GitHub or your local machine.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_91.png" title="Screenshot of the RStudio interface. The stop icon on the top right which stops the cloud environment is highlighted." alt="Screenshot of the RStudio interface. The stop icon on the top right which stops the cloud environment is highlighted." width="480" /></p></li>
+</ol>
+</div>
+<div id="delete-rstudio-cloud-environment" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Delete RStudio Cloud Environment</h2>
+<ol style="list-style-type: decimal">
+<li><p><a href="rstudio.html#stopping">Stopping</a> your cloud environment only pauses your work. When you are ready to delete the cloud environment, click on the gear icon in the upper right corner to “Update cloud environment”.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge1182913a6_0_41.png" title="Screenshot of the Workspace page. The gear icon on the top right that updates the cloud environment is highlighted." alt="Screenshot of the Workspace page. The gear icon on the top right that updates the cloud environment is highlighted." width="480" /></p></li>
+<li><p>Click on “Delete Environment Options”.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge1182913a6_0_20.png" title="Screenshot of the cloud environment popout. &quot;Delete environment options&quot; is highlighted." alt="Screenshot of the cloud environment popout. &quot;Delete environment options&quot; is highlighted." width="480" /></p></li>
+<li><p>If you are certain that you do not need the data and configuration on your disk, you should select “Delete everything, including persistent disk”.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge1182913a6_0_46.png" title="Screenshot of the cloud environment popout. &quot;Delete everything, including persistent disk&quot; is highlighted." alt="Screenshot of the cloud environment popout. &quot;Delete everything, including persistent disk&quot; is highlighted." width="480" /></p></li>
+<li><p>Select “DELETE”.</p>
+<p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge1182913a6_0_51.png" title="Screenshot of the cloud environment popout. &quot;Delete&quot; is highlighted." alt="Screenshot of the cloud environment popout. &quot;Delete&quot; is highlighted." width="480" /></p></li>
+</ol>
+</div>
+<div id="video-guide" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Video Guide</h2>
+<p>In addition to the steps above, you can review this video guide on how to launch RStudio on AnVIL.</p>
+<iframe src="https://drive.google.com/file/d/1v72ZG8JIRDUaewFQgGfcCO_qoM4eYmYX/preview" width="640" height="360" allow="autoplay">
+</iframe>
+<p>The slides for this tutorial are are located <a href="https://docs.google.com/presentation/d/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw">here</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.04.3 LTS
+## 
+## Matrix products: default
+## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] knitr_1.33      magrittr_2.0.2  hms_0.5.3       R6_2.4.1       
+##  [5] rlang_0.4.10    highr_0.8       stringr_1.4.0   httr_1.4.2     
+##  [9] tools_4.0.2     xfun_0.26       png_0.1-7       jquerylib_0.1.4
+## [13] htmltools_0.5.0 ellipsis_0.3.1  ottrpal_0.1.2   yaml_2.2.1     
+## [17] digest_0.6.25   tibble_3.0.3    lifecycle_1.0.0 crayon_1.3.4   
+## [21] bookdown_0.24   readr_1.4.0     vctrs_0.3.4     fs_1.5.0       
+## [25] curl_4.3        evaluate_0.14   rmarkdown_2.10  stringi_1.5.3  
+## [29] compiler_4.0.2  pillar_1.4.6    pkgconfig_2.0.3</code></pre>
+
+</div>
+</div>
+
+
+
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="workspace.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transforming-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/04-RStudio.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

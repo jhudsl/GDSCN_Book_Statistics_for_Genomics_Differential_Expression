@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression</title>
+  <title>Chapter 6 Plotting Expression Data | Statistics for Genomics: Differential Expression</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression" />
+  <meta property="og:title" content="Chapter 6 Plotting Expression Data | Statistics for Genomics: Differential Expression" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Overview and Learning Objectives | Statistics for Genomics: Differential Expression" />
+  <meta name="twitter:title" content="Chapter 6 Plotting Expression Data | Statistics for Genomics: Differential Expression" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="getting-set-up.html"/>
+<link rel="prev" href="transforming-data.html"/>
+<link rel="next" href="creating-ma-plots.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -256,44 +256,67 @@ div.csl-indent {
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/dasl_thin_main_image.png">
 </div>
-<div id="overview-and-learning-objectives" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Overview and Learning Objectives</h1>
-<div id="activity-context" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Activity Context</h2>
-<p><strong>Course Audience</strong></p>
-<ul>
-<li>Graduate Students in Biological Sciences or related fields</li>
-</ul>
-<p><strong>Course Prerequisites</strong></p>
-<ul>
-<li>Layman understanding of genetics (understanding of DNA, genes, trait inheritance)</li>
-<li>Some previous exposure to the central dogma of molecular biology</li>
-</ul>
-<p><strong>Class Type</strong></p>
-<ul>
-<li>Lab</li>
-<li>Computer-based</li>
-</ul>
-<p><strong>Class Size</strong></p>
-<ul>
-<li>1-50</li>
-</ul>
-<p><strong>Lesson Duration</strong></p>
-<p><strong>Assessment Type</strong></p>
+<div id="plotting-expression-data" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Plotting Expression Data</h1>
+<div id="plotting-raw-counts" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Plotting Raw Counts</h2>
+<p>Let’s say we want to compare basal and LP samples. We will first look at the metadata.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="plotting-expression-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View metadata</span></span>
+<span id="cb11-2"><a href="plotting-expression-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>samples</span></code></pre></div>
+<pre><code>##                              files group lib.size norm.factors lane
+## 10_6_5_11 GSM1545535_10_6_5_11.txt    LP 32857304    0.8943956 L004
+## 9_6_5_11   GSM1545536_9_6_5_11.txt    ML 35328624    1.0250186 L004
+## purep53     GSM1545538_purep53.txt Basal 57147943    1.0459005 L004
+## JMS8-2       GSM1545539_JMS8-2.txt Basal 51356800    1.0458455 L006
+## JMS8-3       GSM1545540_JMS8-3.txt    ML 75782871    1.0162707 L006
+## JMS8-4       GSM1545541_JMS8-4.txt    LP 60506774    0.9217132 L006
+## JMS8-5       GSM1545542_JMS8-5.txt Basal 55073018    0.9961959 L006
+## JMS9-P7c   GSM1545544_JMS9-P7c.txt    ML 21305254    1.0861026 L008
+## JMS9-P8c   GSM1545545_JMS9-P8c.txt    LP 19955335    0.9839203 L008</code></pre>
+<p>We will manually take the mean across basal samples and LP samples.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="plotting-expression-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts</span></span>
+<span id="cb13-2"><a href="plotting-expression-data.html#cb13-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> dge<span class="sc">$</span>counts</span>
+<span id="cb13-3"><a href="plotting-expression-data.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Basal samples are columns 3, 4, and 7</span></span>
+<span id="cb13-4"><a href="plotting-expression-data.html#cb13-4" aria-hidden="true" tabindex="-1"></a>basal_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)])</span>
+<span id="cb13-5"><a href="plotting-expression-data.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># LP samples are columns 1, 6, and 9</span></span>
+<span id="cb13-6"><a href="plotting-expression-data.html#cb13-6" aria-hidden="true" tabindex="-1"></a>LP_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">9</span>)])</span></code></pre></div>
+<p>Then we will plot the two groups.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plotting-expression-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(basal_sample_means, LP_sample_means)</span></code></pre></div>
+<p><img src="05-FC_MAplots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>This is hard to interpret. Most of the genes are clustered in the bottom left corner.</p>
 </div>
-<div id="learning-objectives" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Learning Objectives</h2>
-<p>Learning objectives for this activity come from the <a href="https://genetics-gsa.org/education/genetics-learning-framework/">Genetics Core Competencies</a>:</p>
-<!-- - Gather and evaluate experimental evidence, including qualitative and quantitative data -->
-<!-- - Generate and interpret graphs displaying experimental results -->
-<!-- - Critique large data sets and use bioinformatics to assess genetics data -->
-<!-- - Tap into the interdisciplinary nature of science -->
-
+<div id="transforming-log_2" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Transforming (<span class="math inline">\(\log_{2}\)</span>)</h2>
+<p>Using a <span class="math inline">\(\log_{2}\)</span> transformation makes it easier to examine all the genes together.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plotting-expression-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with log2 transformation</span></span>
+<span id="cb15-2"><a href="plotting-expression-data.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log2</span>(basal_sample_means), <span class="fu">log2</span>(LP_sample_means))</span></code></pre></div>
+<p><img src="05-FC_MAplots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="using-fold-change" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Using Fold-Change</h2>
+<p>As stated at the very start of this chapter, plotting differences versus means can be very helpful when many genes are correlated. It also makes interpretation easier when combined with a <span class="math inline">\(\log_{2}\)</span> transformation.</p>
+<p>When basal and LP expression are equal, fold-change is equal to zero.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plotting-expression-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>When basal expression is greater, fold-change is positive.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plotting-expression-data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">20</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plotting-expression-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">100</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 6.643856</code></pre>
+<p>However when LP expression is greater, fold-change is negative.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotting-expression-data.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="plotting-expression-data.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -6.643856</code></pre>
+<p>Calculate fold-change for the data.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plotting-expression-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a>log2_fold_change <span class="ot">&lt;-</span> <span class="fu">log2</span>(basal_sample_means) <span class="sc">-</span> <span class="fu">log2</span>(LP_sample_means)</span>
+<span id="cb26-2"><a href="plotting-expression-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a>mean_expression <span class="ot">&lt;-</span> (<span class="fu">log2</span>(basal_sample_means) <span class="sc">+</span> <span class="fu">log2</span>(LP_sample_means)) <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<p>Plot the values above, with mean expression on the x-axis and fold-change on the y-axis.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plotting-expression-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change)</span></code></pre></div>
+<p><img src="05-FC_MAplots_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>This gives us a very rough idea of how transformation and using fold-change can aid in interpretation of the data. In reality, we need to cover a few more steps before creating this kind of plot.</p>
 </div>
 </div>
-
-
-
 <hr>
 <center> 
   <div class="footer">
@@ -307,8 +330,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="getting-set-up.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="transforming-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="creating-ma-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -339,7 +362,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/01-overview.Rmd",
+"link": "https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/edit/main/05-FC_MAplots.Rmd",
 "text": "Edit"
 },
 "history": {
