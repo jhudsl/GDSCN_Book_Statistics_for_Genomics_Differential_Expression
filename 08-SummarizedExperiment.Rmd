@@ -1,0 +1,7 @@
+# `SummarizedExperiment` {#se}
+
+## Recap
+
+```{r}
+sessionInfo()
+```
