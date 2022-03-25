@@ -135,7 +135,7 @@ In the next steps, we will go over how to create an MA plot using `limma`. First
 
 ## The Design Matrix
 
-Load the design matrix. This indicates which samples correspond to which cell populations. We will learn more about design matrices in [later chapters](#se).
+Load the design matrix. This indicates which samples correspond to which cell populations. We will learn more about design matrices in [later chapters](summarizedexperiment.html#summarizedexperiment).
 
 ```{r}
 # Load the experimental design matrix

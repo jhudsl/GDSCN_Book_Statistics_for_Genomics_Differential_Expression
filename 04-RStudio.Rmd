@@ -146,7 +146,7 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
     
 ## More Practice with `iSEE`
 
-`iSEE` is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects [@RueAlbrecht2018]. We will learn more about SummarizedExperiments in [following chapters](#se). Below, we will visualize an example dataset from @Tasic2016. This experiment is a single-cell RNAseq experiment (scRNAseq) examining the primary visual cortex in mice, with the aim of better understanding cell diversity and taxonomy in the nervous system. Run the following.
+`iSEE` is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects [@RueAlbrecht2018]. We will learn more about SummarizedExperiments in [following chapters](summarizedexperiment.html#summarizedexperiment). Below, we will visualize an example dataset from @Tasic2016. This experiment is a single-cell RNAseq experiment (scRNAseq) examining the primary visual cortex in mice, with the aim of better understanding cell diversity and taxonomy in the nervous system. Run the following.
 
 ```{r, eval = FALSE}
 # Install and load necessary packages

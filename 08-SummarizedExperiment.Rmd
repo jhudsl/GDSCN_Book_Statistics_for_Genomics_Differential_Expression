@@ -1,4 +1,4 @@
-# `SummarizedExperiment` {#se}
+# `SummarizedExperiment` {#summarizedexperiment}
 
 ## Recap
 
