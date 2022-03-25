@@ -42,7 +42,7 @@ head(dge$counts,10)
 
 In this data, each sample is in a column, while each gene is in a row. These raw counts range from very small to quite large numbers!
 
-# Plotting Expression Data 
+# Plotting Expression Data
 
 ## Plotting Raw Counts
 
