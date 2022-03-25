@@ -26,7 +26,7 @@ BiocManager::install(c("Glimma", "limma"), update = FALSE, ask = FALSE)
 
 ```{r, warning = FALSE, message = FALSE}
 # Install and load Glimma, limma, and matrixStats
-# BiocManager::install(c("Glimma", "limma"))
+# AnVIL::install(c("Glimma", "limma"))
 library(Glimma)
 library(limma)
 library(matrixStats)
