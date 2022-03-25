@@ -11,6 +11,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |**Pedagogy**||
 |Lead Content Instructor|[Ava Hoffman]|
 |Content Idea Contributor|Kasper Hansen|
+|Content Directors | Kasper Hansen, [Jeff Leek], [Frederick Tan]|
 |**Production**||
 |Content Publisher|[Ira Gooding]|
 |**Technical**||
