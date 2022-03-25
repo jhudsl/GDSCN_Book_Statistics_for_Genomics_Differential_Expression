@@ -3,9 +3,10 @@ chapter_name: "Chapter "
 repo: https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
 rmd_files: ["index.Rmd",
             "01-overview.Rmd",
-            "02-lesson-plan.Rmd",
-            "03-setup.Rmd",
-            "04-FC_MAplots.Rmd",
+            "02-setup.Rmd",
+            "03-workspace.Rmd",
+            "04-RStudio.Rmd",
+            "05-FC_MAplots.Rmd",
             "B-help.Rmd",
             "C-feedback.Rmd",
             "About.Rmd"]

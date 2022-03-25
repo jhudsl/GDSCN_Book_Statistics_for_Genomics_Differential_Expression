@@ -1,3 +1,0 @@
-# Lesson Plan
-
-Coming soon!

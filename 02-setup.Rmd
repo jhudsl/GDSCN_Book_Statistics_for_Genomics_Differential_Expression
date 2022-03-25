@@ -1,4 +1,6 @@
-# Getting Started
+# (PART\*) RStudio on AnVIL {-}
+
+# Getting Set Up
 
 ## Introduction
 
@@ -10,7 +12,7 @@ In addition to Docker-based analysis workflows, AnVIL supports popular interacti
 
 By operating in the cloud, AnVIL users can scale analyses from a single computer to thousands and securely share data, workflows, and reproducible results with collaborators and colleagues.
 
-## Step 1: Create a Google Account
+## Create a Google Account
 
 AnVIL uses [Terra](https://anvil.terra.bio/) to run analyses. Terra operates on Google Cloud Platform, so you’ll need a Google account to make sure your instructor can keep track of any computing costs you accrue. 
 
@@ -18,7 +20,7 @@ AnVIL uses [Terra](https://anvil.terra.bio/) to run analyses. Terra operates on 
 
 ```
 
-## Step 2: Sign in to Terra
+## Sign in to Terra
 
 You need to sign into Terra with your Google account to allow your instructor to add you to projects and/or Workspaces associated with your specific class. This is the only way you can launch applications and perform computations on AnVIL. [Launch Terra](https://anvil.terra.bio/), and you should be prompted to sign in with your Google account.
 
@@ -28,6 +30,6 @@ You can always access Terra by going to [`anvil.terra.bio`](https://anvil.terra.
 ottrpal::include_slide("https://docs.google.com/presentation/d/1tyt8ifxD3y7QW3nN27jh02aPrBvNEo1GN_u2Ne_UngM/edit#slide=id.gde7783227e_0_31")
 ```
 
-## Step 3: Share your ID
+## Share your ID
 
 It is _very important_ that you share the Google account you used above with your instructor! Otherwise, they cannot add you to class projects or Workspaces.
