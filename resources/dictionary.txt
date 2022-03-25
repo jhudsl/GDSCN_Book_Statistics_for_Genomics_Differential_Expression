@@ -1,4 +1,5 @@
 AnVIL
+anvilproject
 BiocManager
 BIPOC
 Bloomberg
@@ -13,6 +14,7 @@ GDSCN
 Glimma
 glimmaMDS
 Gmail
+https
 impactful
 interoperable
 ITCR
@@ -39,6 +41,9 @@ readRDS
 RNAseq
 RStudio
 scalable
+scRNAseq
+SummarizedExperiment
+SummarizedExperiments
 UE
 UE5
 reproducibility
