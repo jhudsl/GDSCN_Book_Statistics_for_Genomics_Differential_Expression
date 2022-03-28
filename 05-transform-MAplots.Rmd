@@ -41,22 +41,25 @@ In this data, each sample is in a column, while each gene is in a row. These raw
 
 ## Plotting Raw Counts
 
-Let's say we want to compare treated and untreated samples. We will first look at the metadata.
+Let's say we want to compare treated and untreated samples. We will first look at the sample data.
 
 ```{r}
 # View metadata
-airway@colData
+colData(airway)
 ```
 
 We will manually take the mean across treated and untreated samples.
 
 ```{r}
-# Collect the counts
+# Collect the counts and sample data
 raw_counts <- assay(airway)
-# Untreated samples are columns 1, 3, 5, and 7
-untrt_sample_means <- rowMeans2(raw_counts[, c(1, 3, 5, 7)])
-# Treated samples are columns 2, 4, 6, and 8
-trt_sample_means <- rowMeans2(raw_counts[, c(2, 4, 6, 8)])
+sample_data <- colData(airway)
+
+# Select untreated samples
+untrt_sample_means <- rowMeans2(raw_counts[, sample_data$dex == "untrt"])
+
+# Select treated samples
+trt_sample_means <- rowMeans2(raw_counts[, sample_data$dex == "trt"])
 ```
 
 Then we will plot the two groups.
