@@ -19,8 +19,8 @@ First, we will load the necessary packages.
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 # Needed for GHA
-# install.packages("https://cran.r-project.org/src/contrib/matrixStats_0.61.0.tar.gz", repo=NULL, type="source")
-BiocManager::install("airway")
+install.packages("https://cran.r-project.org/src/contrib/matrixStats_0.61.0.tar.gz", repo=NULL, type="source")
+BiocManager::install(c("SummarizedExperiment", "airway"))
 ```
 
 ```{r, warning = FALSE, message = FALSE}
