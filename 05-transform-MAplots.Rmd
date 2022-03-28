@@ -126,6 +126,12 @@ Plot the values above, with mean expression on the x-axis and fold-change on the
 plot(mean_expression, log2_fold_change)
 ```
 
+Since there are many data points, it's a good idea to customize your plot. The `ggplot2` package can also provide greater flexibility with plotting.
+
+```{r}
+plot(mean_expression, log2_fold_change, col = alpha("black", 0.1), pch = 16, cex = 0.5)
+```
+
 This gives us a very rough idea of how transformation and using fold-change can aid in interpretation of the data. In reality, we need to cover a few more steps before creating this kind of plot.
 
 ## Future Directions
