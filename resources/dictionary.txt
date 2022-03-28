@@ -4,9 +4,12 @@ BiocManager
 bioinformatics
 BIPOC
 Bloomberg
+colData
 DataFrame
 Datatrail
 DataTrail
+dex
+dexamethasone	
 dge
 DGEList
 dropdown
