@@ -74,20 +74,21 @@ BiocManager::install("AnVIL")
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g11f12bc99af_0_49")
     ```
 
-1. You can now quickly install precompiled binaries using the AnVIL package’s `install()` function. We will use it to install the `Glimma` package.
+1. You can now quickly install precompiled binaries using the AnVIL package’s `install()` function. We will use it to install the `Glimma` package and the `airway` package. The `airway` package contains a `SummarizedExperiment` data class. This data describes an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. We will learn more about SummarizedExperiments in [following chapters](the-summarizedexperiment-class.html#summarizedexperiment).
 
     ```{r, eval = FALSE}
-AnVIL::install("Glimma")
+AnVIL::install(c("Glimma", "airway"))
     ```
 
     ```{r, echo=FALSE, fig.alt='Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g11f12bc99af_0_56")
     ```
 
-1. Load some example data and save it as `dge`.
+1. Load the example data.
 
     ```{r, eval = FALSE}
-dge <- readRDS(system.file("RNAseq123/dge.rds", package = "Glimma"))
+library(airway)
+data(airway)
     ```
 
     ```{r, echo=FALSE, fig.alt='Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.'}
@@ -97,16 +98,16 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
 1. The multidimensional scaling (MDS) plot is frequently used to explore differences in samples. When this data is MDS transformed, the first two dimensions explain the greatest variance between samples, and the amount of variance decreases monotonically with increasing dimension. The following code will launch a new window where you can interact with the MDS plot.
 
     ```{r, eval = FALSE}
-glimmaMDS(dge)
+Glimma::glimmaMDS(assay(airway), group = colData(airway)$dex)
     ```
 
     ```{r, echo=FALSE, fig.alt='Screenshot of the Glimma popout showing the data in an MDS plot. All data points are blue.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g11f12bc99af_0_70")
     ```
 
-1. Change the `colour_by` setting to "group" so you can easily distinguish between groups. In this data, the "group" is cell type.
+1. Change the `colour_by` setting to "groups" so you can easily distinguish between groups. In this data, the "group" is the treatment.
 
-    ```{r, echo=FALSE, fig.alt='Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue, orange, and green by group. The colour by dropdown menu on the interactive plot is hightlighted.'}
+    ```{r, echo=FALSE, fig.alt='Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue and orange by group. The colour by dropdown menu on the interactive plot is hightlighted.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g11f12bc99af_0_77")
     ```
 
@@ -119,7 +120,7 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
 1. You can also download plots and other files created directly in RStudio. To download the following plot, click on "Export" and save in your preferred format to the default directory. This saves the file in your cloud environment.
 
     ```{r, eval = FALSE}
-limma::plotMDS(dge)
+limma::plotMDS(airway)
     ```
 
     ```{r, echo=FALSE, fig.alt='Screenshot of the RStudio interface. A plot has been created. The Export menu has been highlighted.'}
@@ -146,16 +147,29 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
 
 ## More Practice with `iSEE`
 
-`iSEE` is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects [@RueAlbrecht2018]. We will learn more about SummarizedExperiments in [following chapters](the-summarizedexperiment-class.html#summarizedexperiment). Below, we will visualize an example dataset from @Tasic2016. This experiment is a single-cell RNAseq experiment (scRNAseq) examining the primary visual cortex in mice, with the aim of better understanding cell diversity and taxonomy in the nervous system. Run the following.
+`iSEE` is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects [@RueAlbrecht2018]. Run the following.
 
 ```{r, eval = FALSE}
-# Install and load necessary packages
-AnVIL::install(c("iSEE", "scRNAseq", "scater"))
-library(iSEE)
+# Install iSEE
+AnVIL::install("iSEE")
 
-# Launch interactive example
-example(iSEE, ask=FALSE)
+# Launch app on airway data
+iSEE::iSEE(airway)
 ```
+
+    ```{r, echo=FALSE, fig.alt='Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g11f12bc99af_0_56")
+    ```
+    
+The Shiny app will allow you to explore genes and samples.
+
+    ```{r, echo=FALSE, fig.alt='Screenshot of the iSEE popout. The gene related windows are shown.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_12")
+    ```
+
+    ```{r, echo=FALSE, fig.alt='Screenshot of the iSEE popout. The sample related windows are shown.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_19")
+    ```
 
 ## Pause RStudio {#stopping}
 
