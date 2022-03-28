@@ -1,8 +1,10 @@
 AnVIL
 anvilproject
 BiocManager
+bioinformatics
 BIPOC
 Bloomberg
+DataFrame
 Datatrail
 DataTrail
 dge
@@ -32,6 +34,7 @@ NCI
 NHGRI
 OTTR
 ottrpal
+phenotypes
 plotMDS
 precompiled
 preprint
@@ -39,6 +42,7 @@ programmatically
 rds
 readRDS
 RNAseq
+rowData
 RStudio
 scalable
 scRNAseq
