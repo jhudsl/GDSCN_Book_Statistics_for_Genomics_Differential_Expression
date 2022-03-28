@@ -58,7 +58,7 @@ colData(airway)
 `rowData()` and / or `rowRanges()` provide annotations on each row.
 
 - `rowRanges()`: coordinates of gene / exons in transcripts / etc.
-- `rowData()`: P-values and log-fold change of each gene after differential expresssion analysis.
+- `rowData()`: P-values and log-fold change of each gene after differential expression analysis.
 
 ```{r}
 rowRanges(airway)
