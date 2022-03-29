@@ -1,5 +1,27 @@
 # Design Matrices
 
+## Overview
+
+When performing differential expression analysis on genomic data (such as RNA-seq experiments), scientists usually use linear models to determine the direction (did expression go up or down?) and magnitude (by how much?) of the change in expression. These scientists are interested in understanding the relationship between gene expression (the "response" variable") and variables that affect expression, such as a treatment or cell type ("explanatory variable(s)").
+
+Design matrices are fundamental concepts in mathematics, statistics, and other domains, but their application to genomic data can introduce some complexity.
+
+See this Bioconductor [vignette](https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html#introduction) for an excellent, in-depth look at design matrices.
+
+## Regression Models
+
+### Continuous variables
+
+The type of explanatory variables in our experiment will determine what our regression model looks like. 
+
+Continuous variables, or covariates, are numeric. This means that we could create a scatterplot comparing the covariate and expression. We could then imagine drawing a best fit line through those points to create our model. @Law2020 state:
+
+> [Covariates] can be the age or weight of an individual, or other molecular or cellular phenotypes on a sample... For covariates, it is generally of interest to know the rate of change between the response and the covariate, such as “how much does the expression of a particular gene increase/decrease per unit increase in age?”. We can use a straight line to model, or describe, this relationship, which takes the form of 
+> 
+> $$Expression = \beta_{0} + \beta_{1}age$$
+>
+> where the line is defined by $\beta_{0}$ the y-intercept and $\beta_{1}$ the slope. In this model, the age covariate takes continuous, numerical values such as 0.8, 1.3, 2.0, 5.6, and so on.
+
 
 
 ## Recap
