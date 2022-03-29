@@ -21,6 +21,7 @@ First, we will load the necessary packages.
 # Needed for GHA
 install.packages("https://cran.r-project.org/src/contrib/matrixStats_0.61.0.tar.gz", repo=NULL, type="source")
 BiocManager::install(c("SummarizedExperiment", "airway"))
+install.packages("scales")
 ```
 
 ```{r, warning = FALSE, message = FALSE}
@@ -129,6 +130,7 @@ plot(mean_expression, log2_fold_change)
 Since there are many data points, it's a good idea to customize your plot. The `ggplot2` package can also provide greater flexibility with plotting.
 
 ```{r}
+library(scales)
 plot(mean_expression, log2_fold_change, col = alpha("black", 0.1), pch = 16, cex = 0.5)
 ```
 
