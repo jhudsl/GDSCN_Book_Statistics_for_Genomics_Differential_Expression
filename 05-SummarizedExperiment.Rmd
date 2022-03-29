@@ -1,0 +1,110 @@
+# (PART\*) EXPRESSION DATA {-}
+
+# The `SummarizedExperiment` class {#summarizedexperiment}
+
+## Overview
+
+One of the main strengths of using Bioconductor for bioinformatics is their data infrastructure. These data classes are built with genomics data in mind. This makes data compatible with different packages and/or methods. It also makes data easier to manipulate.
+
+The `SummarizedExperiment` class is used to store rectangular matrices of experimental results, which are commonly produced by sequencing and microarray experiments. Each `SummarizedExperiment` stores observations of one or more samples, along with additional meta-data describing both the observations (features) and samples (phenotypes).
+
+A key aspect of the `SummarizedExperiment` class is the coordination of the meta-data and assays when subsetting. For example, if you want to exclude a given sample you can do for both the meta-data and assay in one operation, which ensures the meta-data and observed data will remain in sync. Improperly accounting for meta and observational data has resulted in a number of incorrect results and retractions so this is a very desirable property.
+
+`SummarizedExperiment` is a matrix-like container where rows represent features of interest (e.g. genes, transcripts, exons, etc.) and columns represent samples. The objects contain one or more assays, each represented by a matrix-like object of numeric or other mode. The rows of a `SummarizedExperiment` object represent features of interest. Information about these features is stored in a DataFrame object, accessible using the function rowData(). Each row of the DataFrame provides information on the feature in the corresponding row of the `SummarizedExperiment` object. Columns of the DataFrame represent different attributes of the features of interest, e.g., gene or transcript IDs, etc.
+
+    ```{r, echo=FALSE, fig.alt='Schematic for the SummarizedExperiment class geometry highlighting the vertical (column) and horizontal (row) relationships. A specific sample in yellow and a specific feature or gene in purple.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1206a30969e_0_0")
+    ```
+
+The above information comes directly from the [vignette](https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html) for `SummarizedExperiment`. Please check out their page for more information.
+
+## Exploring `SummarizedExperiment`
+
+First, we will load the necessary packages.
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+# Needed for GHA
+install.packages("https://cran.r-project.org/src/contrib/matrixStats_0.61.0.tar.gz", repo=NULL, type="source")
+BiocManager::install(c("SummarizedExperiment", "airway"))
+```
+
+```{r, warning = FALSE, message = FALSE}
+# Install and load airway
+# AnVIL::install(c("airway"))
+library(airway)
+```
+
+Load the gene expression data. The "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014.
+
+```{r}
+# Load the gene expression data
+data(airway)
+```
+
+`assay()` provides a matrix-like or list of matrix-like objects of identical dimension.
+
+- rows: genes, genomic coordinates, etc.
+- columns: samples, cells, etc.
+    
+```{r}
+assay_data <- assay(airway)
+head(assay_data)
+```
+    
+`colData()` provides annotations on each column, as a DataFrame. In other words, it provides descriptions of each sample.
+    
+```{r}
+colData(airway)
+```
+    
+`rowData()` and / or `rowRanges()` provide annotations on each row.
+
+- `rowRanges()`: coordinates of gene / exons in transcripts / etc.
+- `rowData()`: P-values and log-fold change of each gene after differential expression analysis.
+
+```{r}
+rowRanges(airway)
+```
+
+metadata(): List of unstructured metadata describing the overall content of the object.
+
+```{r}
+metadata(airway)
+```
+
+Please see [this vignette](https://bioconductor.org/help/course-materials/2019/BSS2019/04_Practical_CoreApproachesInBioconductor.html) for more information.
+
+## Subsetting `SummarizedExperiment`
+
+Often, you'll find you want to subset your expression/count data. You can do this by selecting the samples (columns) or features/genes (rows) you want to keep.
+
+```{r}
+# Collect the counts and sample data
+raw_counts <- assay(airway)
+sample_data <- colData(airway)
+
+# Select samples 1 and 2
+samples_1_2 <- raw_counts[, 1:2]
+head(samples_1_2)
+
+# Select untreated samples
+untrt_samples <- raw_counts[, sample_data$dex == "untrt"]
+head(untrt_samples)
+
+# Select features where mean expression > 0 across samples
+nonzero_features <- raw_counts[rowMeans(raw_counts) > 0, ]
+head(nonzero_features)
+```
+
+## Recap
+
+```{r, eval = FALSE}
+# Learn more about the class
+?SummarizedExperiment::`SummarizedExperiment-class`
+# Browse vignettes and more
+??SummarizedExperiment
+```
+
+```{r}
+sessionInfo()
+```

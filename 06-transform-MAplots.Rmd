@@ -1,0 +1,157 @@
+# Transformation, Fold-change, & MA Plots
+
+The following excerpt comes from @Ritchie2015 :
+
+> _Measuring expression in multiple RNA samples produces columns of correlated expression values, which are highly correlated because they are measured on the same set of genes or genomic features. It has long been established in the biomedical literature that the level of agreement between correlated variables can be usefully examined by plotting differences versus means._
+
+In other words, gene expression data is full of correlations. We must think carefully about how we examine and plot gene expression data. In the next steps, we will:
+
+- Examine how $\log_{2}$ transformations and fold-change improve data clarity
+- Learn how to make MA plots on gene expression data
+
+Much of the following has been adopted from the [`Glimma` vignette](https://bioconductor.org/packages/release/bioc/vignettes/Glimma/inst/doc/limma_edger.html) for `limma` and `edgeR` [@Su2017].
+
+## Gene Expression Data
+
+First, we will load the necessary packages.
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+# Needed for GHA
+install.packages("https://cran.r-project.org/src/contrib/matrixStats_0.61.0.tar.gz", repo=NULL, type="source")
+BiocManager::install(c("SummarizedExperiment", "airway"))
+install.packages("scales")
+```
+
+```{r, warning = FALSE, message = FALSE}
+# Install and load airway
+# AnVIL::install(c("airway"))
+library(airway)
+```
+
+Load the gene expression data. We will be using data from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone [@Himes2014].
+
+```{r}
+# Load the gene expression data
+data(airway)
+head(assay(airway),10)
+```
+
+In this data, each sample is in a column, while each gene is in a row. These raw counts range from very small to quite large numbers!
+
+## Plotting Raw Counts
+
+Let's say we want to compare treated and untreated samples. We will first look at the sample data.
+
+```{r}
+# View metadata
+colData(airway)
+```
+
+We will manually take the mean across treated and untreated samples.
+
+```{r}
+# Collect the counts and sample data
+raw_counts <- assay(airway)
+sample_data <- colData(airway)
+
+# Select untreated samples
+untrt_sample_means <- rowMeans2(raw_counts[, sample_data$dex == "untrt"])
+
+# Select treated samples
+trt_sample_means <- rowMeans2(raw_counts[, sample_data$dex == "trt"])
+```
+
+Then we will plot the two groups.
+
+```{r}
+plot(untrt_sample_means, trt_sample_means)
+```
+
+This is hard to interpret. Most of the genes are clustered in the bottom left corner.
+
+## Transforming ($\log_{2}$)
+
+Using a $\log_{2}$ transformation makes it easier to examine all the genes together.
+
+```{r}
+# Plot with log2 transformation
+plot(log2(untrt_sample_means), log2(trt_sample_means))
+```
+
+## Using Fold-Change to Create an MA Plot
+
+As stated at the very start of this chapter, plotting differences versus means can be very helpful when many genes are correlated. It also makes interpretation easier when combined with a $\log_{2}$ transformation.
+
+In the next steps, you will create a preliminary MA plot. MA plots are a widely used way to visualize genomic data. The _**M**_ represents the difference between two conditions (fold-change), while the _**A**_ represents the average intensity of the expression. Both values take on a $\log_{2}$ transformation.
+
+_**M**_ is expressed as a log ratio or difference in the following form. _**M**_ is almost always placed on the y-axis.
+
+$$M = log_{2}(\frac{condition 1}{condition 2}) = log_{2}(condition 1) - log_{2}(condition2)$$
+
+_**A**_ is more simple, taking the form of a transformed average. _**A**_ is often called "log mean expression" and is almost always placed on the x-axis.
+
+$$A = \frac{1}{2} (log_{2}(condition 1) + log_{2}(condition 2))$$
+
+When untreated and treated expression are equal, fold-change is equal to zero.
+
+```{r}
+log2(10) - log2(10)
+```
+
+When untreated expression is greater, fold-change is positive.
+
+```{r}
+log2(20) - log2(10)
+log2(100) - log2(1)
+```
+
+However when treated expression is greater, fold-change is negative.
+
+```{r}
+log2(10) - log2(20)
+log2(1) - log2(100)
+```
+
+Calculate log2 fold-change and mean expression for the data.
+
+```{r}
+log2_fold_change <- log2(untrt_sample_means) - log2(trt_sample_means)
+mean_expression <- (log2(untrt_sample_means) + log2(trt_sample_means)) / 2
+```
+
+Plot the values above, with mean expression on the x-axis and fold-change on the y-axis.
+
+```{r}
+plot(mean_expression, log2_fold_change)
+```
+
+Since there are many data points, it's a good idea to customize your plot. The `ggplot2` package can also provide greater flexibility with plotting.
+
+```{r}
+library(scales)
+plot(mean_expression, log2_fold_change, col = alpha("black", 0.1), pch = 16, cex = 0.5)
+```
+
+This gives us a very rough idea of how transformation and using fold-change can aid in interpretation of the data. In reality, we need to cover a few more steps before creating this kind of plot.
+
+## Future Directions
+
+A simple MA plot can be produced with the `plotMA()` function from the `limma` package. Other packages for exploring differential gene expression in R, such as `DESeq2`, also have functions to create MA plots.
+
+```{r, eval = FALSE}
+# Not run
+plotMA()
+```
+
+`glimmaMA()` from the `Glimma` package creates interactive MA plots.
+
+```{r, eval = FALSE}
+# Not run
+glimmaMA()
+```
+
+## Recap
+
+```{r}
+sessionInfo()
+```
