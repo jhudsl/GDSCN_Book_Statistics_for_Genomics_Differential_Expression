@@ -8,7 +8,7 @@ rmd_files: ["index.Rmd",
             "04-RStudio.Rmd",
             "05-SummarizedExperiment.Rmd",
             "06-transform-MAplots.Rmd",
-            "07-designmatrices.Rmd"
+            "07-designmatrices.Rmd",
             "B-help.Rmd",
             "C-feedback.Rmd",
             "About.Rmd"]
