@@ -10,9 +10,9 @@ See this Bioconductor [vignette](https://bioconductor.org/packages/release/workf
 
 ## Types of Models
 
-### Regression: Continuous Variables
+The type of explanatory variables in our experiment will determine what our model looks like. 
 
-The type of explanatory variables in our experiment will determine what our regression model looks like. 
+### Regression: Continuous Variables
 
 Continuous variables, or covariates, are numeric. This means that we could create a scatterplot comparing the covariate and expression. We could then imagine drawing a best fit line through those points to create our model. @Law2020 state:
 
@@ -32,9 +32,9 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
 
 Categorical variables are discrete variables, or factors. We can think of these variables as "bins" that our samples fall into. @Law2020 state:
 
-> [Factors] are often separated into those that are of a biological nature (e.g. disease status, genotype, treatment, cell-type) and those that are of a technical nature (e.g. experiment time, sample batch, handling technician, sequencing lane). Unique values within a factor are referred to as levels. For example, genotype as a factor may contain two levels, “wildtype” and “mutant”. Here, it is generally of interest to determine the expected or mean gene expression for each state or level of the factor. The relationship between gene expression and the factor can be described, or modelled, in the form of 
+> [Factors] are often separated into those that are of a biological nature (e.g. disease status, genotype, treatment, cell-type) and those that are of a technical nature (e.g. experiment time, sample batch, handling technician, sequencing lane). Unique values within a factor are referred to as levels. For example, genotype as a factor may contain two levels, “wildtype” and “mutant”. Here, it is generally of interest to determine the expected or mean gene expression for each state or level of the factor. The relationship between gene expression and the factor can be described, or modeled, in the form of 
 >
-> $$Expression = \beta_{1}wildtype + \beta_{2}mutant
+> $$Expression = \beta_{1}wildtype + \beta_{2}mutant$$
 >
 > where $\beta_{1}$ represents the mean gene expression for wildtype, and $\beta_{2}$ represents the mean gene expression for mutant.
 
@@ -48,9 +48,9 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
 
 You can also design categorical models with a "reference" value for comparison. @Law2020 state:
 
-> An alternative parameterisation of the means model directly calculates the gene expression difference between mutant and wildtype. It does so by using one of the levels as a reference. Such a model is parameterised for the mean expression of the reference level (e.g. wildtype), and the rest of the levels are parameterised relative to the reference (e.g. the difference between mutant and wildtype). The relationship between gene expression and genotype is modelled in the form of 
+> An alternative parameterisation of the means model directly calculates the gene expression difference between mutant and wildtype. It does so by using one of the levels as a reference. Such a model is parameterised for the mean expression of the reference level (e.g. wildtype), and the rest of the levels are parameterised relative to the reference (e.g. the difference between mutant and wildtype). The relationship between gene expression and genotype is modeled in the form of 
 >
-> $$Expression = \beta_{1} + \beta_{2}mutant
+> $$Expression = \beta_{1} + \beta_{2}mutant$$
 >
 > where $\beta_{1}$ represents the mean gene expression for wildtype, and $\beta_{2}$ is the difference between means of mutant and wildtype
 
