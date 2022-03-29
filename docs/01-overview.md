@@ -31,8 +31,8 @@
 
 Learning objectives for this activity come from the [Genetics Core Competencies](https://genetics-gsa.org/education/genetics-learning-framework/):
 
-<!-- - Gather and evaluate experimental evidence, including qualitative and quantitative data -->
-<!-- - Generate and interpret graphs displaying experimental results -->
-<!-- - Critique large data sets and use bioinformatics to assess genetics data -->
-<!-- - Tap into the interdisciplinary nature of science -->
+- Gather and evaluate experimental evidence, including qualitative and quantitative data
+- Generate and interpret graphs displaying experimental results
+- Critique large data sets and use bioinformatics to assess genetics data
+- Tap into the interdisciplinary nature of science
 

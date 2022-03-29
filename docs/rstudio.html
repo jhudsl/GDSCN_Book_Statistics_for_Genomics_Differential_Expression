@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-03-25" />
+<meta name="date" content="2022-03-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
 <link rel="prev" href="workspace.html"/>
-<link rel="next" href="transforming-data.html"/>
+<link rel="next" href="summarizedexperiment.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,20 +52,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<link href="libs/vega-1/vega_plots.css" rel="stylesheet" />
-<script src="libs/vega-1/vega.min.js"></script>
-<link href="libs/vega-tooltip-1/vega-tooltip.css" rel="stylesheet" />
-<script src="libs/vega-tooltip-1/vega-tooltip.js"></script>
-<link href="libs/datatables-1/datatables.css" rel="stylesheet" />
-<script src="libs/datatables-1/datatables.min.js"></script>
-<script src="libs/FileSaver-1/FileSaver.js"></script>
-<script src="libs/GlimmaV2-1/XYSpecs.js"></script>
-<script src="libs/GlimmaV2-1/MDSSpecs.js"></script>
-<script src="libs/GlimmaV2-1/expressionSpec.js"></script>
-<script src="libs/GlimmaV2-1/makeTooltip.js"></script>
-<script src="libs/GlimmaV2-1/saveTools.js"></script>
-<script src="libs/glimmaXY-binding-2.0.0/glimmaXY.js"></script>
 
 
 <style type="text/css">
@@ -198,29 +184,22 @@ div.csl-indent {
 <li class="chapter" data-level="4.5" data-path="rstudio.html"><a href="rstudio.html#delete-rstudio-cloud-environment"><i class="fa fa-check"></i><b>4.5</b> Delete RStudio Cloud Environment</a></li>
 <li class="chapter" data-level="4.6" data-path="rstudio.html"><a href="rstudio.html#video-guide"><i class="fa fa-check"></i><b>4.6</b> Video Guide</a></li>
 </ul></li>
-<li class="part"><span><b>DIFFERENTIAL EXPRESSION</b></span></li>
-<li class="chapter" data-level="5" data-path="transforming-data.html"><a href="transforming-data.html"><i class="fa fa-check"></i><b>5</b> Transforming Data</a>
+<li class="part"><span><b>EXPRESSION DATA</b></span></li>
+<li class="chapter" data-level="5" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html"><i class="fa fa-check"></i><b>5</b> The <code>SummarizedExperiment</code> class</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="transforming-data.html"><a href="transforming-data.html#gene-expression-data"><i class="fa fa-check"></i><b>5.1</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="5.1" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#exploring-summarizedexperiment"><i class="fa fa-check"></i><b>5.2</b> Exploring <code>SummarizedExperiment</code></a></li>
+<li class="chapter" data-level="5.3" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#subsetting-summarizedexperiment"><i class="fa fa-check"></i><b>5.3</b> Subsetting <code>SummarizedExperiment</code></a></li>
+<li class="chapter" data-level="5.4" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#recap"><i class="fa fa-check"></i><b>5.4</b> Recap</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html"><i class="fa fa-check"></i><b>6</b> Plotting Expression Data</a>
+<li class="chapter" data-level="6" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html"><i class="fa fa-check"></i><b>6</b> Transformation, Fold-change, &amp; MA Plots</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html#plotting-raw-counts"><i class="fa fa-check"></i><b>6.1</b> Plotting Raw Counts</a></li>
-<li class="chapter" data-level="6.2" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html#transforming-log_2"><i class="fa fa-check"></i><b>6.2</b> Transforming (<span class="math inline">\(\log_{2}\)</span>)</a></li>
-<li class="chapter" data-level="6.3" data-path="plotting-expression-data.html"><a href="plotting-expression-data.html#using-fold-change"><i class="fa fa-check"></i><b>6.3</b> Using Fold-Change</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html"><i class="fa fa-check"></i><b>7</b> Creating MA Plots</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#the-design-matrix"><i class="fa fa-check"></i><b>7.1</b> The Design Matrix</a></li>
-<li class="chapter" data-level="7.2" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#the-contrast-matrix"><i class="fa fa-check"></i><b>7.2</b> The Contrast Matrix</a></li>
-<li class="chapter" data-level="7.3" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#fitting-the-data"><i class="fa fa-check"></i><b>7.3</b> Fitting the Data</a></li>
-<li class="chapter" data-level="7.4" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#creating-an-ma-plot"><i class="fa fa-check"></i><b>7.4</b> Creating an MA Plot</a></li>
-<li class="chapter" data-level="7.5" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#interactive-ma-plots"><i class="fa fa-check"></i><b>7.5</b> Interactive MA Plots</a></li>
-<li class="chapter" data-level="7.6" data-path="creating-ma-plots.html"><a href="creating-ma-plots.html#recap"><i class="fa fa-check"></i><b>7.6</b> Recap</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html"><i class="fa fa-check"></i><b>8</b> <code>SummarizedExperiment</code></a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="summarizedexperiment.html"><a href="summarizedexperiment.html#recap-1"><i class="fa fa-check"></i><b>8.1</b> Recap</a></li>
+<li class="chapter" data-level="6.1" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#gene-expression-data"><i class="fa fa-check"></i><b>6.1</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="6.2" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#plotting-raw-counts"><i class="fa fa-check"></i><b>6.2</b> Plotting Raw Counts</a></li>
+<li class="chapter" data-level="6.3" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#transforming-log_2"><i class="fa fa-check"></i><b>6.3</b> Transforming (<span class="math inline">\(\log_{2}\)</span>)</a></li>
+<li class="chapter" data-level="6.4" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#using-fold-change-to-create-an-ma-plot"><i class="fa fa-check"></i><b>6.4</b> Using Fold-Change to Create an MA Plot</a></li>
+<li class="chapter" data-level="6.5" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#future-directions"><i class="fa fa-check"></i><b>6.5</b> Future Directions</a></li>
+<li class="chapter" data-level="6.6" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#recap-1"><i class="fa fa-check"></i><b>6.6</b> Recap</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
@@ -274,7 +253,7 @@ div.csl-indent {
 <p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_gdde5ec9a4d_1_50.png" title="Screenshot of the cloud environment popout menu. The &quot;Customize&quot; button is highlighted." alt="Screenshot of the cloud environment popout menu. The &quot;Customize&quot; button is highlighted." width="480" /></p></li>
 <li><p>Click on the first drop down menu to see what other software configurations are available.</p>
 <p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_gdde5ec9a4d_1_11.png" title="Screenshot of the cloud environment popout menu. The first dropdown menu for options, the Application configuration menu, is highlighted." alt="Screenshot of the cloud environment popout menu. The first dropdown menu for options, the Application configuration menu, is highlighted." width="480" /></p></li>
-<li><p>Scroll down and select RStudio from the Community-Maintained RStudio Environments section.</p>
+<li><p>Scroll down and select RStudio from the Community-Maintained RStudio Environments section. <strong>NOTE</strong>: AnVIL is very versatile and can scale up to use very powerful cloud computers. It’s very important that you select the cloud computing environment described here to avoid runaway costs.</p>
 <p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_0.png" title="Screenshot of the Application configuration menu. The community maintained RStudio environment is highlighted." alt="Screenshot of the Application configuration menu. The community maintained RStudio environment is highlighted." width="480" /></p></li>
 <li><p>Leave everything else as-is. To create your RStudio Cloud Environment, click on the “CREATE” button.</p>
 <p><img src="04-RStudio_files/figure-html/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw_ge08067d6e2_0_34.png" title="Screenshot of the Application configuration menu. The &quot;Create&quot; button is highlighted." alt="Screenshot of the Application configuration menu. The &quot;Create&quot; button is highlighted." width="480" /></p></li>
@@ -295,21 +274,22 @@ div.csl-indent {
 <li><p>The Bioconductor team has created a very useful package to programmatically interact with Terra and Google Cloud. Install the <code>AnVIL</code> package. It will make some steps easier as we go along.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;AnVIL&quot;</span>)</span></code></pre></div>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_49.png" title="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." alt="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." width="480" /></p></li>
-<li><p>You can now quickly install precompiled binaries using the AnVIL package’s <code>install()</code> function. We will use it to install the <code>Glimma</code> package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio.html#cb2-1" aria-hidden="true" tabindex="-1"></a>AnVIL<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;Glimma&quot;</span>)</span></code></pre></div>
+<li><p>You can now quickly install precompiled binaries using the AnVIL package’s <code>install()</code> function. We will use it to install the <code>Glimma</code> package and the <code>airway</code> package. The <code>airway</code> package contains a <code>SummarizedExperiment</code> data class. This data describes an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. We will learn more about SummarizedExperiments in <a href="the-summarizedexperiment-class.html#summarizedexperiment">following chapters</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio.html#cb2-1" aria-hidden="true" tabindex="-1"></a>AnVIL<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;Glimma&quot;</span>, <span class="st">&quot;airway&quot;</span>))</span></code></pre></div>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_56.png" title="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." alt="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." width="480" /></p></li>
-<li><p>Load some example data and save it as <code>dge</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">&quot;RNAseq123/dge.rds&quot;</span>, <span class="at">package =</span> <span class="st">&quot;Glimma&quot;</span>))</span></code></pre></div>
+<li><p>Load the example data.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span>
+<span id="cb3-2"><a href="rstudio.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway)</span></code></pre></div>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_56.png" title="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." alt="Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted." width="480" /></p></li>
 <li><p>The multidimensional scaling (MDS) plot is frequently used to explore differences in samples. When this data is MDS transformed, the first two dimensions explain the greatest variance between samples, and the amount of variance decreases monotonically with increasing dimension. The following code will launch a new window where you can interact with the MDS plot.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimmaMDS</span>(dge)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio.html#cb4-1" aria-hidden="true" tabindex="-1"></a>Glimma<span class="sc">::</span><span class="fu">glimmaMDS</span>(<span class="fu">assay</span>(airway), <span class="at">group =</span> <span class="fu">colData</span>(airway)<span class="sc">$</span>dex)</span></code></pre></div>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_70.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. All data points are blue." alt="Screenshot of the Glimma popout showing the data in an MDS plot. All data points are blue." width="480" /></p></li>
-<li><p>Change the <code>colour_by</code> setting to “group” so you can easily distinguish between groups. In this data, the “group” is cell type.</p>
-<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_77.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue, orange, and green by group. The colour by dropdown menu on the interactive plot is hightlighted." alt="Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue, orange, and green by group. The colour by dropdown menu on the interactive plot is hightlighted." width="480" /></p></li>
+<li><p>Change the <code>colour_by</code> setting to “groups” so you can easily distinguish between groups. In this data, the “group” is the treatment.</p>
+<p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_77.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue and orange by group. The colour by dropdown menu on the interactive plot is hightlighted." alt="Screenshot of the Glimma popout showing the data in an MDS plot. Data points are colored blue and orange by group. The colour by dropdown menu on the interactive plot is hightlighted." width="480" /></p></li>
 <li><p>You can download the interactive html file by clicking on “Save As”.</p>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6da7f_0_0.png" title="Screenshot of the Glimma popout showing the data in an MDS plot. The Save As menu is highlighted." alt="Screenshot of the Glimma popout showing the data in an MDS plot. The Save As menu is highlighted." width="480" /></p></li>
 <li><p>You can also download plots and other files created directly in RStudio. To download the following plot, click on “Export” and save in your preferred format to the default directory. This saves the file in your cloud environment.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a>limma<span class="sc">::</span><span class="fu">plotMDS</span>(dge)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a>limma<span class="sc">::</span><span class="fu">plotMDS</span>(airway)</span></code></pre></div>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6da7f_0_12.png" title="Screenshot of the RStudio interface. A plot has been created. The Export menu has been highlighted." alt="Screenshot of the RStudio interface. A plot has been created. The Export menu has been highlighted." width="480" /></p></li>
 <li><p>You should see the plot in the “Files” pane.</p>
 <p><img src="04-RStudio_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6da7f_0_19.png" title="Screenshot of the RStudio interface. A plot has been created. The saved pdf file is now visible under the &quot;Files&quot; pane." alt="Screenshot of the RStudio interface. A plot has been created. The saved pdf file is now visible under the &quot;Files&quot; pane." width="480" /></p></li>
@@ -321,13 +301,17 @@ div.csl-indent {
 </div>
 <div id="more-practice-with-isee" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> More Practice with <code>iSEE</code></h2>
-<p><code>iSEE</code> is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects <span class="citation">(<a href="#ref-RueAlbrecht2018" role="doc-biblioref">Rue-Albrecht et al. 2018</a>)</span>. We will learn more about SummarizedExperiments in <a href="summarizedexperiment.html#summarizedexperiment">following chapters</a>. Below, we will visualize an example dataset from <span class="citation">Tasic et al. (<a href="#ref-Tasic2016" role="doc-biblioref">2016</a>)</span>. This experiment is a single-cell RNAseq experiment (scRNAseq) examining the primary visual cortex in mice, with the aim of better understanding cell diversity and taxonomy in the nervous system. Run the following.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load necessary packages</span></span>
-<span id="cb6-2"><a href="rstudio.html#cb6-2" aria-hidden="true" tabindex="-1"></a>AnVIL<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;iSEE&quot;</span>, <span class="st">&quot;scRNAseq&quot;</span>, <span class="st">&quot;scater&quot;</span>))</span>
-<span id="cb6-3"><a href="rstudio.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iSEE)</span>
-<span id="cb6-4"><a href="rstudio.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="rstudio.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch interactive example</span></span>
-<span id="cb6-6"><a href="rstudio.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(iSEE, <span class="at">ask=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><code>iSEE</code> is a Bioconductor package that provides an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects <span class="citation">(<a href="#ref-RueAlbrecht2018" role="doc-biblioref">Rue-Albrecht et al. 2018</a>)</span>. Run the following.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install iSEE</span></span>
+<span id="cb6-2"><a href="rstudio.html#cb6-2" aria-hidden="true" tabindex="-1"></a>AnVIL<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;iSEE&quot;</span>)</span>
+<span id="cb6-3"><a href="rstudio.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="rstudio.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch app on airway data</span></span>
+<span id="cb6-5"><a href="rstudio.html#cb6-5" aria-hidden="true" tabindex="-1"></a>iSEE<span class="sc">::</span><span class="fu">iSEE</span>(airway)</span></code></pre></div>
+<pre><code>&lt;img src=&quot;04-RStudio_files/figure-html//1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g11f12bc99af_0_56.png&quot; title=&quot;Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.&quot; alt=&quot;Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.&quot; width=&quot;480&quot; /&gt;</code></pre>
+<p>The Shiny app will allow you to explore genes and samples.</p>
+<pre><code>&lt;img src=&quot;04-RStudio_files/figure-html//1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6db6a_1_12.png&quot; title=&quot;Screenshot of the iSEE popout. The gene related windows are shown.&quot; alt=&quot;Screenshot of the iSEE popout. The gene related windows are shown.&quot; width=&quot;480&quot; /&gt;
+
+&lt;img src=&quot;04-RStudio_files/figure-html//1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1204ed6db6a_1_19.png&quot; title=&quot;Screenshot of the iSEE popout. The sample related windows are shown.&quot; alt=&quot;Screenshot of the iSEE popout. The sample related windows are shown.&quot; width=&quot;480&quot; /&gt;</code></pre>
 </div>
 <div id="stopping" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Pause RStudio</h2>
@@ -357,7 +341,7 @@ div.csl-indent {
 <iframe src="https://drive.google.com/file/d/1v72ZG8JIRDUaewFQgGfcCO_qoM4eYmYX/preview" width="640" height="360" allow="autoplay">
 </iframe>
 <p>The slides for this tutorial are are located <a href="https://docs.google.com/presentation/d/1eypYLLqD11-NwHLs4adGpcuSB07dYEJfAaALSMvgzqw">here</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rstudio.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rstudio.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.3 LTS
@@ -396,9 +380,6 @@ div.csl-indent {
 <div id="ref-RueAlbrecht2018" class="csl-entry">
 Rue-Albrecht, K, F Marini, C Soneson, and ATL Lun. 2018. <span>“iSEE: Interactive SummarizedExperiment Explorer [Version 1; Peer Review: 3 Approved].”</span> <em>F1000Research</em> 7 (741). <a href="https://doi.org/10.12688/f1000research.14966.1">https://doi.org/10.12688/f1000research.14966.1</a>.
 </div>
-<div id="ref-Tasic2016" class="csl-entry">
-Tasic, Bosiljka, Vilas Menon, Thuc Nghi Nguyen, Tae Kyung Kim, Tim Jarsky, Zizhen Yao, Boaz Levi, et al. 2016. <span>“<span class="nocase">Adult mouse cortical cell taxonomy revealed by single cell transcriptomics</span>.”</span> <em>Nature Neuroscience</em> 19 (2): 335–46. <a href="https://doi.org/10.1038/nn.4216">https://doi.org/10.1038/nn.4216</a>.
-</div>
 </div>
 <hr>
 <center> 
@@ -414,7 +395,7 @@ Tasic, Bosiljka, Vilas Menon, Thuc Nghi Nguyen, Tae Kyung Kim, Tim Jarsky, Zizhe
         </div>
       </div>
 <a href="workspace.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="transforming-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="summarizedexperiment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

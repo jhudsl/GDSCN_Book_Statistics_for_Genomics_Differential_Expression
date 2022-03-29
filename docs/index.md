@@ -1,6 +1,6 @@
 ---
 title: "Statistics for Genomics: Differential Expression"
-date: "March 25, 2022"
+date: "March 29, 2022"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib

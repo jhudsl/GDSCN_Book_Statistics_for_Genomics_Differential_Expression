@@ -11,10 +11,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |**Pedagogy**||
 |Lead Content Instructor|[Ava Hoffman]|
 |Content Idea Contributor|Kasper Hansen|
-<!-- |Content Contributor | [Jeff Leek], [Michael Schatz], [Frederick Tan]| -->
-<!-- |Content Editors| [Katherine Cox], Natalie Kucher, [Frederick Tan]| -->
-<!-- |Content Directors | Kasper Hansen, [Jeff Leek], [Frederick Tan]| -->
-<!-- |Content Consultants (General) | [Jeff Leek], [Frederick Tan], [Carrie Wright] | -->
+|Content Directors | Kasper Hansen, [Jeff Leek], [Frederick Tan]|
 |**Production**||
 |Content Publisher|[Ira Gooding]|
 |**Technical**||
@@ -29,6 +26,12 @@ These credits are based on our [course contributors table guidelines](https://gi
 &nbsp;
 
 
+<!-- |Content Contributor | [Jeff Leek], [Michael Schatz], [Frederick Tan]| -->
+<!-- |Content Editors| [Katherine Cox], Natalie Kucher, [Frederick Tan]| -->
+<!-- |Content Directors | Kasper Hansen, [Jeff Leek], [Frederick Tan]| -->
+<!-- |Content Consultants (General) | [Jeff Leek], [Frederick Tan], [Carrie Wright] | -->
+
+
 ```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
@@ -40,7 +43,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-03-25                  
+##  date     2022-03-29                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
