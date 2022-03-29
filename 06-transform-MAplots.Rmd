@@ -1,5 +1,3 @@
-# (PART\*) DIFFERENTIAL EXPRESSION {-}
-
 # Transformation, Fold-change, & MA Plots
 
 The following excerpt comes from @Ritchie2015 :

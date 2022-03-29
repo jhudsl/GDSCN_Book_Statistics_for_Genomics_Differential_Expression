@@ -1,3 +1,5 @@
+# (PART\*) EXPRESSION DATA {-}
+
 # The `SummarizedExperiment` class {#summarizedexperiment}
 
 ## Overview
