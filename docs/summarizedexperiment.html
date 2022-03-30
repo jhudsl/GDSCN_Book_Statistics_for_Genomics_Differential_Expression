@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-03-29" />
+<meta name="date" content="2022-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,6 +201,24 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#future-directions"><i class="fa fa-check"></i><b>6.5</b> Future Directions</a></li>
 <li class="chapter" data-level="6.6" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#recap-1"><i class="fa fa-check"></i><b>6.6</b> Recap</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="design-matrices.html"><a href="design-matrices.html"><i class="fa fa-check"></i><b>7</b> Design Matrices</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="design-matrices.html"><a href="design-matrices.html#overview-1"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="design-matrices.html"><a href="design-matrices.html#types-of-models"><i class="fa fa-check"></i><b>7.2</b> Types of Models</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="design-matrices.html"><a href="design-matrices.html#regression-continuous-variables"><i class="fa fa-check"></i><b>7.2.1</b> Regression: Continuous Variables</a></li>
+<li class="chapter" data-level="7.2.2" data-path="design-matrices.html"><a href="design-matrices.html#means-categorical-variables"><i class="fa fa-check"></i><b>7.2.2</b> Means: Categorical Variables</a></li>
+<li class="chapter" data-level="7.2.3" data-path="design-matrices.html"><a href="design-matrices.html#mean-reference-categorical-variables"><i class="fa fa-check"></i><b>7.2.3</b> Mean-Reference: Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="design-matrices.html"><a href="design-matrices.html#making-a-design-matrix"><i class="fa fa-check"></i><b>7.3</b> Making a Design Matrix</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="design-matrices.html"><a href="design-matrices.html#regression-continuous-variables-1"><i class="fa fa-check"></i><b>7.3.1</b> Regression: Continuous Variables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="design-matrices.html"><a href="design-matrices.html#means-categorical-variables-1"><i class="fa fa-check"></i><b>7.3.2</b> Means: Categorical Variables</a></li>
+<li class="chapter" data-level="7.3.3" data-path="design-matrices.html"><a href="design-matrices.html#mean-reference-categorical-variables-1"><i class="fa fa-check"></i><b>7.3.3</b> Mean-Reference: Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="design-matrices.html"><a href="design-matrices.html#more-complex-designs"><i class="fa fa-check"></i><b>7.4</b> More Complex Designs</a></li>
+<li class="chapter" data-level="7.5" data-path="design-matrices.html"><a href="design-matrices.html#recap-2"><i class="fa fa-check"></i><b>7.5</b> Recap</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
 <li class="chapter" data-level="B" data-path="give-us-feedback.html"><a href="give-us-feedback.html"><i class="fa fa-check"></i><b>B</b> Give Us Feedback</a></li>
@@ -248,25 +266,25 @@ div.csl-indent {
 <p>The <code>SummarizedExperiment</code> class is used to store rectangular matrices of experimental results, which are commonly produced by sequencing and microarray experiments. Each <code>SummarizedExperiment</code> stores observations of one or more samples, along with additional meta-data describing both the observations (features) and samples (phenotypes).</p>
 <p>A key aspect of the <code>SummarizedExperiment</code> class is the coordination of the meta-data and assays when subsetting. For example, if you want to exclude a given sample you can do for both the meta-data and assay in one operation, which ensures the meta-data and observed data will remain in sync. Improperly accounting for meta and observational data has resulted in a number of incorrect results and retractions so this is a very desirable property.</p>
 <p><code>SummarizedExperiment</code> is a matrix-like container where rows represent features of interest (e.g. genes, transcripts, exons, etc.) and columns represent samples. The objects contain one or more assays, each represented by a matrix-like object of numeric or other mode. The rows of a <code>SummarizedExperiment</code> object represent features of interest. Information about these features is stored in a DataFrame object, accessible using the function rowData(). Each row of the DataFrame provides information on the feature in the corresponding row of the <code>SummarizedExperiment</code> object. Columns of the DataFrame represent different attributes of the features of interest, e.g., gene or transcript IDs, etc.</p>
-<pre><code>&lt;img src=&quot;05-SummarizedExperiment_files/figure-html//1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1206a30969e_0_0.png&quot; title=&quot;Schematic for the SummarizedExperiment class geometry highlighting the vertical (column) and horizontal (row) relationships. A specific sample in yellow and a specific feature or gene in purple.&quot; alt=&quot;Schematic for the SummarizedExperiment class geometry highlighting the vertical (column) and horizontal (row) relationships. A specific sample in yellow and a specific feature or gene in purple.&quot; width=&quot;480&quot; /&gt;</code></pre>
+<p><img src="05-SummarizedExperiment_files/figure-html/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg_g1206a30969e_0_0.png" title="Schematic for the SummarizedExperiment class geometry highlighting the vertical (column) and horizontal (row) relationships. A specific sample in yellow and a specific feature or gene in purple." alt="Schematic for the SummarizedExperiment class geometry highlighting the vertical (column) and horizontal (row) relationships. A specific sample in yellow and a specific feature or gene in purple." width="480" /></p>
 <p>The above information comes directly from the <a href="https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html">vignette</a> for <code>SummarizedExperiment</code>. Please check out their page for more information.</p>
 </div>
 <div id="exploring-summarizedexperiment" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Exploring <code>SummarizedExperiment</code></h2>
 <p>First, we will load the necessary packages.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="summarizedexperiment.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load airway</span></span>
-<span id="cb12-2"><a href="summarizedexperiment.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(c(&quot;airway&quot;))</span></span>
-<span id="cb12-3"><a href="summarizedexperiment.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="summarizedexperiment.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load airway</span></span>
+<span id="cb9-2"><a href="summarizedexperiment.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(c(&quot;airway&quot;))</span></span>
+<span id="cb9-3"><a href="summarizedexperiment.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span></code></pre></div>
 <p>Load the gene expression data. The “airway” data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in <span class="citation">Himes (<a href="#ref-Himes2014" role="doc-biblioref">2014</a>)</span>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="summarizedexperiment.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the gene expression data</span></span>
-<span id="cb13-2"><a href="summarizedexperiment.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="summarizedexperiment.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the gene expression data</span></span>
+<span id="cb10-2"><a href="summarizedexperiment.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway)</span></code></pre></div>
 <p><code>assay()</code> provides a matrix-like or list of matrix-like objects of identical dimension.</p>
 <ul>
 <li>rows: genes, genomic coordinates, etc.</li>
 <li>columns: samples, cells, etc.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="summarizedexperiment.html#cb14-1" aria-hidden="true" tabindex="-1"></a>assay_data <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span>
-<span id="cb14-2"><a href="summarizedexperiment.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(assay_data)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="summarizedexperiment.html#cb11-1" aria-hidden="true" tabindex="-1"></a>assay_data <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span>
+<span id="cb11-2"><a href="summarizedexperiment.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(assay_data)</span></code></pre></div>
 <pre><code>##                 SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
 ## ENSG00000000003        679        448        873        408       1138
 ## ENSG00000000005          0          0          0          0          0
@@ -282,7 +300,7 @@ div.csl-indent {
 ## ENSG00000000460         63         76         60
 ## ENSG00000000938          0          0          0</code></pre>
 <p><code>colData()</code> provides annotations on each column, as a DataFrame. In other words, it provides descriptions of each sample.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="summarizedexperiment.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="summarizedexperiment.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(airway)</span></code></pre></div>
 <pre><code>## DataFrame with 8 rows and 9 columns
 ##            SampleName     cell      dex    albut        Run avgLength
 ##              &lt;factor&gt; &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;integer&gt;
@@ -309,7 +327,7 @@ div.csl-indent {
 <li><code>rowRanges()</code>: coordinates of gene / exons in transcripts / etc.</li>
 <li><code>rowData()</code>: P-values and log-fold change of each gene after differential expression analysis.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="summarizedexperiment.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="summarizedexperiment.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowRanges</span>(airway)</span></code></pre></div>
 <pre><code>## GRangesList object of length 64102:
 ## $ENSG00000000003
 ## GRanges object with 17 ranges and 2 metadata columns:
@@ -332,7 +350,7 @@ div.csl-indent {
 ## ...
 ## &lt;64101 more elements&gt;</code></pre>
 <p>metadata(): List of unstructured metadata describing the overall content of the object.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="summarizedexperiment.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="summarizedexperiment.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span>(airway)</span></code></pre></div>
 <pre><code>## [[1]]
 ## Experiment data
 ##   Experimenter name: Himes BE 
@@ -348,13 +366,13 @@ div.csl-indent {
 <div id="subsetting-summarizedexperiment" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Subsetting <code>SummarizedExperiment</code></h2>
 <p>Often, you’ll find you want to subset your expression/count data. You can do this by selecting the samples (columns) or features/genes (rows) you want to keep.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="summarizedexperiment.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts and sample data</span></span>
-<span id="cb22-2"><a href="summarizedexperiment.html#cb22-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span>
-<span id="cb22-3"><a href="summarizedexperiment.html#cb22-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">colData</span>(airway)</span>
-<span id="cb22-4"><a href="summarizedexperiment.html#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="summarizedexperiment.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select samples 1 and 2</span></span>
-<span id="cb22-6"><a href="summarizedexperiment.html#cb22-6" aria-hidden="true" tabindex="-1"></a>samples_1_2 <span class="ot">&lt;-</span> raw_counts[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb22-7"><a href="summarizedexperiment.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(samples_1_2)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="summarizedexperiment.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts and sample data</span></span>
+<span id="cb19-2"><a href="summarizedexperiment.html#cb19-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span>
+<span id="cb19-3"><a href="summarizedexperiment.html#cb19-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">colData</span>(airway)</span>
+<span id="cb19-4"><a href="summarizedexperiment.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="summarizedexperiment.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select samples 1 and 2</span></span>
+<span id="cb19-6"><a href="summarizedexperiment.html#cb19-6" aria-hidden="true" tabindex="-1"></a>samples_1_2 <span class="ot">&lt;-</span> raw_counts[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb19-7"><a href="summarizedexperiment.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(samples_1_2)</span></code></pre></div>
 <pre><code>##                 SRR1039508 SRR1039509
 ## ENSG00000000003        679        448
 ## ENSG00000000005          0          0
@@ -362,9 +380,9 @@ div.csl-indent {
 ## ENSG00000000457        260        211
 ## ENSG00000000460         60         55
 ## ENSG00000000938          0          0</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="summarizedexperiment.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select untreated samples</span></span>
-<span id="cb24-2"><a href="summarizedexperiment.html#cb24-2" aria-hidden="true" tabindex="-1"></a>untrt_samples <span class="ot">&lt;-</span> raw_counts[, sample_data<span class="sc">$</span>dex <span class="sc">==</span> <span class="st">&quot;untrt&quot;</span>]</span>
-<span id="cb24-3"><a href="summarizedexperiment.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(untrt_samples)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="summarizedexperiment.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select untreated samples</span></span>
+<span id="cb21-2"><a href="summarizedexperiment.html#cb21-2" aria-hidden="true" tabindex="-1"></a>untrt_samples <span class="ot">&lt;-</span> raw_counts[, sample_data<span class="sc">$</span>dex <span class="sc">==</span> <span class="st">&quot;untrt&quot;</span>]</span>
+<span id="cb21-3"><a href="summarizedexperiment.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(untrt_samples)</span></code></pre></div>
 <pre><code>##                 SRR1039508 SRR1039512 SRR1039516 SRR1039520
 ## ENSG00000000003        679        873       1138        770
 ## ENSG00000000005          0          0          0          0
@@ -372,9 +390,9 @@ div.csl-indent {
 ## ENSG00000000457        260        263        245        233
 ## ENSG00000000460         60         40         78         76
 ## ENSG00000000938          0          2          1          0</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="summarizedexperiment.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select features where mean expression &gt; 0 across samples</span></span>
-<span id="cb26-2"><a href="summarizedexperiment.html#cb26-2" aria-hidden="true" tabindex="-1"></a>nonzero_features <span class="ot">&lt;-</span> raw_counts[<span class="fu">rowMeans</span>(raw_counts) <span class="sc">&gt;</span> <span class="dv">0</span>, ]</span>
-<span id="cb26-3"><a href="summarizedexperiment.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nonzero_features)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="summarizedexperiment.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select features where mean expression &gt; 0 across samples</span></span>
+<span id="cb23-2"><a href="summarizedexperiment.html#cb23-2" aria-hidden="true" tabindex="-1"></a>nonzero_features <span class="ot">&lt;-</span> raw_counts[<span class="fu">rowMeans</span>(raw_counts) <span class="sc">&gt;</span> <span class="dv">0</span>, ]</span>
+<span id="cb23-3"><a href="summarizedexperiment.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nonzero_features)</span></code></pre></div>
 <pre><code>##                 SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
 ## ENSG00000000003        679        448        873        408       1138
 ## ENSG00000000419        467        515        621        365        587
@@ -392,11 +410,11 @@ div.csl-indent {
 </div>
 <div id="recap" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Recap</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="summarizedexperiment.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn more about the class</span></span>
-<span id="cb28-2"><a href="summarizedexperiment.html#cb28-2" aria-hidden="true" tabindex="-1"></a>?SummarizedExperiment<span class="sc">::</span><span class="st">`</span><span class="at">SummarizedExperiment-class</span><span class="st">`</span></span>
-<span id="cb28-3"><a href="summarizedexperiment.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Browse vignettes and more</span></span>
-<span id="cb28-4"><a href="summarizedexperiment.html#cb28-4" aria-hidden="true" tabindex="-1"></a>??SummarizedExperiment</span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="summarizedexperiment.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="summarizedexperiment.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn more about the class</span></span>
+<span id="cb25-2"><a href="summarizedexperiment.html#cb25-2" aria-hidden="true" tabindex="-1"></a>?SummarizedExperiment<span class="sc">::</span><span class="st">`</span><span class="at">SummarizedExperiment-class</span><span class="st">`</span></span>
+<span id="cb25-3"><a href="summarizedexperiment.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Browse vignettes and more</span></span>
+<span id="cb25-4"><a href="summarizedexperiment.html#cb25-4" aria-hidden="true" tabindex="-1"></a>??SummarizedExperiment</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="summarizedexperiment.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.3 LTS

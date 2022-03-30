@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-03-29" />
+<meta name="date" content="2022-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
 <link rel="prev" href="summarizedexperiment.html"/>
-<link rel="next" href="help.html"/>
+<link rel="next" href="design-matrices.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -201,6 +201,24 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#future-directions"><i class="fa fa-check"></i><b>6.5</b> Future Directions</a></li>
 <li class="chapter" data-level="6.6" data-path="transformation-fold-change-ma-plots.html"><a href="transformation-fold-change-ma-plots.html#recap-1"><i class="fa fa-check"></i><b>6.6</b> Recap</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="design-matrices.html"><a href="design-matrices.html"><i class="fa fa-check"></i><b>7</b> Design Matrices</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="design-matrices.html"><a href="design-matrices.html#overview-1"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="design-matrices.html"><a href="design-matrices.html#types-of-models"><i class="fa fa-check"></i><b>7.2</b> Types of Models</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="design-matrices.html"><a href="design-matrices.html#regression-continuous-variables"><i class="fa fa-check"></i><b>7.2.1</b> Regression: Continuous Variables</a></li>
+<li class="chapter" data-level="7.2.2" data-path="design-matrices.html"><a href="design-matrices.html#means-categorical-variables"><i class="fa fa-check"></i><b>7.2.2</b> Means: Categorical Variables</a></li>
+<li class="chapter" data-level="7.2.3" data-path="design-matrices.html"><a href="design-matrices.html#mean-reference-categorical-variables"><i class="fa fa-check"></i><b>7.2.3</b> Mean-Reference: Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="design-matrices.html"><a href="design-matrices.html#making-a-design-matrix"><i class="fa fa-check"></i><b>7.3</b> Making a Design Matrix</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="design-matrices.html"><a href="design-matrices.html#regression-continuous-variables-1"><i class="fa fa-check"></i><b>7.3.1</b> Regression: Continuous Variables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="design-matrices.html"><a href="design-matrices.html#means-categorical-variables-1"><i class="fa fa-check"></i><b>7.3.2</b> Means: Categorical Variables</a></li>
+<li class="chapter" data-level="7.3.3" data-path="design-matrices.html"><a href="design-matrices.html#mean-reference-categorical-variables-1"><i class="fa fa-check"></i><b>7.3.3</b> Mean-Reference: Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="design-matrices.html"><a href="design-matrices.html#more-complex-designs"><i class="fa fa-check"></i><b>7.4</b> More Complex Designs</a></li>
+<li class="chapter" data-level="7.5" data-path="design-matrices.html"><a href="design-matrices.html#recap-2"><i class="fa fa-check"></i><b>7.5</b> Recap</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
 <li class="chapter" data-level="B" data-path="give-us-feedback.html"><a href="give-us-feedback.html"><i class="fa fa-check"></i><b>B</b> Give Us Feedback</a></li>
@@ -255,13 +273,13 @@ div.csl-indent {
 <div id="gene-expression-data" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Gene Expression Data</h2>
 <p>First, we will load the necessary packages.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="transformation-fold-change-ma-plots.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load airway</span></span>
-<span id="cb31-2"><a href="transformation-fold-change-ma-plots.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(c(&quot;airway&quot;))</span></span>
-<span id="cb31-3"><a href="transformation-fold-change-ma-plots.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="transformation-fold-change-ma-plots.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load airway</span></span>
+<span id="cb28-2"><a href="transformation-fold-change-ma-plots.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(c(&quot;airway&quot;))</span></span>
+<span id="cb28-3"><a href="transformation-fold-change-ma-plots.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span></code></pre></div>
 <p>Load the gene expression data. We will be using data from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone <span class="citation">(<a href="#ref-Himes2014" role="doc-biblioref">Himes 2014</a>)</span>.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="transformation-fold-change-ma-plots.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the gene expression data</span></span>
-<span id="cb32-2"><a href="transformation-fold-change-ma-plots.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway)</span>
-<span id="cb32-3"><a href="transformation-fold-change-ma-plots.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(airway),<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="transformation-fold-change-ma-plots.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the gene expression data</span></span>
+<span id="cb29-2"><a href="transformation-fold-change-ma-plots.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway)</span>
+<span id="cb29-3"><a href="transformation-fold-change-ma-plots.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">assay</span>(airway),<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##                 SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
 ## ENSG00000000003        679        448        873        408       1138
 ## ENSG00000000005          0          0          0          0          0
@@ -289,8 +307,8 @@ div.csl-indent {
 <div id="plotting-raw-counts" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Plotting Raw Counts</h2>
 <p>Let’s say we want to compare treated and untreated samples. We will first look at the sample data.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="transformation-fold-change-ma-plots.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View metadata</span></span>
-<span id="cb34-2"><a href="transformation-fold-change-ma-plots.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(airway)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="transformation-fold-change-ma-plots.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View metadata</span></span>
+<span id="cb31-2"><a href="transformation-fold-change-ma-plots.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(airway)</span></code></pre></div>
 <pre><code>## DataFrame with 8 rows and 9 columns
 ##            SampleName     cell      dex    albut        Run avgLength
 ##              &lt;factor&gt; &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;integer&gt;
@@ -313,25 +331,25 @@ div.csl-indent {
 ## SRR1039520  SRX384357 SRS508579 SAMN02422683
 ## SRR1039521  SRX384358 SRS508580 SAMN02422677</code></pre>
 <p>We will manually take the mean across treated and untreated samples.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="transformation-fold-change-ma-plots.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts and sample data</span></span>
-<span id="cb36-2"><a href="transformation-fold-change-ma-plots.html#cb36-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span>
-<span id="cb36-3"><a href="transformation-fold-change-ma-plots.html#cb36-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">colData</span>(airway)</span>
-<span id="cb36-4"><a href="transformation-fold-change-ma-plots.html#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="transformation-fold-change-ma-plots.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select untreated samples</span></span>
-<span id="cb36-6"><a href="transformation-fold-change-ma-plots.html#cb36-6" aria-hidden="true" tabindex="-1"></a>untrt_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, sample_data<span class="sc">$</span>dex <span class="sc">==</span> <span class="st">&quot;untrt&quot;</span>])</span>
-<span id="cb36-7"><a href="transformation-fold-change-ma-plots.html#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="transformation-fold-change-ma-plots.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Select treated samples</span></span>
-<span id="cb36-9"><a href="transformation-fold-change-ma-plots.html#cb36-9" aria-hidden="true" tabindex="-1"></a>trt_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, sample_data<span class="sc">$</span>dex <span class="sc">==</span> <span class="st">&quot;trt&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="transformation-fold-change-ma-plots.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the counts and sample data</span></span>
+<span id="cb33-2"><a href="transformation-fold-change-ma-plots.html#cb33-2" aria-hidden="true" tabindex="-1"></a>raw_counts <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span>
+<span id="cb33-3"><a href="transformation-fold-change-ma-plots.html#cb33-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">colData</span>(airway)</span>
+<span id="cb33-4"><a href="transformation-fold-change-ma-plots.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="transformation-fold-change-ma-plots.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select untreated samples</span></span>
+<span id="cb33-6"><a href="transformation-fold-change-ma-plots.html#cb33-6" aria-hidden="true" tabindex="-1"></a>untrt_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, sample_data<span class="sc">$</span>dex <span class="sc">==</span> <span class="st">&quot;untrt&quot;</span>])</span>
+<span id="cb33-7"><a href="transformation-fold-change-ma-plots.html#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="transformation-fold-change-ma-plots.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Select treated samples</span></span>
+<span id="cb33-9"><a href="transformation-fold-change-ma-plots.html#cb33-9" aria-hidden="true" tabindex="-1"></a>trt_sample_means <span class="ot">&lt;-</span> <span class="fu">rowMeans2</span>(raw_counts[, sample_data<span class="sc">$</span>dex <span class="sc">==</span> <span class="st">&quot;trt&quot;</span>])</span></code></pre></div>
 <p>Then we will plot the two groups.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="transformation-fold-change-ma-plots.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(untrt_sample_means, trt_sample_means)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="transformation-fold-change-ma-plots.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(untrt_sample_means, trt_sample_means)</span></code></pre></div>
 <p><img src="06-transform-MAplots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>This is hard to interpret. Most of the genes are clustered in the bottom left corner.</p>
 </div>
 <div id="transforming-log_2" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Transforming (<span class="math inline">\(\log_{2}\)</span>)</h2>
 <p>Using a <span class="math inline">\(\log_{2}\)</span> transformation makes it easier to examine all the genes together.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="transformation-fold-change-ma-plots.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with log2 transformation</span></span>
-<span id="cb38-2"><a href="transformation-fold-change-ma-plots.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log2</span>(untrt_sample_means), <span class="fu">log2</span>(trt_sample_means))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="transformation-fold-change-ma-plots.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with log2 transformation</span></span>
+<span id="cb35-2"><a href="transformation-fold-change-ma-plots.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log2</span>(untrt_sample_means), <span class="fu">log2</span>(trt_sample_means))</span></code></pre></div>
 <p><img src="06-transform-MAplots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="using-fold-change-to-create-an-ma-plot" class="section level2" number="6.4">
@@ -343,43 +361,43 @@ div.csl-indent {
 <p><em><strong>A</strong></em> is more simple, taking the form of a transformed average. <em><strong>A</strong></em> is often called “log mean expression” and is almost always placed on the x-axis.</p>
 <p><span class="math display">\[A = \frac{1}{2} (log_{2}(condition 1) + log_{2}(condition 2))\]</span></p>
 <p>When untreated and treated expression are equal, fold-change is equal to zero.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="transformation-fold-change-ma-plots.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="transformation-fold-change-ma-plots.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>When untreated expression is greater, fold-change is positive.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="transformation-fold-change-ma-plots.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">20</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="transformation-fold-change-ma-plots.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">20</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="transformation-fold-change-ma-plots.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">100</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="transformation-fold-change-ma-plots.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">100</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 6.643856</code></pre>
 <p>However when treated expression is greater, fold-change is negative.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="transformation-fold-change-ma-plots.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="transformation-fold-change-ma-plots.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">10</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## [1] -1</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="transformation-fold-change-ma-plots.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="transformation-fold-change-ma-plots.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">log2</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] -6.643856</code></pre>
 <p>Calculate log2 fold-change and mean expression for the data.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="transformation-fold-change-ma-plots.html#cb49-1" aria-hidden="true" tabindex="-1"></a>log2_fold_change <span class="ot">&lt;-</span> <span class="fu">log2</span>(untrt_sample_means) <span class="sc">-</span> <span class="fu">log2</span>(trt_sample_means)</span>
-<span id="cb49-2"><a href="transformation-fold-change-ma-plots.html#cb49-2" aria-hidden="true" tabindex="-1"></a>mean_expression <span class="ot">&lt;-</span> (<span class="fu">log2</span>(untrt_sample_means) <span class="sc">+</span> <span class="fu">log2</span>(trt_sample_means)) <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="transformation-fold-change-ma-plots.html#cb46-1" aria-hidden="true" tabindex="-1"></a>log2_fold_change <span class="ot">&lt;-</span> <span class="fu">log2</span>(untrt_sample_means) <span class="sc">-</span> <span class="fu">log2</span>(trt_sample_means)</span>
+<span id="cb46-2"><a href="transformation-fold-change-ma-plots.html#cb46-2" aria-hidden="true" tabindex="-1"></a>mean_expression <span class="ot">&lt;-</span> (<span class="fu">log2</span>(untrt_sample_means) <span class="sc">+</span> <span class="fu">log2</span>(trt_sample_means)) <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
 <p>Plot the values above, with mean expression on the x-axis and fold-change on the y-axis.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="transformation-fold-change-ma-plots.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="transformation-fold-change-ma-plots.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change)</span></code></pre></div>
 <p><img src="06-transform-MAplots_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Since there are many data points, it’s a good idea to customize your plot. The <code>ggplot2</code> package can also provide greater flexibility with plotting.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="transformation-fold-change-ma-plots.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="transformation-fold-change-ma-plots.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div>
 <pre><code>## Warning: package &#39;scales&#39; was built under R version 4.0.3</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="transformation-fold-change-ma-plots.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">&quot;black&quot;</span>, <span class="fl">0.1</span>), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="transformation-fold-change-ma-plots.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean_expression, log2_fold_change, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">&quot;black&quot;</span>, <span class="fl">0.1</span>), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="06-transform-MAplots_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>This gives us a very rough idea of how transformation and using fold-change can aid in interpretation of the data. In reality, we need to cover a few more steps before creating this kind of plot.</p>
 </div>
 <div id="future-directions" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Future Directions</h2>
 <p>A simple MA plot can be produced with the <code>plotMA()</code> function from the <code>limma</code> package. Other packages for exploring differential gene expression in R, such as <code>DESeq2</code>, also have functions to create MA plots.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="transformation-fold-change-ma-plots.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Not run</span></span>
-<span id="cb54-2"><a href="transformation-fold-change-ma-plots.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMA</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="transformation-fold-change-ma-plots.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Not run</span></span>
+<span id="cb51-2"><a href="transformation-fold-change-ma-plots.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMA</span>()</span></code></pre></div>
 <p><code>glimmaMA()</code> from the <code>Glimma</code> package creates interactive MA plots.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="transformation-fold-change-ma-plots.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Not run</span></span>
-<span id="cb55-2"><a href="transformation-fold-change-ma-plots.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimmaMA</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="transformation-fold-change-ma-plots.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Not run</span></span>
+<span id="cb52-2"><a href="transformation-fold-change-ma-plots.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimmaMA</span>()</span></code></pre></div>
 </div>
 <div id="recap-1" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Recap</h2>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="transformation-fold-change-ma-plots.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="transformation-fold-change-ma-plots.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.3 LTS
@@ -422,9 +440,6 @@ div.csl-indent {
 
 </div>
 </div>
-
-
-
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Himes2014" class="csl-entry">
@@ -451,7 +466,7 @@ Su, Shian, Charity W Law, Casey Ah-Cann, Marie-Liesse Asselin-Labat, Marnie E Bl
         </div>
       </div>
 <a href="summarizedexperiment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="help.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="design-matrices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

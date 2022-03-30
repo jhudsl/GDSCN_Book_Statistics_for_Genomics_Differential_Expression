@@ -26,5 +26,17 @@ transforming-log_2
 using-fold-change-to-create-an-ma-plot
 future-directions
 recap-1
+design-matrices
+overview-1
+types-of-models
+regression-continuous-variables
+means-categorical-variables
+mean-reference-categorical-variables
+making-a-design-matrix
+regression-continuous-variables-1
+means-categorical-variables-1
+mean-reference-categorical-variables-1
+more-complex-designs
+recap-2
 help
 give-us-feedback
