@@ -24,9 +24,9 @@ Continuous variables, or covariates, are numeric. This means that we could creat
 
 These $\beta$ values are known as _parameters_ and are important for determining the impact of explanatory variables on expression.
 
-    ```{r, echo=FALSE, fig.alt='Image of expression plotted against age with a regression fit line added. The caption reads, the basic model for covariates is referred to as a regression model, which is a line defined by the model parameters beta-0 the y-intercept, and beta-1 the slope. The points represent the original data; coloured lines are used to represent expected gene expression.'}
+```{r, echo=FALSE, fig.alt='Image of expression plotted against age with a regression fit line added. The caption reads, the basic model for covariates is referred to as a regression model, which is a line defined by the model parameters beta-0 the y-intercept, and beta-1 the slope. The points represent the original data; coloured lines are used to represent expected gene expression.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_29")
-    ```
+```
 
 ### Means: Categorical Variables
 
@@ -40,9 +40,9 @@ Categorical variables are discrete variables, or factors. We can think of these 
 
 The "genotype" factor in this model is not numeric like "age" above, so the calculations work a bit differently. For any given sample, it can be either wildtype or mutant but not both. So, the values "wildtype" and "mutant" can only be zero (no) or one (yes). When a sample is mutant, "wildtype" = 0, and $\beta_{1}$ drops out of the equation. Likewise, when a sample is wildtype, "mutant" = 0, and $\beta_{2}$ drops out of the equation. This kind of model is called a **means model**.
 
-    ```{r, echo=FALSE, fig.alt='Image of expression plotted against age with lines fitted for each category. The caption reads, One of two basic models for factors is referred to as a means model, where model parameters are calculated as the mean gene expression of each level of the factor e.g. beta-1 represents the mean expression for wildtype and beta-2 represents the mean of mutant. The points represent the original data; coloured lines are used to represent expected gene expression.'}
+```{r, echo=FALSE, fig.alt='Image of expression plotted against age with lines fitted for each category. The caption reads, One of two basic models for factors is referred to as a means model, where model parameters are calculated as the mean gene expression of each level of the factor e.g. beta-1 represents the mean expression for wildtype and beta-2 represents the mean of mutant. The points represent the original data; coloured lines are used to represent expected gene expression.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_56")
-    ```
+```
 
 ### Mean-Reference: Categorical Variables
 
@@ -56,9 +56,9 @@ You can also design categorical models with a "reference" value for comparison. 
 
 This kind of model can be really useful if you are interested in the _**difference**_ between groups rather than the estimated parameters for the groups themselves. This kind of model is called a **mean-reference model**.
 
-    ```{r, echo=FALSE, fig.alt='Image of expression plotted against age with lines fitted for each category. The other basic model we refer to for factors is a mean-reference model, where the first model parameter is calculated as the mean gene expression of the reference level, and subsequent parameters are calculated relative to the reference level e.g. beta-1 represents the mean expression for wildtype and beta-2 represents the difference between mutant and wildtype. The points represent the original data; coloured lines are used to represent expected gene expression. where dashed lines are specifically used to represent expected gene expression for non-reference levels in the mean-reference model e.g. mutant.'}
+```{r, echo=FALSE, fig.alt='Image of expression plotted against age with lines fitted for each category. The other basic model we refer to for factors is a mean-reference model, where the first model parameter is calculated as the mean gene expression of the reference level, and subsequent parameters are calculated relative to the reference level e.g. beta-1 represents the mean expression for wildtype and beta-2 represents the difference between mutant and wildtype. The points represent the original data; coloured lines are used to represent expected gene expression. where dashed lines are specifically used to represent expected gene expression for non-reference levels in the mean-reference model e.g. mutant.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_67")
-    ```
+```
 
 ## Making a Design Matrix
 
