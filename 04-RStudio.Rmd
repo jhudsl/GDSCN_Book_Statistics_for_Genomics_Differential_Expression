@@ -1,3 +1,7 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
 # Working in RStudio {#rstudio}
 
 Now that you have [created a Workspace](creating-a-workspace.html#workspace), you can create an RStudio cloud environment. This will allow you to interface with data and perform genomics-based analyses with add on packages from the Bioconductor community.
@@ -157,19 +161,19 @@ AnVIL::install("iSEE")
 iSEE::iSEE(airway)
 ```
 
-    ```{r, echo=FALSE, fig.alt='Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.'}
+```{r, echo=FALSE, fig.alt='Screenshot of the RStudio environment interface. Code has been typed in the console and is highlighted.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g11f12bc99af_0_56")
-    ```
+```
     
 The Shiny app will allow you to explore genes and samples.
 
-    ```{r, echo=FALSE, fig.alt='Screenshot of the iSEE popout. The gene related windows are shown.'}
+```{r, echo=FALSE, fig.alt='Screenshot of the iSEE popout. The gene related windows are shown.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_12")
-    ```
+```
 
-    ```{r, echo=FALSE, fig.alt='Screenshot of the iSEE popout. The sample related windows are shown.'}
+```{r, echo=FALSE, fig.alt='Screenshot of the iSEE popout. The sample related windows are shown.'}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_19")
-    ```
+```
 
 ## Pause RStudio {#stopping}
 

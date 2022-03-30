@@ -1,0 +1,177 @@
+# Design Matrices
+
+## Overview
+
+When performing differential expression analysis on genomic data (such as RNA-seq experiments), scientists usually use linear models to determine the direction (did expression go up or down?) and magnitude (by how much?) of the change in expression. These scientists are interested in understanding the relationship between gene expression (the "response" variable") and variables that affect expression, such as a treatment or cell type ("explanatory variable(s)").
+
+Design matrices are fundamental concepts in mathematics, statistics, and other domains, but their application to genomic data can introduce some complexity.
+
+See this Bioconductor [vignette](https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html#introduction) for an excellent, in-depth look at design matrices.
+
+## Types of Models
+
+The type of explanatory variables in our experiment will determine what our model looks like. 
+
+### Regression: Continuous Variables
+
+Continuous variables, or covariates, are numeric. This means that we could create a scatterplot comparing the covariate and expression. We could then imagine drawing a best fit line through those points to create our model. @Law2020 state:
+
+> [Covariates] can be the age or weight of an individual, or other molecular or cellular phenotypes on a sample... For covariates, it is generally of interest to know the rate of change between the response and the covariate, such as “how much does the expression of a particular gene increase/decrease per unit increase in age?”. We can use a straight line to model, or describe, this relationship, which takes the form of 
+> 
+> $$Expression = \beta_{0} + \beta_{1}age$$
+>
+> where the line is defined by $\beta_{0}$ the y-intercept and $\beta_{1}$ the slope. In this model, the age covariate takes continuous, numerical values such as 0.8, 1.3, 2.0, 5.6, and so on.
+
+These $\beta$ values are known as _parameters_ and are important for determining the impact of explanatory variables on expression.
+
+```{r, echo=FALSE, fig.alt='Image of expression plotted against age with a regression fit line added. The caption reads, the basic model for covariates is referred to as a regression model, which is a line defined by the model parameters beta-0 the y-intercept, and beta-1 the slope. The points represent the original data; coloured lines are used to represent expected gene expression.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_29")
+```
+
+### Means: Categorical Variables
+
+Categorical variables are discrete variables, or factors. We can think of these variables as "bins" that our samples fall into. @Law2020 state:
+
+> [Factors] are often separated into those that are of a biological nature (e.g. disease status, genotype, treatment, cell-type) and those that are of a technical nature (e.g. experiment time, sample batch, handling technician, sequencing lane). Unique values within a factor are referred to as levels. For example, genotype as a factor may contain two levels, “wildtype” and “mutant”. Here, it is generally of interest to determine the expected or mean gene expression for each state or level of the factor. The relationship between gene expression and the factor can be described, or modeled, in the form of 
+>
+> $$Expression = \beta_{1}wildtype + \beta_{2}mutant$$
+>
+> where $\beta_{1}$ represents the mean gene expression for wildtype, and $\beta_{2}$ represents the mean gene expression for mutant.
+
+The "genotype" factor in this model is not numeric like "age" above, so the calculations work a bit differently. For any given sample, it can be either wildtype or mutant but not both. So, the values "wildtype" and "mutant" can only be zero (no) or one (yes). When a sample is mutant, "wildtype" = 0, and $\beta_{1}$ drops out of the equation. Likewise, when a sample is wildtype, "mutant" = 0, and $\beta_{2}$ drops out of the equation. This kind of model is called a **means model**.
+
+```{r, echo=FALSE, fig.alt='Image of expression plotted against age with lines fitted for each category. The caption reads, One of two basic models for factors is referred to as a means model, where model parameters are calculated as the mean gene expression of each level of the factor e.g. beta-1 represents the mean expression for wildtype and beta-2 represents the mean of mutant. The points represent the original data; coloured lines are used to represent expected gene expression.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_56")
+```
+
+### Mean-Reference: Categorical Variables
+
+You can also design categorical models with a "reference" value for comparison. @Law2020 state:
+
+> An alternative parameterisation of the means model directly calculates the gene expression difference between mutant and wildtype. It does so by using one of the levels as a reference. Such a model is parameterised for the mean expression of the reference level (e.g. wildtype), and the rest of the levels are parameterised relative to the reference (e.g. the difference between mutant and wildtype). The relationship between gene expression and genotype is modeled in the form of 
+>
+> $$Expression = \beta_{1} + \beta_{2}mutant$$
+>
+> where $\beta_{1}$ represents the mean gene expression for wildtype, and $\beta_{2}$ is the difference between means of mutant and wildtype
+
+This kind of model can be really useful if you are interested in the _**difference**_ between groups rather than the estimated parameters for the groups themselves. This kind of model is called a **mean-reference model**.
+
+```{r, echo=FALSE, fig.alt='Image of expression plotted against age with lines fitted for each category. The other basic model we refer to for factors is a mean-reference model, where the first model parameter is calculated as the mean gene expression of the reference level, and subsequent parameters are calculated relative to the reference level e.g. beta-1 represents the mean expression for wildtype and beta-2 represents the difference between mutant and wildtype. The points represent the original data; coloured lines are used to represent expected gene expression. where dashed lines are specifically used to represent expected gene expression for non-reference levels in the mean-reference model e.g. mutant.'}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1tR1Wt-mVceQA6FHXa8FmFzIARrg/edit#slide=id.g1204ed6db6a_1_67")
+```
+
+## Making a Design Matrix
+
+@Law2020 use the following data to demonstrate how you might build a design matrix. This is a very simple example - in reality, we'd have many more genes being expressed.
+
+```{r, echo = FALSE}
+df <-
+  data.frame(
+    expression = c(2.38, 2.85, 3.60, 4.06, 4.61, 5.04),
+    mouse = c("MOUSE1", "MOUSE2", "MOUSE3", "MOUSE4", "MOUSE5", "MOUSE6"),
+    age = c(1, 2, 3, 4, 5, 6),
+    group = c(rep("HEALTHY", 3), rep("SICK", 3))
+  )
+```
+
+```{r}
+df
+```
+
+### Regression: Continuous Variables
+
+Use the `model.matrix()` function to create the design matrix with the continuous variable "age".
+
+```{r}
+model.matrix( ~ df$age)
+```
+
+```{r, echo = FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(df, aes(age, expression)) +
+  geom_point(size = 3) +
+  geom_smooth(se = FALSE, method = lm, formula = y ~ x,col = "red")
+```
+
+You can remove the intercept by adding zero to the design matrix. This forces the y-intercept to be zero. You could also use a different number here.
+
+```{r}
+model.matrix( ~ 0 + df$age)
+```
+
+```{r, echo = FALSE}
+ggplot(df, aes(age, expression)) +
+  geom_point(size = 3) +
+  geom_smooth(se = FALSE, method = lm, formula = y ~ 0 + x,col = "red")
+```
+
+### Means: Categorical Variables
+
+Use the `model.matrix()` function to create the design matrix with the factor "group". To create a **means model**, you should include a zero in the model.
+
+```{r}
+model.matrix( ~ 0 + df$group)
+```
+
+```{r, echo = FALSE}
+ggplot(df, aes(group, expression)) +
+  geom_point(size = 3) +
+  geom_hline(yintercept = mean(df[df$group == "HEALTHY",]$expression), color = "red") +
+  geom_hline(yintercept = mean(df[df$group == "SICK",]$expression), color = "blue") 
+```
+
+Notice that you only see zeros and ones for the two groups: `df$groupHEALTHY` and `df$groupSICK`.
+
+### Mean-Reference: Categorical Variables
+
+Simply remove the zero to use a **mean-reference model**.
+
+```{r}
+model.matrix( ~ df$group)
+```
+
+```{r, echo = FALSE}
+ggplot(df, aes(group, expression)) +
+  geom_point(size = 3) +
+  geom_hline(yintercept = mean(df[df$group == "HEALTHY",]$expression), color = "red") +
+  geom_hline(yintercept = mean(df[df$group == "SICK",]$expression), color = "blue", lty = 3) 
+```
+
+Notice how there is now an intercept. Remember that the parameter will now represent the _**difference**_ between the groups instead of the second group mean.
+
+## More Complex Designs
+
+`model.matrix()` can easily handle more complex experimental designs.
+
+```{r, echo = FALSE}
+df2 <-
+  data.frame(
+    expression = c(2.38, 2.85, 3.60, 4.06, 4.61, 5.04, 6.48, 6.70, 8.01, 11.99, 12.81, 14.73),
+    mouse = c("MOUSE1", "MOUSE2", "MOUSE3", "MOUSE4", "MOUSE5", "MOUSE6", "MOUSE7", "MOUSE8", "MOUSE9", "MOUSE10", "MOUSE11", "MOUSE12"),
+    group = c(rep("HEALTHY", 3), rep("SICK", 3), rep("HEALTHY", 3), rep("SICK", 3)),
+    type = c(rep("WILDTYPE", 6), rep("MUTANT", 6))
+  )
+```
+
+```{r}
+df2
+```
+
+The following will create a design matrix for "group" and "type".
+
+```{r}
+model.matrix( ~ df2$group + df2$type)
+```
+
+Use the "*" to create a design matrix for the "group" and "type" as well as their interaction.
+
+```{r}
+model.matrix( ~ df2$group + df2$type)
+```
+
+## Recap
+
+```{r}
+sessionInfo()
+```
