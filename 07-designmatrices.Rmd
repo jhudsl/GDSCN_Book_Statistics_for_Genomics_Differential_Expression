@@ -62,7 +62,113 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1BLTCaogA04bbeSD1
 
 ## Making a Design Matrix
 
+@Law2020 use the following data to demonstrate how you might build a design matrix. This is a very simple example - in reality, we'd have many more genes being expressed.
 
+```{r, echo = FALSE}
+df <-
+  data.frame(
+    expression = c(2.38, 2.85, 3.60, 4.06, 4.61, 5.04),
+    mouse = c("MOUSE1", "MOUSE2", "MOUSE3", "MOUSE4", "MOUSE5", "MOUSE6"),
+    age = c(1, 2, 3, 4, 5, 6),
+    group = c(rep("HEALTHY", 3), rep("SICK", 3))
+  )
+```
+
+```{r}
+df
+```
+
+### Regression: Continuous Variables
+
+Use the `model.matrix()` function to create the design matrix with the continuous variable "age".
+
+```{r}
+model.matrix( ~ df$age)
+```
+
+```{r, echo = FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(df, aes(age, expression)) +
+  geom_point(size = 3) +
+  geom_smooth(se = FALSE, method = lm, formula = y ~ x,col = "red")
+```
+
+You can remove the intercept by adding zero to the design matrix. This forces the y-intercept to be zero. You could also use a different number here.
+
+```{r}
+model.matrix( ~ 0 + df$age)
+```
+
+```{r, echo = FALSE}
+ggplot(df, aes(age, expression)) +
+  geom_point(size = 3) +
+  geom_smooth(se = FALSE, method = lm, formula = y ~ 0 + x,col = "red")
+```
+
+### Means: Categorical Variables
+
+Use the `model.matrix()` function to create the design matrix with the factor "group". To create a **means model**, you should include a zero in the model.
+
+```{r}
+model.matrix( ~ 0 + df$group)
+```
+
+```{r, echo = FALSE}
+ggplot(df, aes(group, expression)) +
+  geom_point(size = 3) +
+  geom_hline(yintercept = mean(df[df$group == "HEALTHY",]$expression), color = "red") +
+  geom_hline(yintercept = mean(df[df$group == "SICK",]$expression), color = "blue") 
+```
+
+Notice that you only see zeros and ones for the two groups: `df$groupHEALTHY` and `df$groupSICK`.
+
+### Mean-Reference: Categorical Variables
+
+Simply remove the zero to use a **mean-reference model**.
+
+```{r}
+model.matrix( ~ df$group)
+```
+
+```{r, echo = FALSE}
+ggplot(df, aes(group, expression)) +
+  geom_point(size = 3) +
+  geom_hline(yintercept = mean(df[df$group == "HEALTHY",]$expression), color = "red") +
+  geom_hline(yintercept = mean(df[df$group == "SICK",]$expression), color = "blue", lty = 3) 
+```
+
+Notice how there is now an intercept. Remember that the parameter will now represent the _**difference**_ between the groups instead of the second group mean.
+
+## More Complex Designs
+
+`model.matrix()` can easily handle more complex experimental designs.
+
+```{r, echo = FALSE}
+df2 <-
+  data.frame(
+    expression = c(2.38, 2.85, 3.60, 4.06, 4.61, 5.04, 6.48, 6.70, 8.01, 11.99, 12.81, 14.73),
+    mouse = c("MOUSE1", "MOUSE2", "MOUSE3", "MOUSE4", "MOUSE5", "MOUSE6", "MOUSE7", "MOUSE8", "MOUSE9", "MOUSE10", "MOUSE11", "MOUSE12"),
+    group = c(rep("HEALTHY", 3), rep("SICK", 3), rep("HEALTHY", 3), rep("SICK", 3)),
+    type = c(rep("WILDTYPE", 6), rep("MUTANT", 6))
+  )
+```
+
+```{r}
+df2
+```
+
+The following will create a design matrix for "group" and "type".
+
+```{r}
+model.matrix( ~ df2$group + df2$type)
+```
+
+Use the "*" to create a design matrix for the "group" and "type" as well as their interaction.
+
+```{r}
+model.matrix( ~ df2$group + df2$type)
+```
 
 ## Recap
 
