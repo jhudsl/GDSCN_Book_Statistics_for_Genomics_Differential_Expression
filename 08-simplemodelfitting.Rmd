@@ -1,0 +1,101 @@
+# (PART\*) PUTTING IT TOGETHER {-}
+
+# Simple Model Fitting
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+# Needed for GHA
+BiocManager::install(c("limma", "eBayes"))
+```
+
+## Overview
+
+Now that we are familiar with [`SummarizedExperiment`](summarizedexperiment.html#summarizedexperiment) and [design matrices](design-matrices.html#design-matrices), we can apply what we learned to the `airway` dataset. 
+
+Recall that the "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
+
+## Load & Prepare Data
+
+Load the `airway` dataset. You might need to install it.
+
+```{r, warning = FALSE, message = FALSE}
+# AnVIL::install("airway")
+library(airway)
+data(airway)
+```
+
+You should also save the assay data from `airway`. Remember that this contains the gene counts.
+
+```{r}
+assay_data <- assay(airway)
+```
+
+## Creating the Design Matrix
+
+You should create a design matrix like you did in the [previous chapter](design-matrices.html#inpractice). Since this is a categorical variable, we need to use a [means](#means) or [mean-reference](#meanref) model. We will use a mean-reference model because we are interested in the difference attributable to the treatment.
+
+```{r}
+sample_data <- colData(airway)
+design_matrix <- model.matrix( ~ sample_data$dex)
+```
+
+## Testing with `lmFit` and `eBayes`.
+
+Now we start the exciting process of model fitting! You will need the `limma` package.
+
+```{r, warning = FALSE, message = FALSE}
+# AnVIL::install("limma")
+library(limma)
+```
+
+First, we want to transform the count data before we proceed. The `voom()` function transforms count data to $\log_{2}$-counts per million (logCPM), estimates the mean-variance relationship, and uses this to compute appropriate observation-level weights. We should also supply the design matrix.
+
+```{r}
+assay_data <- voom(assay_data, design = design_matrix)
+```
+
+Next, use the `limma` function `lmFit()`. This function fits multiple linear models by weighted or generalized least squares. A linear model is fitted to the expression data for each gene. We should also supply the design matrix.
+
+```{r}
+fit <- lmFit(assay_data, design = design_matrix)
+```
+
+The code above estimates coefficients, but it's easier to interpret if we have log-odd or p-values. We can use `eBayes()` for this. This function computes moderated t-statistics, moderated F-statistic, and log-odds of differential expression by empirical Bayes moderation of the standard errors, given the output of `lmFit()`. This allows us to rank genes in order of evidence for differential expression. Using empirical Bayes methods squeezes the gene-wise residual variances toward a common value (or towards a global trend).
+
+```{r}
+fit <- eBayes(fit)
+```
+
+Now that we have a fitted model and estimated statistics, we can select the top-ranked genes for for the design matrix we supplied (remember, we are looking at the effect of dexamethasone treatment). 
+
+```{r}
+topTable(fit)
+```
+
+## Interpreting `topTable()` Output
+
+You now have the top genes affected by the treatment. Here's how we can interpret the output.
+
+- **logFC**: estimate of the log2-fold-change corresponding to the effect of the treatment. Negative values mean the second treatment, in this case `untrt`, has lower expression than the baseline, in this case `trt`. Take a look at the design matrix to confirm.
+
+- **AveExpr	**: average log2-expression for the gene over all samples.
+
+- **t**: moderated t-statistic
+
+- **P.Value**: raw p-value
+
+- **adj.P.Value**: adjusted p-value using the Benjamini & Hochberg method (by default)
+
+- **B**: log-odds that the gene is differentially expressed
+
+::: {.fyi}
+QUESTIONS:
+
+1. The top three genes have a negative logFC. Which treatment (`untrt` or `trt`) had greater expression?
+2. `eBayes()` performs p-value adjustment automatically. Why is it essential that we perform p-value adjustment for gene expression data?
+:::
+
+## Recap
+
+```{r}
+sessionInfo()
+```
