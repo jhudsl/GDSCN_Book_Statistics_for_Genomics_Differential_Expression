@@ -125,7 +125,7 @@ model.matrix( ~ 0 + df$age)
 
 <img src="07-designmatrices_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
-### Means: Categorical Variables
+### Means: Categorical Variables {#means}
 
 Use the `model.matrix()` function to create the design matrix with the factor "group". To create a **means model**, you should include a zero in the model.
 
@@ -153,7 +153,7 @@ model.matrix( ~ 0 + df$group)
 
 Notice that you only see zeros and ones for the two groups: `df$groupHEALTHY` and `df$groupSICK`.
 
-### Mean-Reference: Categorical Variables
+### Mean-Reference: Categorical Variables {#meanref}
 
 Simply remove the zero to use a **mean-reference model**.
 
@@ -270,6 +270,107 @@ model.matrix( ~ df2$group + df2$type)
 ## [1] "contr.treatment"
 ```
 
+## Design Matrix in Practice
+
+Let's practice on a genomics dataset. Load the `airway` dataset. You might need to install it. Recall that the "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
+
+
+```r
+# AnVIL::install("airway")
+library(airway)
+data(airway)
+```
+
+In the [`SummarizedExperiment` chapter](summarizedexperiment.html#summarizedexperiment), we learned that `colData()` provides descriptions of each sample.
+
+
+```r
+colData(airway)
+```
+
+```
+## DataFrame with 8 rows and 9 columns
+##            SampleName     cell      dex    albut        Run avgLength
+##              <factor> <factor> <factor> <factor>   <factor> <integer>
+## SRR1039508 GSM1275862  N61311     untrt    untrt SRR1039508       126
+## SRR1039509 GSM1275863  N61311     trt      untrt SRR1039509       126
+## SRR1039512 GSM1275866  N052611    untrt    untrt SRR1039512       126
+## SRR1039513 GSM1275867  N052611    trt      untrt SRR1039513        87
+## SRR1039516 GSM1275870  N080611    untrt    untrt SRR1039516       120
+## SRR1039517 GSM1275871  N080611    trt      untrt SRR1039517       126
+## SRR1039520 GSM1275874  N061011    untrt    untrt SRR1039520       101
+## SRR1039521 GSM1275875  N061011    trt      untrt SRR1039521        98
+##            Experiment    Sample    BioSample
+##              <factor>  <factor>     <factor>
+## SRR1039508  SRX384345 SRS508568 SAMN02422669
+## SRR1039509  SRX384346 SRS508567 SAMN02422675
+## SRR1039512  SRX384349 SRS508571 SAMN02422678
+## SRR1039513  SRX384350 SRS508572 SAMN02422670
+## SRR1039516  SRX384353 SRS508575 SAMN02422682
+## SRR1039517  SRX384354 SRS508576 SAMN02422673
+## SRR1039520  SRX384357 SRS508579 SAMN02422683
+## SRR1039521  SRX384358 SRS508580 SAMN02422677
+```
+
+Notice above how the `dex` column indicates a `trt` or `untrt` condition. The following code will create a design matrix based on `dex` treatment. Since this is a categorical variable, we need to use a [means](#means) or [mean-reference](#meanref) model.
+
+First, create a means model using the following code.
+
+
+```r
+sample_data <- colData(airway)
+model.matrix( ~ 0 + sample_data$dex)
+```
+
+```
+##   sample_data$dextrt sample_data$dexuntrt
+## 1                  0                    1
+## 2                  1                    0
+## 3                  0                    1
+## 4                  1                    0
+## 5                  0                    1
+## 6                  1                    0
+## 7                  0                    1
+## 8                  1                    0
+## attr(,"assign")
+## [1] 1 1
+## attr(,"contrasts")
+## attr(,"contrasts")$`sample_data$dex`
+## [1] "contr.treatment"
+```
+
+Now try creating a mean-reference model using the following.
+
+
+```r
+sample_data <- colData(airway)
+model.matrix( ~ sample_data$dex)
+```
+
+```
+##   (Intercept) sample_data$dexuntrt
+## 1           1                    1
+## 2           1                    0
+## 3           1                    1
+## 4           1                    0
+## 5           1                    1
+## 6           1                    0
+## 7           1                    1
+## 8           1                    0
+## attr(,"assign")
+## [1] 0 1
+## attr(,"contrasts")
+## attr(,"contrasts")$`sample_data$dex`
+## [1] "contr.treatment"
+```
+
+::: {.fyi}
+QUESTIONS:
+
+1. What is the difference between the two design matrices you created above?
+2. Does it matter which one you use? Why or why not?
+:::
+
 ## Recap
 
 
@@ -294,23 +395,35 @@ sessionInfo()
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
 ## 
 ## other attached packages:
-## [1] ggplot2_3.3.2
+##  [1] airway_1.10.0               SummarizedExperiment_1.20.0
+##  [3] Biobase_2.50.0              GenomicRanges_1.42.0       
+##  [5] GenomeInfoDb_1.26.7         IRanges_2.24.1             
+##  [7] S4Vectors_0.28.1            BiocGenerics_0.36.1        
+##  [9] MatrixGenerics_1.2.1        matrixStats_0.61.0         
+## [11] ggplot2_3.3.2              
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] pillar_1.4.6     compiler_4.0.2   jquerylib_0.1.4  highr_0.8       
-##  [5] tools_4.0.2      digest_0.6.25    lattice_0.20-41  nlme_3.1-148    
-##  [9] evaluate_0.14    lifecycle_1.0.0  tibble_3.0.3     gtable_0.3.0    
-## [13] mgcv_1.8-31      pkgconfig_2.0.3  png_0.1-7        rlang_0.4.10    
-## [17] Matrix_1.2-18    curl_4.3         yaml_2.2.1       xfun_0.26       
-## [21] withr_2.3.0      httr_1.4.2       stringr_1.4.0    dplyr_1.0.2     
-## [25] knitr_1.33       generics_0.0.2   fs_1.5.0         vctrs_0.3.4     
-## [29] hms_0.5.3        grid_4.0.2       tidyselect_1.1.0 glue_1.6.1      
-## [33] R6_2.4.1         ottrpal_0.1.2    rmarkdown_2.10   bookdown_0.24   
-## [37] farver_2.0.3     readr_1.4.0      purrr_0.3.4      magrittr_2.0.2  
-## [41] splines_4.0.2    scales_1.1.1     ellipsis_0.3.1   htmltools_0.5.0 
-## [45] colorspace_1.4-1 labeling_0.3     stringi_1.5.3    munsell_0.5.0   
-## [49] crayon_1.3.4
+##  [1] tidyselect_1.1.0       xfun_0.26              purrr_0.3.4           
+##  [4] splines_4.0.2          lattice_0.20-41        colorspace_1.4-1      
+##  [7] vctrs_0.3.4            generics_0.0.2         htmltools_0.5.0       
+## [10] yaml_2.2.1             mgcv_1.8-31            rlang_0.4.10          
+## [13] jquerylib_0.1.4        pillar_1.4.6           glue_1.6.1            
+## [16] withr_2.3.0            GenomeInfoDbData_1.2.4 lifecycle_1.0.0       
+## [19] stringr_1.4.0          zlibbioc_1.36.0        munsell_0.5.0         
+## [22] gtable_0.3.0           evaluate_0.14          labeling_0.3          
+## [25] knitr_1.33             curl_4.3               highr_0.8             
+## [28] readr_1.4.0            scales_1.1.1           DelayedArray_0.16.3   
+## [31] XVector_0.30.0         farver_2.0.3           fs_1.5.0              
+## [34] ottrpal_0.1.2          hms_0.5.3              png_0.1-7             
+## [37] digest_0.6.25          stringi_1.5.3          bookdown_0.24         
+## [40] dplyr_1.0.2            grid_4.0.2             tools_4.0.2           
+## [43] bitops_1.0-7           magrittr_2.0.2         RCurl_1.98-1.2        
+## [46] tibble_3.0.3           crayon_1.3.4           pkgconfig_2.0.3       
+## [49] ellipsis_0.3.1         Matrix_1.2-18          rmarkdown_2.10        
+## [52] httr_1.4.2             R6_2.4.1               nlme_3.1-148          
+## [55] compiler_4.0.2
 ```

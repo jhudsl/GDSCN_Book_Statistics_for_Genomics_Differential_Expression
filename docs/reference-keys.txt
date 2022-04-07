@@ -34,9 +34,10 @@ means-categorical-variables
 mean-reference-categorical-variables
 making-a-design-matrix
 regression-continuous-variables-1
-means-categorical-variables-1
-mean-reference-categorical-variables-1
+means
+meanref
 more-complex-designs
+design-matrix-in-practice
 recap-2
 help
 give-us-feedback
