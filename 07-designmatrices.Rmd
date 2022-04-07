@@ -174,7 +174,7 @@ model.matrix( ~ df2$group + df2$type)
 
 Let's practice on a genomics dataset. Load the `airway` dataset. You might need to install it. Recall that the "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
 
-```{r, echo = FALSE}
+```{r, warning = FALSE, message = FALSE}
 # AnVIL::install("airway")
 library(airway)
 data(airway)
