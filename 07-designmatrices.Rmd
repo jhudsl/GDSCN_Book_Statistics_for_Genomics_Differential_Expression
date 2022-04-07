@@ -106,7 +106,7 @@ ggplot(df, aes(age, expression)) +
   geom_smooth(se = FALSE, method = lm, formula = y ~ 0 + x,col = "red")
 ```
 
-### Means: Categorical Variables
+### Means: Categorical Variables {#means}
 
 Use the `model.matrix()` function to create the design matrix with the factor "group". To create a **means model**, you should include a zero in the model.
 
@@ -123,7 +123,7 @@ ggplot(df, aes(group, expression)) +
 
 Notice that you only see zeros and ones for the two groups: `df$groupHEALTHY` and `df$groupSICK`.
 
-### Mean-Reference: Categorical Variables
+### Mean-Reference: Categorical Variables {#meanref}
 
 Simply remove the zero to use a **mean-reference model**.
 
@@ -169,6 +169,45 @@ Use the "*" to create a design matrix for the "group" and "type" as well as thei
 ```{r}
 model.matrix( ~ df2$group + df2$type)
 ```
+
+## Design Matrix in Practice
+
+Let's practice on a genomics dataset. Load the `airway` dataset. You might need to install it. Recall that the "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
+
+```{r, echo = FALSE}
+# AnVIL::install("airway")
+library(airway)
+data(airway)
+```
+
+In the [`SummarizedExperiment` chapter](summarizedexperiment.html#summarizedexperiment), we learned that `colData()` provides descriptions of each sample.
+
+```{r}
+colData(airway)
+```
+
+Notice above how the `dex` column indicates a `trt` or `untrt` condition. The following code will create a design matrix based on `dex` treatment. Since this is a categorical variable, we need to use a [means](#means) or [mean-reference](#meanref) model.
+
+First, create a means model using the following code.
+
+```{r}
+sample_data <- colData(airway)
+model.matrix( ~ 0 + sample_data$dex)
+```
+
+Now try creating a mean-reference model using the following.
+
+```{r}
+sample_data <- colData(airway)
+model.matrix( ~ sample_data$dex)
+```
+
+::: {.fyi}
+QUESTIONS:
+
+1. What is the difference between the two design matrices you created above?
+2. Does it matter which one you use? Why or why not?
+:::
 
 ## Recap
 
