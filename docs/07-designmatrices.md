@@ -270,7 +270,7 @@ model.matrix( ~ df2$group + df2$type)
 ## [1] "contr.treatment"
 ```
 
-## Design Matrix in Practice
+## Design Matrix in Practice {#inpractice}
 
 Let's practice on a genomics dataset. Load the `airway` dataset. You might need to install it. Recall that the "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
 
@@ -343,7 +343,6 @@ Now try creating a mean-reference model using the following.
 
 
 ```r
-sample_data <- colData(airway)
 model.matrix( ~ sample_data$dex)
 ```
 

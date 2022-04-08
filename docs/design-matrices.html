@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-04-07" />
+<meta name="date" content="2022-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
 <link rel="prev" href="transformation-fold-change-ma-plots.html"/>
-<link rel="next" href="help.html"/>
+<link rel="next" href="simple-model-fitting.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -217,8 +217,18 @@ div.csl-indent {
 <li class="chapter" data-level="7.3.3" data-path="design-matrices.html"><a href="design-matrices.html#meanref"><i class="fa fa-check"></i><b>7.3.3</b> Mean-Reference: Categorical Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="design-matrices.html"><a href="design-matrices.html#more-complex-designs"><i class="fa fa-check"></i><b>7.4</b> More Complex Designs</a></li>
-<li class="chapter" data-level="7.5" data-path="design-matrices.html"><a href="design-matrices.html#design-matrix-in-practice"><i class="fa fa-check"></i><b>7.5</b> Design Matrix in Practice</a></li>
+<li class="chapter" data-level="7.5" data-path="design-matrices.html"><a href="design-matrices.html#inpractice"><i class="fa fa-check"></i><b>7.5</b> Design Matrix in Practice</a></li>
 <li class="chapter" data-level="7.6" data-path="design-matrices.html"><a href="design-matrices.html#recap-2"><i class="fa fa-check"></i><b>7.6</b> Recap</a></li>
+</ul></li>
+<li class="part"><span><b>PUTTING IT TOGETHER</b></span></li>
+<li class="chapter" data-level="8" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html"><i class="fa fa-check"></i><b>8</b> Simple Model Fitting</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#overview-2"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#load-prepare-data"><i class="fa fa-check"></i><b>8.2</b> Load &amp; Prepare Data</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#creating-the-design-matrix"><i class="fa fa-check"></i><b>8.3</b> Creating the Design Matrix</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#testing-with-lmfit-and-ebayes."><i class="fa fa-check"></i><b>8.4</b> Testing with <code>lmFit</code> and <code>eBayes</code>.</a></li>
+<li class="chapter" data-level="8.5" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#interpreting-toptable-output"><i class="fa fa-check"></i><b>8.5</b> Interpreting <code>topTable()</code> Output</a></li>
+<li class="chapter" data-level="8.6" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#recap-3"><i class="fa fa-check"></i><b>8.6</b> Recap</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>A</b> Help</a></li>
@@ -447,7 +457,7 @@ div.csl-indent {
 ## attr(,&quot;contrasts&quot;)$`df2$type`
 ## [1] &quot;contr.treatment&quot;</code></pre>
 </div>
-<div id="design-matrix-in-practice" class="section level2" number="7.5">
+<div id="inpractice" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Design Matrix in Practice</h2>
 <p>Let’s practice on a genomics dataset. Load the <code>airway</code> dataset. You might need to install it. Recall that the “airway” data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in <span class="citation">Himes (<a href="#ref-Himes2014" role="doc-biblioref">2014</a>)</span>.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="design-matrices.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(&quot;airway&quot;)</span></span>
@@ -495,8 +505,7 @@ div.csl-indent {
 ## attr(,&quot;contrasts&quot;)$`sample_data$dex`
 ## [1] &quot;contr.treatment&quot;</code></pre>
 <p>Now try creating a mean-reference model using the following.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="design-matrices.html#cb77-1" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">colData</span>(airway)</span>
-<span id="cb77-2"><a href="design-matrices.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model.matrix</span>( <span class="sc">~</span> sample_data<span class="sc">$</span>dex)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="design-matrices.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.matrix</span>( <span class="sc">~</span> sample_data<span class="sc">$</span>dex)</span></code></pre></div>
 <pre><code>##   (Intercept) sample_data$dexuntrt
 ## 1           1                    1
 ## 2           1                    0
@@ -598,7 +607,7 @@ Law, CW, K Zeglinski, X Dong, M Alhamdoosh, GK Smyth, and ME Ritchie. 2020. <spa
         </div>
       </div>
 <a href="transformation-fold-change-ma-plots.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="help.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simple-model-fitting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

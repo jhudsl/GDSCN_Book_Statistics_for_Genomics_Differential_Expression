@@ -37,7 +37,14 @@ regression-continuous-variables-1
 means
 meanref
 more-complex-designs
-design-matrix-in-practice
+inpractice
 recap-2
+simple-model-fitting
+overview-2
+load-prepare-data
+creating-the-design-matrix
+testing-with-lmfit-and-ebayes.
+interpreting-toptable-output
+recap-3
 help
 give-us-feedback
