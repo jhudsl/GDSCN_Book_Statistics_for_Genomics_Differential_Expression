@@ -1,5 +1,7 @@
 AnVIL
 anvilproject
+AveExpr
+Benjamini
 BiocManager
 bioinformatics
 BIPOC
@@ -20,6 +22,7 @@ Glimma
 glimmaMDS
 Gmail
 https
+Hochberg
 impactful
 interoperable
 ITCR
@@ -29,6 +32,8 @@ fyi
 Jupyter
 Leanpub
 limma
+logCPM
+logFC
 luminal
 Markua
 MDS
