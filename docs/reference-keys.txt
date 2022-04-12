@@ -43,7 +43,7 @@ simple-model-fitting
 overview-2
 load-prepare-data
 creating-the-design-matrix
-testing-with-lmfit-and-ebayes.
+testing-with-lmfit-and-ebayes
 interpreting-toptable-output
 recap-3
 help

@@ -6,9 +6,9 @@
 
 ## Overview
 
-Now that we are familiar with [`SummarizedExperiment`](summarizedexperiment.html#summarizedexperiment) and [design matrices](design-matrices.html#design-matrices), we can apply what we learned to the `airway` dataset. 
+Now that you are familiar with [`SummarizedExperiment`](summarizedexperiment.html#summarizedexperiment) and [design matrices](design-matrices.html#design-matrices), you can apply what you learned to the `airway` dataset. 
 
-Recall that the "airway" data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
+Recall that the `airway` data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in @Himes2014. 
 
 ## Load & Prepare Data
 
@@ -21,7 +21,7 @@ library(airway)
 data(airway)
 ```
 
-You should also save the assay data from `airway`. Remember that this contains the gene counts.
+You should also save the assay data from `airway`. Remember that `assay()` extracts the gene counts.
 
 
 ```r
@@ -30,7 +30,9 @@ assay_data <- assay(airway)
 
 ## Creating the Design Matrix
 
-You should create a design matrix like you did in the [previous chapter](design-matrices.html#inpractice). Since this is a categorical variable, we need to use a [means](#means) or [mean-reference](#meanref) model. We will use a mean-reference model because we are interested in the difference attributable to the treatment.
+You should create a design matrix like you did in the [previous chapter](design-matrices.html#inpractice). 
+
+Since the dexamethasone treatment is a categorical variable, you need to use a [means](#means) or [mean-reference](#meanref) model. Going forward, we will use a mean-reference model because we are interested in the difference attributable to the treatment.
 
 
 ```r
@@ -38,9 +40,9 @@ sample_data <- colData(airway)
 design_matrix <- model.matrix( ~ sample_data$dex)
 ```
 
-## Testing with `lmFit` and `eBayes`.
+## Testing with `lmFit` and `eBayes`
 
-Now we start the exciting process of model fitting! You will need the `limma` package.
+Now you start the exciting process of model fitting! You will need the `limma` package.
 
 
 ```r
@@ -48,28 +50,36 @@ Now we start the exciting process of model fitting! You will need the `limma` pa
 library(limma)
 ```
 
-First, we want to transform the count data before we proceed. The `voom()` function transforms count data to $\log_{2}$-counts per million (logCPM), estimates the mean-variance relationship, and uses this to compute appropriate observation-level weights. We should also supply the design matrix.
+You want to transform the count data before proceeding with model fitting. 
+
+The `voom()` function transforms count data to $\log_{2}$-counts per million (logCPM), estimates the mean-variance relationship, and uses these values to compute appropriate observation-level weights. This is an important step that takes into account the mean-variance relationship in the data. In other words, it factors in that as gene counts (expression) becomes greater, so does the variance. `voom()` also corrects for differences in sequencing depth among samples (libraries). This can happen when one sample starts with more total RNA or the sequencer produces more data for one sample over another.
+
+You should also supply the design matrix.
 
 
 ```r
 assay_data <- voom(assay_data, design = design_matrix)
 ```
 
-Next, use the `limma` function `lmFit()`. This function fits multiple linear models by weighted or generalized least squares. A linear model is fitted to the expression data for each gene. We should also supply the design matrix.
+Next, use the `limma` function `lmFit()`. This function fits multiple linear models by weighted or generalized least squares. A linear model is fitted to the expression data for each gene. As above, you should supply the design matrix.
 
 
 ```r
 fit <- lmFit(assay_data, design = design_matrix)
 ```
 
-The code above estimates coefficients, but it's easier to interpret if we have log-odd or p-values. We can use `eBayes()` for this. This function computes moderated t-statistics, moderated F-statistic, and log-odds of differential expression by empirical Bayes moderation of the standard errors, given the output of `lmFit()`. This allows us to rank genes in order of evidence for differential expression. Using empirical Bayes methods squeezes the gene-wise residual variances toward a common value (or towards a global trend).
+The code above estimates coefficients, but it's easier to interpret if you have log-odd or p-values. You can use `eBayes()` for this. 
+
+The `eBayes()` function computes moderated t-statistics, moderated F-statistic, and log-odds of differential expression by empirical Bayes moderation of the standard errors, when this function is given the output of `lmFit()`. This allows us to rank genes in order of evidence for differential expression. Using empirical Bayes methods squeezes the gene-wise residual variances toward a common value (or towards a global trend).
 
 
 ```r
 fit <- eBayes(fit)
 ```
 
-Now that we have a fitted model and estimated statistics, we can select the top-ranked genes for for the design matrix we supplied (remember, we are looking at the effect of dexamethasone treatment). 
+Now that you have a fitted model and estimated statistics, you can look at individual genes. 
+
+Because the fitted models are based on the design matrix we supplied, "top" genes will be based the difference between `trt` and `untrt`. Remember that these indicate whether or not cells received dexamethasone treatment. The function `topTable()` shows you the top-ranked genes given the model you supplied.
 
 
 ```r
@@ -107,7 +117,7 @@ topTable(fit)
 
 ## Interpreting `topTable()` Output
 
-You now have the top genes affected by the treatment. Here's how we can interpret the output.
+You now have the top genes affected by the treatment. Here's how you can interpret the output.
 
 - **logFC**: estimate of the log2-fold-change corresponding to the effect of the treatment. Negative values mean the second treatment, in this case `untrt`, has lower expression than the baseline, in this case `trt`. Take a look at the design matrix to confirm.
 

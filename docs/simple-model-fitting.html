@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,7 +226,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.1" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#overview-2"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
 <li class="chapter" data-level="8.2" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#load-prepare-data"><i class="fa fa-check"></i><b>8.2</b> Load &amp; Prepare Data</a></li>
 <li class="chapter" data-level="8.3" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#creating-the-design-matrix"><i class="fa fa-check"></i><b>8.3</b> Creating the Design Matrix</a></li>
-<li class="chapter" data-level="8.4" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#testing-with-lmfit-and-ebayes."><i class="fa fa-check"></i><b>8.4</b> Testing with <code>lmFit</code> and <code>eBayes</code>.</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#testing-with-lmfit-and-ebayes"><i class="fa fa-check"></i><b>8.4</b> Testing with <code>lmFit</code> and <code>eBayes</code></a></li>
 <li class="chapter" data-level="8.5" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#interpreting-toptable-output"><i class="fa fa-check"></i><b>8.5</b> Interpreting <code>topTable()</code> Output</a></li>
 <li class="chapter" data-level="8.6" data-path="simple-model-fitting.html"><a href="simple-model-fitting.html#recap-3"><i class="fa fa-check"></i><b>8.6</b> Recap</a></li>
 </ul></li>
@@ -273,8 +273,8 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 8</span> Simple Model Fitting</h1>
 <div id="overview-2" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Overview</h2>
-<p>Now that we are familiar with <a href="summarizedexperiment.html#summarizedexperiment"><code>SummarizedExperiment</code></a> and <a href="design-matrices.html#design-matrices">design matrices</a>, we can apply what we learned to the <code>airway</code> dataset.</p>
-<p>Recall that the “airway” data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in <span class="citation">Himes (<a href="#ref-Himes2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p>Now that you are familiar with <a href="summarizedexperiment.html#summarizedexperiment"><code>SummarizedExperiment</code></a> and <a href="design-matrices.html#design-matrices">design matrices</a>, you can apply what you learned to the <code>airway</code> dataset.</p>
+<p>Recall that the <code>airway</code> data is from an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone. You can learn more about the experiment in <span class="citation">Himes (<a href="#ref-Himes2014" role="doc-biblioref">2014</a>)</span>.</p>
 </div>
 <div id="load-prepare-data" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Load &amp; Prepare Data</h2>
@@ -282,27 +282,32 @@ div.csl-indent {
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="simple-model-fitting.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(&quot;airway&quot;)</span></span>
 <span id="cb81-2"><a href="simple-model-fitting.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airway)</span>
 <span id="cb81-3"><a href="simple-model-fitting.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airway)</span></code></pre></div>
-<p>You should also save the assay data from <code>airway</code>. Remember that this contains the gene counts.</p>
+<p>You should also save the assay data from <code>airway</code>. Remember that <code>assay()</code> extracts the gene counts.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="simple-model-fitting.html#cb82-1" aria-hidden="true" tabindex="-1"></a>assay_data <span class="ot">&lt;-</span> <span class="fu">assay</span>(airway)</span></code></pre></div>
 </div>
 <div id="creating-the-design-matrix" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Creating the Design Matrix</h2>
-<p>You should create a design matrix like you did in the <a href="design-matrices.html#inpractice">previous chapter</a>. Since this is a categorical variable, we need to use a <a href="design-matrices.html#means">means</a> or <a href="design-matrices.html#meanref">mean-reference</a> model. We will use a mean-reference model because we are interested in the difference attributable to the treatment.</p>
+<p>You should create a design matrix like you did in the <a href="design-matrices.html#inpractice">previous chapter</a>.</p>
+<p>Since the dexamethasone treatment is a categorical variable, you need to use a <a href="design-matrices.html#means">means</a> or <a href="design-matrices.html#meanref">mean-reference</a> model. Going forward, we will use a mean-reference model because we are interested in the difference attributable to the treatment.</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="simple-model-fitting.html#cb83-1" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">colData</span>(airway)</span>
 <span id="cb83-2"><a href="simple-model-fitting.html#cb83-2" aria-hidden="true" tabindex="-1"></a>design_matrix <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>( <span class="sc">~</span> sample_data<span class="sc">$</span>dex)</span></code></pre></div>
 </div>
-<div id="testing-with-lmfit-and-ebayes." class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Testing with <code>lmFit</code> and <code>eBayes</code>.</h2>
-<p>Now we start the exciting process of model fitting! You will need the <code>limma</code> package.</p>
+<div id="testing-with-lmfit-and-ebayes" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Testing with <code>lmFit</code> and <code>eBayes</code></h2>
+<p>Now you start the exciting process of model fitting! You will need the <code>limma</code> package.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="simple-model-fitting.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(&quot;limma&quot;)</span></span>
 <span id="cb84-2"><a href="simple-model-fitting.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span></code></pre></div>
-<p>First, we want to transform the count data before we proceed. The <code>voom()</code> function transforms count data to <span class="math inline">\(\log_{2}\)</span>-counts per million (logCPM), estimates the mean-variance relationship, and uses this to compute appropriate observation-level weights. We should also supply the design matrix.</p>
+<p>You want to transform the count data before proceeding with model fitting.</p>
+<p>The <code>voom()</code> function transforms count data to <span class="math inline">\(\log_{2}\)</span>-counts per million (logCPM), estimates the mean-variance relationship, and uses these values to compute appropriate observation-level weights. This is an important step that takes into account the mean-variance relationship in the data. In other words, it factors in that as gene counts (expression) becomes greater, so does the variance. <code>voom()</code> also corrects for differences in sequencing depth among samples (libraries). This can happen when one sample starts with more total RNA or the sequencer produces more data for one sample over another.</p>
+<p>You should also supply the design matrix.</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="simple-model-fitting.html#cb85-1" aria-hidden="true" tabindex="-1"></a>assay_data <span class="ot">&lt;-</span> <span class="fu">voom</span>(assay_data, <span class="at">design =</span> design_matrix)</span></code></pre></div>
-<p>Next, use the <code>limma</code> function <code>lmFit()</code>. This function fits multiple linear models by weighted or generalized least squares. A linear model is fitted to the expression data for each gene. We should also supply the design matrix.</p>
+<p>Next, use the <code>limma</code> function <code>lmFit()</code>. This function fits multiple linear models by weighted or generalized least squares. A linear model is fitted to the expression data for each gene. As above, you should supply the design matrix.</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="simple-model-fitting.html#cb86-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(assay_data, <span class="at">design =</span> design_matrix)</span></code></pre></div>
-<p>The code above estimates coefficients, but it’s easier to interpret if we have log-odd or p-values. We can use <code>eBayes()</code> for this. This function computes moderated t-statistics, moderated F-statistic, and log-odds of differential expression by empirical Bayes moderation of the standard errors, given the output of <code>lmFit()</code>. This allows us to rank genes in order of evidence for differential expression. Using empirical Bayes methods squeezes the gene-wise residual variances toward a common value (or towards a global trend).</p>
+<p>The code above estimates coefficients, but it’s easier to interpret if you have log-odd or p-values. You can use <code>eBayes()</code> for this.</p>
+<p>The <code>eBayes()</code> function computes moderated t-statistics, moderated F-statistic, and log-odds of differential expression by empirical Bayes moderation of the standard errors, when this function is given the output of <code>lmFit()</code>. This allows us to rank genes in order of evidence for differential expression. Using empirical Bayes methods squeezes the gene-wise residual variances toward a common value (or towards a global trend).</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="simple-model-fitting.html#cb87-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fit)</span></code></pre></div>
-<p>Now that we have a fitted model and estimated statistics, we can select the top-ranked genes for for the design matrix we supplied (remember, we are looking at the effect of dexamethasone treatment).</p>
+<p>Now that you have a fitted model and estimated statistics, you can look at individual genes.</p>
+<p>Because the fitted models are based on the design matrix we supplied, “top” genes will be based the difference between <code>trt</code> and <code>untrt</code>. Remember that these indicate whether or not cells received dexamethasone treatment. The function <code>topTable()</code> shows you the top-ranked genes given the model you supplied.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="simple-model-fitting.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topTable</span>(fit)</span></code></pre></div>
 <pre><code>## Removing intercept from test coefficients</code></pre>
 <pre><code>##                     logFC  AveExpr         t      P.Value    adj.P.Val
@@ -330,7 +335,7 @@ div.csl-indent {
 </div>
 <div id="interpreting-toptable-output" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Interpreting <code>topTable()</code> Output</h2>
-<p>You now have the top genes affected by the treatment. Here’s how we can interpret the output.</p>
+<p>You now have the top genes affected by the treatment. Here’s how you can interpret the output.</p>
 <ul>
 <li><p><strong>logFC</strong>: estimate of the log2-fold-change corresponding to the effect of the treatment. Negative values mean the second treatment, in this case <code>untrt</code>, has lower expression than the baseline, in this case <code>trt</code>. Take a look at the design matrix to confirm.</p></li>
 <li><p><strong>AveExpr </strong>: average log2-expression for the gene over all samples.</p></li>
