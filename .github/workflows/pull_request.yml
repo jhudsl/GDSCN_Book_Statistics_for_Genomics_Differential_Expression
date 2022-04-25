@@ -33,8 +33,8 @@ jobs:
 
       - name: Make branch if it doesn't exist
         run: |
-          git config --local user.email "avamariehoffman@gmail.com"
-          git config --local user.name "avahoffman"
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
@@ -396,8 +396,8 @@ jobs:
       # Set up git checkout
       - name: Set up git checkout
         run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
+          git config --local user.email "avamariehoffman@gmail.com"
+          git config --local user.name "avahoffman"
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
