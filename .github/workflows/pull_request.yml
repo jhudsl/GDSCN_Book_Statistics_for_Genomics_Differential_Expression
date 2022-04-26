@@ -20,6 +20,7 @@ jobs:
         with:
           repository: jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
           fetch-depth: 0
+          path: home/rstudio
           
       # Set up git checkout
       - name: Set up git checkout
