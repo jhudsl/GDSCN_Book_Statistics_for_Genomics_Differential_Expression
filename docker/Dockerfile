@@ -43,64 +43,68 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     liblzma-dev
     
 # Install pip3 and installation tools
-# RUN apt-get -y --no-install-recommends install \
-#    python3-pip  python3-dev
+RUN apt-get -y --no-install-recommends install \
+   python3-pip  python3-dev
 
-# RUN Rscript -e "packageVersion('ggplot2')"
+RUN Rscript -e "packageVersion('ggplot2')"
 
 # Install AnVIL
-# RUN Rscript -e "options(warn = 2); BiocManager::install('AnVIL')"
+RUN Rscript -e "options(warn = 2); BiocManager::install('AnVIL')"
 
 # MatrixStats version has some issues; must be installed from source to get version 0.6+
-# RUN Rscript -e "options(warn = 2); install.packages('https://cran.r-project.org/src/contrib/Archive/matrixStats/matrixStats_0.61.0.tar.gz', repo=NULL, type='source')"
+RUN Rscript -e "options(warn = 2); install.packages('https://cran.r-project.org/src/contrib/Archive/matrixStats/matrixStats_0.61.0.tar.gz', repo=NULL, type='source')"
 
-# RUN Rscript -e "options(warn = 2); AnVIL::install( \
-#        c('airway', \
-#        'GEOquery', \
-#        'Glimma', \
-#        'iSEE', \
-#        'limma', \
-#        'scater', \
-#        'scran', \
-#        'scRNAseq', \
-#        'SingleCellExperiment', \
-#        'SummarizedExperiment'))"
+# Bioconductor packages
+RUN Rscript -e "options(warn = 2); AnVIL::install( \
+       c('airway', \
+       'GEOquery', \
+       'Glimma', \
+       'iSEE', \
+       'limma', \
+       'scater', \
+       'scran', \
+       'scRNAseq', \
+       'SingleCellExperiment', \
+       'SummarizedExperiment'))"
 
 # Commonly used R packages
-# RUN Rscript -e  "options(warn = 2);install.packages( \
-#     c('bookdown', \
-#       'here', \
-#       'leanpubr', \
-#       'optparse', \
-#       'oro.nifti', \
-#       'qpdf', \
-#       'R.utils', \
-#       'rprojroot', \
-#       'rgoogleslides', \
-#       'scales', \
-#       'servr', \
-#       'spelling', \
-#       'styler', \
-#       'reticulate'), \
-#       repos = 'https://cloud.r-project.org/')"
+RUN Rscript -e  "options(warn = 2);install.packages( \
+    c('bookdown', \
+      'here', \
+      'leanpubr', \
+      'optparse', \
+      'oro.nifti', \
+      'qpdf', \
+      'R.utils', \
+      'rprojroot', \
+      'rgoogleslides', \
+      'scales', \
+      'servr', \
+      'spelling', \
+      'styler', \
+      'reticulate'), \
+      repos = 'https://cloud.r-project.org/')"
 
 # cow needs this dependency:
-# RUN Rscript -e  "devtools::install_version('gitcreds', version = '0.1.1', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e  "devtools::install_version('gitcreds', version = '0.1.1', repos = 'http://cran.us.r-project.org')"
 
 # Didactr needs this dependency:
-# RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"
 
 # scRNAseq needs this dependency:
-# RUN Rscript -e  "devtools::install_version('rlang', version = '1.0.2', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e  "devtools::install_version('rlang', version = '1.0.2', repos = 'http://cran.us.r-project.org')"
 
 # Copy over git token and package list
 COPY git_token.txt .
 COPY github_package_list.tsv .
 
 # Install packages from github
-# RUN Rscript install_github.R \
-#  --packages github_package_list.tsv \
-#  --token git_token.txt
+RUN Rscript install_github.R \
+ --packages github_package_list.tsv \
+ --token git_token.txt
+
+# Confirm rlang version
+RUN Rscript -e  "packageVersion('rlang')"
   
 # Set final workdir for commands
 WORKDIR /home/rstudio
