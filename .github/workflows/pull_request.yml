@@ -12,7 +12,7 @@ jobs:
     name: Test docker
     runs-on: ubuntu-latest
     container:
-      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+      image: jhudsl/stats-for-genomics:0.9
 
     steps:
       - name: Checkout files
