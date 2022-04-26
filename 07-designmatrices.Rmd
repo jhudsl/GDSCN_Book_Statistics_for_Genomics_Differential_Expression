@@ -87,7 +87,7 @@ model.matrix( ~ df$age)
 ```
 
 ```{r, echo = FALSE}
-install.packages("ggplot2")
+# install.packages("ggplot2")
 library(ggplot2)
 ggplot(df, aes(age, expression)) +
   geom_point(size = 3) +
