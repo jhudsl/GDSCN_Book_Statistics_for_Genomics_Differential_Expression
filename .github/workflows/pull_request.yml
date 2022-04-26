@@ -8,6 +8,29 @@ on:
 
 jobs:
 
+  test-docker:
+    name: Test docker
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Set up git checkout
+      - name: Set up git checkout
+        run: |
+          git config --list
+
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git fetch --all
+          git checkout $branch_name
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
+        shell: bash
+
   yaml-check:
     name: Load user automation choices
     runs-on: ubuntu-latest
