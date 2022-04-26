@@ -8,30 +8,6 @@ on:
 
 jobs:
 
-  test-docker:
-    name: Test docker
-    runs-on: ubuntu-latest
-    container:
-      image: jhudsl/stats-for-genomics:0.9
-      
-    steps:
-      # Set up git checkout
-      - name: Set up git checkout
-        run: |
-          git config --list
-          git init /__w/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
-          git config --global --add safe.directory /__w/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
-          git remote add origin https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
-          git config --list
-
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          git fetch --all
-          git checkout $branch_name
-          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
-        shell: bash
-
   yaml-check:
     name: Load user automation choices
     runs-on: ubuntu-latest
@@ -422,16 +398,13 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
 
     steps:
-      - name: Checkout files
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       # Set up git checkout
       - name: Set up git checkout
         run: |
           git config --list
-          git config --global --add safe.directory /__w/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY}
+          git init /__w/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
+          git config --global --add safe.directory /__w/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
+          git remote add origin https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
           git config --list
