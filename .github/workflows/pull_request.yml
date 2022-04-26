@@ -26,6 +26,7 @@ jobs:
           git config --list
           git config --system user.email "itcrtrainingnetwork@gmail.com"
           git config --system user.name "jhudsl-robot"
+          git config --global --add safe.directory /__w/$GITHUB_REPOSITORY/$GITHUB_REPOSITORY
           git config --list
 
           branch_name='preview-${{ github.event.pull_request.number }}'
