@@ -15,8 +15,13 @@ jobs:
       image: jhudsl/stats-for-genomics:0.9
       
     steps:
+      - uses: LucasRoesler/get-repo-owner-actions@v1.0
+        id: get_owner
+      - name: print owner
+        run: echo ${{ steps.get_owner.outputs.owner }}
+    
       - name: Checkout files
-        uses: actions/checkout@users/tihuang/setsafedirinput
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           set-safe-directory: false
