@@ -91,20 +91,15 @@ RUN Rscript -e  "devtools::install_version('gitcreds', version = '0.1.1', repos 
 # Didactr needs this dependency:
 RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"
 
-# scRNAseq needs this dependency:
-RUN Rscript -e  "devtools::install_version('rlang', version = '1.0.2', repos = 'http://cran.us.r-project.org')"
-
 # Copy over git token and package list
 COPY git_token.txt .
 COPY github_package_list.tsv .
 
 # Install packages from github
+# Note that rlang commit hash is different
 RUN Rscript install_github.R \
  --packages github_package_list.tsv \
  --token git_token.txt
-
-# Confirm rlang version
-RUN Rscript -e  "packageVersion('rlang')"
   
 # Set final workdir for commands
 WORKDIR /home/rstudio
