@@ -15,9 +15,8 @@ jobs:
       image: jhudsl/stats-for-genomics:0.9
       
     steps:
-      - uses: LucasRoesler/get-repo-owner-actions@v1.0
-        id: get_owner
       - name: print owner
+        uses: LucasRoesler/get-repo-owner-actions@v1.0
         run: echo ${{ steps.get_owner.outputs.owner }}
     
       - name: Checkout files
