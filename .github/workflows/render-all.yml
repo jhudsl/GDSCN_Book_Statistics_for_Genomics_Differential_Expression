@@ -38,6 +38,9 @@ jobs:
     uses: ./.github/workflows/custom-workflow.yml
     with:
       render-type: 'main'
+      repository: $GITHUB_REPOSITORY
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
 
   render-bookdown:
     name: Render bookdown
