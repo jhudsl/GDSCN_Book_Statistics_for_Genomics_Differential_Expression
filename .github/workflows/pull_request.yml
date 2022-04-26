@@ -12,17 +12,20 @@ jobs:
     name: Test docker
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/stats-for-genomics:0.9
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
 
     steps:
       - name: Checkout files
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
       # Set up git checkout
       - name: Set up git checkout
         run: |
+          git config --list
+          #git config --system user.email "itcrtrainingnetwork@gmail.com"
+          git config --system user.name "jhudsl-robot"
           git config --list
 
           branch_name='preview-${{ github.event.pull_request.number }}'
