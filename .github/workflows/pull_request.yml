@@ -17,13 +17,6 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
-        with:
-          repository: jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
-          fetch-depth: 0
-          path: home/rstudio
-          
-      # Set up git checkout
-      - name: Set up git checkout
         run: |
           git config --list
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -34,7 +27,6 @@ jobs:
           git fetch --all
           git checkout $branch_name
           git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
-        shell: bash
 
   yaml-check:
     name: Load user automation choices
