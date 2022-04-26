@@ -19,11 +19,6 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | g
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null;
 RUN apt update && apt install -y gh;
 
-# RUN echo $(ls -1 /usr/lib/rstudio-server/bin/)
-
-# Remove old symlinks to old pandoc
-# RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
-
 # Uninstall old version of pandoc
 RUN sudo apt-get purge pandoc pandoc-citeproc pandoc-data \
   && sudo apt-get autoremove --purge
@@ -45,8 +40,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 # Install pip3 and installation tools
 RUN apt-get -y --no-install-recommends install \
    python3-pip  python3-dev
-
-RUN Rscript -e "packageVersion('ggplot2')"
 
 # Install AnVIL
 RUN Rscript -e "options(warn = 2); BiocManager::install('AnVIL')"
@@ -96,7 +89,7 @@ COPY git_token.txt .
 COPY github_package_list.tsv .
 
 # Install packages from github
-# Note that rlang commit hash is different
+# Note that rlang commit hash is different from OTTR_Template
 RUN Rscript install_github.R \
  --packages github_package_list.tsv \
  --token git_token.txt
