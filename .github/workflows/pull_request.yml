@@ -33,10 +33,8 @@ jobs:
 
       - name: Make branch if it doesn't exist
         run: |
-          git config --list
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
-          git config --list
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
@@ -51,10 +49,8 @@ jobs:
         
       - name: Login as jhudsl-robot
         run: |
-          git config --list
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
-          git config --list
 
     outputs:
       toggle_spell_check: "${{ env.SPELL_CHECK }}"
@@ -89,7 +85,6 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --list
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
 
@@ -401,13 +396,12 @@ jobs:
       # Set up git checkout
       - name: Set up git checkout
         run: |
-          git config --list
-          git init /__w/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
-          git config --global --add safe.directory /__w/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
-          git remote add origin https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression
+          repo_name='${{ github.event.repository.name }}'
+          git init /__w/$repo_name/$repo_name
+          git config --global --add safe.directory /__w/$repo_name/$repo_name
+          git remote add origin https://github.com/$GITHUB_REPOSITORY
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
-          git config --list
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
