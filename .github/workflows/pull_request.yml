@@ -63,6 +63,9 @@ jobs:
     uses: ./.github/workflows/custom-workflow.yml
     with:
       render-type: 'preview'
+      repository: $GITHUB_REPOSITORY
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
 
   spell-check:
     name: Check spelling
