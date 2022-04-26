@@ -1,5 +1,5 @@
-FROM rocker/tidyverse:4.0.2
-LABEL maintainer="cansav09@gmail.com"
+FROM rocker/tidyverse:4.1
+LABEL maintainer="avamariehoffman@gmail.com"
 WORKDIR /rocker-build/
 
 COPY install_github.R .
@@ -19,9 +19,6 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | g
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null;
 RUN apt update && apt install -y gh;
 
-# Remove old symlinks to old pandoc
-RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
-
 # Uninstall old version of pandoc
 RUN sudo apt-get purge pandoc pandoc-citeproc pandoc-data \
   && sudo apt-get autoremove --purge
@@ -31,16 +28,37 @@ RUN wget https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-
   && sudo apt-get install ./pandoc-2.14.1-1-amd64.deb
 
 # Create new symlinks
-RUN ln -s /usr/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/pandoc
+RUN ln -s /usr/bin/pandoc /usr/lib/rstudio-server/bin/pandoc
 
-# Add curl, bzip2
+# Add curl, bzip2, libbz2-dev, liblzma-dev
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     bzip2 \
-    curl
-
+    curl \ 
+    libbz2-dev \
+    liblzma-dev
+    
 # Install pip3 and installation tools
 RUN apt-get -y --no-install-recommends install \
-    python3-pip  python3-dev
+   python3-pip  python3-dev
+
+# Install AnVIL
+RUN Rscript -e "options(warn = 2); BiocManager::install('AnVIL')"
+
+# MatrixStats version has some issues; must be installed from source to get version 0.6+
+RUN Rscript -e "options(warn = 2); install.packages('https://cran.r-project.org/src/contrib/Archive/matrixStats/matrixStats_0.61.0.tar.gz', repo=NULL, type='source')"
+
+# Bioconductor packages
+RUN Rscript -e "options(warn = 2); AnVIL::install( \
+       c('airway', \
+       'GEOquery', \
+       'Glimma', \
+       'iSEE', \
+       'limma', \
+       'scater', \
+       'scran', \
+       'scRNAseq', \
+       'SingleCellExperiment', \
+       'SummarizedExperiment'))"
 
 # Commonly used R packages
 RUN Rscript -e  "options(warn = 2);install.packages( \
@@ -53,6 +71,7 @@ RUN Rscript -e  "options(warn = 2);install.packages( \
       'R.utils', \
       'rprojroot', \
       'rgoogleslides', \
+      'scales', \
       'servr', \
       'spelling', \
       'styler', \
@@ -70,9 +89,10 @@ COPY git_token.txt .
 COPY github_package_list.tsv .
 
 # Install packages from github
+# Note that rlang commit hash is different from OTTR_Template
 RUN Rscript install_github.R \
-  --packages github_package_list.tsv \
-  --token git_token.txt
-
+ --packages github_package_list.tsv \
+ --token git_token.txt
+  
 # Set final workdir for commands
 WORKDIR /home/rstudio

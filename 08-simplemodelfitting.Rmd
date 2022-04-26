@@ -2,11 +2,6 @@
 
 # Simple Model Fitting
 
-```{r, warning = FALSE, message = FALSE, echo = FALSE}
-# Needed for GHA
-BiocManager::install(c("limma", "eBayes"))
-```
-
 ## Overview
 
 Now that you are familiar with [`SummarizedExperiment`](summarizedexperiment.html#summarizedexperiment) and [design matrices](design-matrices.html#design-matrices), you can apply what you learned to the `airway` dataset. 
