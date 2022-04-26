@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
     container:
-      image: jhudsl/stats-for-genomics:0.9
+      image: jhudsl/course_template:main
 
     steps:
       - name: Checkout files
@@ -173,7 +173,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_style_code == 'yes'}}
     container:
-      image: jhudsl/stats-for-genomics:0.9
+      image: jhudsl/course_template:main
 
     steps:
       - name: Checkout files
@@ -196,7 +196,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
     container:
-      image: jhudsl/stats-for-genomics:0.9
+      image: jhudsl/course_template:main
 
     steps:
     - name: checkout repo
@@ -305,7 +305,7 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/stats-for-genomics:0.9
+      image: jhudsl/course_template:main
     if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
     steps:
       - name: Checkout files
@@ -407,6 +407,7 @@ jobs:
       - name: Set up git checkout
         run: |
           git config --list
+          git config --global --add safe.directory /__w/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY}
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
           git config --list
@@ -549,4 +550,4 @@ jobs:
           load: true
           context: docker
           file: docker/Dockerfile
-          tags: jhudsl/stats-for-genomics
+          tags: jhudsl/course_template
