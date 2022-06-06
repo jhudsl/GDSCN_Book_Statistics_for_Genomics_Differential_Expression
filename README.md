@@ -1,5 +1,3 @@
-<!--Delete this section below upon using the template-->
-
 ## AnVIL Template
 
 Based on [_Online Tools for Training Resources (OTTR)_](https://github.com/jhudsl/OTTR_Template)
