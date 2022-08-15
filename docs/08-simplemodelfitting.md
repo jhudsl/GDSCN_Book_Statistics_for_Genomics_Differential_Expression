@@ -2,8 +2,6 @@
 
 # Simple Model Fitting
 
-
-
 ## Overview
 
 Now that you are familiar with [`SummarizedExperiment`](summarizedexperiment.html#summarizedexperiment) and [design matrices](design-matrices.html#design-matrices), you can apply what you learned to the `airway` dataset. 
@@ -146,41 +144,43 @@ sessionInfo()
 ```
 
 ```
-## R version 4.0.2 (2020-06-22)
+## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.3 LTS
+## Running under: Ubuntu 20.04.4 LTS
 ## 
 ## Matrix products: default
-## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
 ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
 ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
-## [8] methods   base     
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
 ## 
 ## other attached packages:
-##  [1] limma_3.46.0                airway_1.10.0              
-##  [3] SummarizedExperiment_1.20.0 Biobase_2.50.0             
-##  [5] GenomicRanges_1.42.0        GenomeInfoDb_1.26.7        
-##  [7] IRanges_2.24.1              S4Vectors_0.28.1           
-##  [9] BiocGenerics_0.36.1         MatrixGenerics_1.2.1       
+##  [1] limma_3.50.3                airway_1.14.0              
+##  [3] SummarizedExperiment_1.24.0 Biobase_2.54.0             
+##  [5] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        
+##  [7] IRanges_2.28.0              S4Vectors_0.32.4           
+##  [9] BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
 ## [11] matrixStats_0.61.0         
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] XVector_0.30.0         knitr_1.33             magrittr_2.0.2        
-##  [4] zlibbioc_1.36.0        lattice_0.20-41        rlang_0.4.10          
-##  [7] stringr_1.4.0          tools_4.0.2            grid_4.0.2            
-## [10] xfun_0.26              jquerylib_0.1.4        htmltools_0.5.0       
-## [13] yaml_2.2.1             digest_0.6.25          bookdown_0.24         
-## [16] Matrix_1.2-18          GenomeInfoDbData_1.2.4 BiocManager_1.30.10   
-## [19] bitops_1.0-7           RCurl_1.98-1.2         evaluate_0.14         
-## [22] rmarkdown_2.10         DelayedArray_0.16.3    stringi_1.5.3         
-## [25] compiler_4.0.2
+##  [1] bslib_0.3.1            compiler_4.1.3         jquerylib_0.1.4       
+##  [4] XVector_0.34.0         bitops_1.0-7           tools_4.1.3           
+##  [7] zlibbioc_1.40.0        digest_0.6.29          jsonlite_1.8.0        
+## [10] evaluate_0.15          lattice_0.20-45        rlang_1.0.2           
+## [13] Matrix_1.4-0           DelayedArray_0.20.0    cli_3.2.0             
+## [16] yaml_2.3.5             xfun_0.26              fastmap_1.1.0         
+## [19] GenomeInfoDbData_1.2.7 stringr_1.4.0          knitr_1.33            
+## [22] sass_0.4.1             grid_4.1.3             R6_2.5.1              
+## [25] rmarkdown_2.10         bookdown_0.24          magrittr_2.0.3        
+## [28] htmltools_0.5.2        stringi_1.7.6          RCurl_1.98-1.6
 ```

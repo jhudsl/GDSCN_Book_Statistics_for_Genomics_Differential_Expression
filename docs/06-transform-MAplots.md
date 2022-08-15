@@ -16,8 +16,6 @@ Much of the following has been adopted from the [`Glimma` vignette](https://bioc
 First, we will load the necessary packages.
 
 
-
-
 ```r
 # Install and load airway
 # AnVIL::install(c("airway"))
@@ -116,7 +114,7 @@ Then we will plot the two groups.
 plot(untrt_sample_means, trt_sample_means)
 ```
 
-<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 This is hard to interpret. Most of the genes are clustered in the bottom left corner.
 
@@ -130,7 +128,7 @@ Using a $\log_{2}$ transformation makes it easier to examine all the genes toget
 plot(log2(untrt_sample_means), log2(trt_sample_means))
 ```
 
-<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 ## Using Fold-Change to Create an MA Plot
 
@@ -210,24 +208,17 @@ Plot the values above, with mean expression on the x-axis and fold-change on the
 plot(mean_expression, log2_fold_change)
 ```
 
-<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 Since there are many data points, it's a good idea to customize your plot. The `ggplot2` package can also provide greater flexibility with plotting.
 
 
 ```r
 library(scales)
-```
-
-```
-## Warning: package 'scales' was built under R version 4.0.3
-```
-
-```r
 plot(mean_expression, log2_fold_change, col = alpha("black", 0.1), pch = 16, cex = 0.5)
 ```
 
-<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="06-transform-MAplots_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 This gives us a very rough idea of how transformation and using fold-change can aid in interpretation of the data. In reality, we need to cover a few more steps before creating this kind of plot.
 
@@ -257,43 +248,45 @@ sessionInfo()
 ```
 
 ```
-## R version 4.0.2 (2020-06-22)
+## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.3 LTS
+## Running under: Ubuntu 20.04.4 LTS
 ## 
 ## Matrix products: default
-## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
 ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
 ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
-## [8] methods   base     
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
 ## 
 ## other attached packages:
-##  [1] scales_1.1.1                airway_1.10.0              
-##  [3] SummarizedExperiment_1.20.0 Biobase_2.50.0             
-##  [5] GenomicRanges_1.42.0        GenomeInfoDb_1.26.7        
-##  [7] IRanges_2.24.1              S4Vectors_0.28.1           
-##  [9] BiocGenerics_0.36.1         MatrixGenerics_1.2.1       
+##  [1] scales_1.2.0                airway_1.14.0              
+##  [3] SummarizedExperiment_1.24.0 Biobase_2.54.0             
+##  [5] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        
+##  [7] IRanges_2.28.0              S4Vectors_0.32.4           
+##  [9] BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
 ## [11] matrixStats_0.61.0         
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_4.0.2         BiocManager_1.30.10    jquerylib_0.1.4       
-##  [4] highr_0.8              XVector_0.30.0         bitops_1.0-7          
-##  [7] tools_4.0.2            zlibbioc_1.36.0        digest_0.6.25         
-## [10] evaluate_0.14          lifecycle_1.0.0        lattice_0.20-41       
-## [13] rlang_0.4.10           Matrix_1.2-18          DelayedArray_0.16.3   
-## [16] yaml_2.2.1             xfun_0.26              GenomeInfoDbData_1.2.4
-## [19] stringr_1.4.0          knitr_1.33             grid_4.0.2            
-## [22] R6_2.4.1               rmarkdown_2.10         bookdown_0.24         
-## [25] farver_2.0.3           magrittr_2.0.2         htmltools_0.5.0       
-## [28] colorspace_1.4-1       stringi_1.5.3          munsell_0.5.0         
-## [31] RCurl_1.98-1.2
+##  [1] highr_0.9              bslib_0.3.1            compiler_4.1.3        
+##  [4] jquerylib_0.1.4        XVector_0.34.0         bitops_1.0-7          
+##  [7] tools_4.1.3            zlibbioc_1.40.0        digest_0.6.29         
+## [10] lifecycle_1.0.1        jsonlite_1.8.0         evaluate_0.15         
+## [13] lattice_0.20-45        rlang_1.0.2            Matrix_1.4-0          
+## [16] DelayedArray_0.20.0    cli_3.2.0              yaml_2.3.5            
+## [19] xfun_0.26              fastmap_1.1.0          GenomeInfoDbData_1.2.7
+## [22] stringr_1.4.0          knitr_1.33             sass_0.4.1            
+## [25] grid_4.1.3             R6_2.5.1               rmarkdown_2.10        
+## [28] bookdown_0.24          farver_2.1.0           magrittr_2.0.3        
+## [31] htmltools_0.5.2        colorspace_2.0-3       stringi_1.7.6         
+## [34] munsell_0.5.0          RCurl_1.98-1.6
 ```
