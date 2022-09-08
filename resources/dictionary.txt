@@ -28,7 +28,6 @@ interoperable
 ITCR
 itcrtraining
 ITN
-fyi
 Jupyter
 Leanpub
 limma
