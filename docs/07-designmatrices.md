@@ -357,7 +357,7 @@ model.matrix( ~ sample_data$dex)
 ## [1] "contr.treatment"
 ```
 
-::: {.fyi}
+::: {.reflection}
 QUESTIONS:
 
 1. What is the difference between the two design matrices you created above?
