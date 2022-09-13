@@ -92,7 +92,7 @@ You now have the top genes affected by the treatment. Here's how you can interpr
 
 - **B**: log-odds that the gene is differentially expressed
 
-::: {.fyi}
+::: {.reflection}
 QUESTIONS:
 
 1. The top three genes have a negative logFC. Which treatment (`untrt` or `trt`) had greater expression?

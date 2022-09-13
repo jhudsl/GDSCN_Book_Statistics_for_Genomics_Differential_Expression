@@ -201,7 +201,7 @@ Now try creating a mean-reference model using the following.
 model.matrix( ~ sample_data$dex)
 ```
 
-::: {.fyi}
+::: {.reflection}
 QUESTIONS:
 
 1. What is the difference between the two design matrices you created above?
