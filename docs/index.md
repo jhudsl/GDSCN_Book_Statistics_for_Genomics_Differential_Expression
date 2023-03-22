@@ -36,6 +36,21 @@ Please check out our full collection of AnVIL resources below!
    <td style="text-align:left;"> anvil, r-programming </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [AnVIL SRA Data](https://hutchdatascience.org/AnVIL_SRA_Data/) ([github](https://github.com/fhdsl/AnVIL_SRA_Data)) </td>
+   <td style="text-align:left;"> Pull Sequence Read Archive (SRA) data into AnVIL </td>
+   <td style="text-align:left;"> anvil, genomics, ncbi-database, sequence-read-archive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [AnVIL Urban Genomics PCA](https://hutchdatascience.org/AnVIL_Urban_Genomics_PCA/) ([github](https://github.com/fhdsl/AnVIL_Urban_Genomics_PCA)) </td>
+   <td style="text-align:left;"> Lab module and lectures for exploring PCA using feral pigeon populations </td>
+   <td style="text-align:left;"> anvil, genomics, pca, urban-data-science </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [AnVIL: Epigenetics Intro](https://hutchdatascience.org/AnVIL_Book_Epigenetics_Intro/) ([github](https://github.com/fhdsl/AnVIL_Book_Epigenetics_Intro)) </td>
+   <td style="text-align:left;"> An introductory activity for epigenetics, or the idea of &quot;nature versus nurture&quot; in genetics. Learners use the UCSC Genome Browser. </td>
+   <td style="text-align:left;"> anvil, course, epigenetics, human-genomes, module, ucsc-browser </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [AnVIL: Getting Started](https://jhudatascience.org/AnVIL_Book_Getting_Started) ([github](https://github.com/jhudsl/AnVIL_Book_Getting_Started)) </td>
    <td style="text-align:left;"> A guide for getting started using AnVIL </td>
    <td style="text-align:left;"> anvil, cloud-computing </td>
@@ -46,29 +61,29 @@ Please check out our full collection of AnVIL resources below!
    <td style="text-align:left;"> anvil, education </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [GDSCN SARS RStudio on AnVIL](https://hutchdatascience.org/GDSCN_SARS_RStudio_on_AnVIL/) ([github](https://github.com/fhdsl/GDSCN_SARS_RStudio_on_AnVIL)) </td>
+   <td style="text-align:left;"> Lab module and lectures for identifying phylogenetic history of SARS variants using R </td>
+   <td style="text-align:left;"> anvil, gdscn, phylogenetic-analysis, sars-cov-2 </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [GDSCN: SARS Galaxy on AnVIL](https://jhudatascience.org/GDSCN_Book_SARS_Galaxy_on_AnVIL/) ([github](https://github.com/jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL)) </td>
    <td style="text-align:left;"> Lab module and lectures for variant detection in SARS-CoV-2 using Galaxy </td>
-   <td style="text-align:left;"> anvil, genomics, module </td>
+   <td style="text-align:left;"> anvil, gdscn, genomics, module, sars-cov-2, variant-detection </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [GDSCN: Statistics for Genomics Differential Expression](https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/) ([github](https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_Differential_Expression)) </td>
    <td style="text-align:left;"> A set of lab modules for an introduction to differential gene expression </td>
-   <td style="text-align:left;"> anvil, cloud-computing, gene-expression </td>
+   <td style="text-align:left;"> anvil, cloud-computing, gdscn, gene-expression </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [GDSCN: Statistics for Genomics PCA](https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_PCA/) ([github](https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_PCA)) </td>
    <td style="text-align:left;"> A set of lab modules for PCA analysis </td>
-   <td style="text-align:left;"> anvil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> [GDSCN: Statistics for Genomics RNA-seq](https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_RNA-seq/) ([github](https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_RNA-seq)) </td>
-   <td style="text-align:left;"> A set of lab modules for RNA-seq analysis </td>
-   <td style="text-align:left;"> anvil </td>
+   <td style="text-align:left;"> anvil, gdscn, genomics </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [GDSCN: Statistics for Genomics scRNA-seq](http://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_scRNA-seq/) ([github](https://github.com/jhudsl/GDSCN_Book_Statistics_for_Genomics_scRNA-seq)) </td>
    <td style="text-align:left;"> A set of lab modules for single cell RNA-seq analysis </td>
-   <td style="text-align:left;"> anvil </td>
+   <td style="text-align:left;"> anvil, gdscn, rna-seq, scrna-seq </td>
   </tr>
 </tbody>
 </table>
