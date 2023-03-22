@@ -250,7 +250,7 @@ sessionInfo()
 ```
 ## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.4 LTS
+## Running under: Ubuntu 20.04.5 LTS
 ## 
 ## Matrix products: default
 ## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
@@ -269,7 +269,7 @@ sessionInfo()
 ## [8] base     
 ## 
 ## other attached packages:
-##  [1] scales_1.2.0                airway_1.14.0              
+##  [1] scales_1.2.1                airway_1.14.0              
 ##  [3] SummarizedExperiment_1.24.0 Biobase_2.54.0             
 ##  [5] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        
 ##  [7] IRanges_2.28.0              S4Vectors_0.32.4           

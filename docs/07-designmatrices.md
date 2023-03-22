@@ -374,7 +374,7 @@ sessionInfo()
 ```
 ## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.4 LTS
+## Running under: Ubuntu 20.04.5 LTS
 ## 
 ## Matrix products: default
 ## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
@@ -416,7 +416,7 @@ sessionInfo()
 ## [37] tzdb_0.3.0             withr_2.5.0            bitops_1.0-7          
 ## [40] grid_4.1.3             nlme_3.1-155           jsonlite_1.8.0        
 ## [43] gtable_0.3.0           lifecycle_1.0.1        DBI_1.1.2             
-## [46] magrittr_2.0.3         scales_1.2.0           cli_3.2.0             
+## [46] magrittr_2.0.3         scales_1.2.1           cli_3.2.0             
 ## [49] stringi_1.7.6          farver_2.1.0           XVector_0.34.0        
 ## [52] fs_1.5.2               bslib_0.3.1            ellipsis_0.3.2        
 ## [55] generics_0.1.2         vctrs_0.4.1            tools_4.1.3           
