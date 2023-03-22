@@ -43,7 +43,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Etc/UTC
-##  date     2022-09-13
+##  date     2023-03-22
 ##  pandoc   2.14.1 @ /usr/lib/rstudio-server/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
